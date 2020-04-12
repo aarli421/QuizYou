@@ -14,6 +14,8 @@ public class TeacherActivity extends AppCompatActivity {
     // TODO Grade test button
     // TODO ArrayList of teachers
 
+    // I will finish this by wenesday
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
