@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     // TODO SignUp as student or teacher
     // TODO LogIn as student or teacher
     // TODO Store in Firebase
-
+    // yuh
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
