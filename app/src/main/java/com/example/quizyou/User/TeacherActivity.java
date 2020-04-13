@@ -12,9 +12,14 @@ import com.example.quizyou.R;
 import com.example.quizyou.Test.GradeTestActivity;
 import com.example.quizyou.Test.MakeTestActivity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TeacherActivity extends AppCompatActivity {
 
     private Button mLogout, mGradeTests, mStudentReports, mAssignTest;
+
+    public static Map<String, Object> teachers = new HashMap<>();
 
     // TODO Menu to view Email/Password/ID/Name/Code/Logout
     // TODO View list of students, list of test made, list of tests results, list of test assigned

@@ -10,8 +10,8 @@ import java.util.HashMap;
 public class Teacher implements User {
     private ArrayList<Student> students;
     private ArrayList<Test> made, assigned;
-    private HashMap<Test, ArrayList<TestResult>> results;
-    private HashMap<Test, ArrayList<GradedTest>> gradedTests;
+    private ArrayList<TestResult> results;
+    private ArrayList<GradedTest> gradedTests;
     private String name, email, password;
     private int ID;
     private static int staticID = 0;
@@ -20,8 +20,8 @@ public class Teacher implements User {
         students = new ArrayList<>();
         made = new ArrayList<>();
         assigned = new ArrayList<>();
-        results = new HashMap<>();
-        gradedTests = new HashMap<>();
+        results = new ArrayList<>();
+        gradedTests = new ArrayList<>();
 
         this.name = name;
         this.email = email;
@@ -58,16 +58,12 @@ public class Teacher implements User {
         return assigned;
     }
 
-    public HashMap<Test, ArrayList<TestResult>> getResults() {
+    public ArrayList<TestResult> getResults() {
         return results;
     }
 
-    public HashMap<Test, ArrayList<GradedTest>> getGradedTests() {
+    public ArrayList<GradedTest> getGradedTests() {
         return gradedTests;
-    }
-
-    public ArrayList<TestResult> getResults(Test t) {
-        return results.get(t);
     }
 
     public void addMadeTest(Test t) {
@@ -76,16 +72,14 @@ public class Teacher implements User {
 
     public void addAssignedTest(Test t) {
         made.remove(t);
-        results.put(t, new ArrayList<TestResult>());
-        gradedTests.put(t, new ArrayList<GradedTest>());
         assigned.add(t);
     }
 
-    public void addTestResults(Test t, TestResult r) {
-        results.get(t).add(r);
+    public void addTestResults(TestResult r) {
+        results.add(r);
     }
 
-    public void addGradedTests(Test t, GradedTest g) {
-        gradedTests.get(t).add(g);
+    public void addGradedTests(GradedTest g) {
+        gradedTests.add(g);
     }
 }

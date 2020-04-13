@@ -61,6 +61,6 @@ public class Student implements User {
     }
 
     public void addReport(GradedTest t) {
-
+        reports.add(t);
     }
 }

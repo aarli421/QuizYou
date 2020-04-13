@@ -14,9 +14,14 @@ import com.example.quizyou.Test.GradeTestActivity;
 import com.example.quizyou.Test.MakeTestActivity;
 import com.example.quizyou.Test.TestActivity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class StudentActivity extends AppCompatActivity {
 
     private Button mLogout, mJoinClass, mMyReports, mTakeTest;
+
+    public static Map<String, Object> students = new HashMap<>();
 
     // TODO Menu to view Email/Password/ID/Name/Code/Logout
     // TODO View list of students, list of test made, list of tests results, list of test assigned
@@ -47,39 +52,41 @@ public class StudentActivity extends AppCompatActivity {
             }
         });
 
-        mJoinClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), GradeTestActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                return;
-            }
-        });
+//        mJoinClass.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), GradeTestActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                finish();
+//                return;
+//            }
+//        });
 
-        mMyReports.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ViewGradedTestActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                return;
-            }
-        });
+//        mMyReports.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), ViewGradedTestActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                finish();
+//                return;
+//            }
+//        });
 
-        mTakeTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                return;
-            }
-        });
+//        mTakeTest.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                finish();
+//                return;
+//            }
+//        });
 
 
     }
+
+
 }
