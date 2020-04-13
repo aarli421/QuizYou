@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Desktop-QuizYou.iml" filepath="$PROJECT_DIR$/../Desktop-QuizYou.iml" group="QuizYou" />
+      <module fileurl="file://$PROJECT_DIR$/Desktop-QuizYou-app.iml" filepath="$PROJECT_DIR$/Desktop-QuizYou-app.iml" group="QuizYou/app" />
       <module fileurl="file://$PROJECT_DIR$/../Nueva Hacks-QuizYou.iml" filepath="$PROJECT_DIR$/../Nueva Hacks-QuizYou.iml" group="QuizYou" />
       <module fileurl="file://$PROJECT_DIR$/../QuizYou.iml" filepath="$PROJECT_DIR$/../QuizYou.iml" group="QuizYou" />
       <module fileurl="file://$PROJECT_DIR$/QuizYou-app.iml" filepath="$PROJECT_DIR$/QuizYou-app.iml" group="QuizYou/app" />
