@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".User.StudentActivity"></activity>
+        <activity android:name=".User.StudentActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".User.TeacherActivity"></activity>
         <activity android:name=".User.ReportActivity"></activity>
         <activity android:name=".User.ViewGradedTestActivity"></activity>
