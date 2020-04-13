@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             handler.post(periodicUpdate);
-                            userIsLoggedIn();
+                            //userIsLoggedIn();
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
