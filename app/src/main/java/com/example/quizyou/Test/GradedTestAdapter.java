@@ -17,14 +17,14 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class gradedTestAdapter extends ArrayAdapter<GradedTest> {
+public class GradedTestAdapter extends ArrayAdapter<GradedTest> {
 
-    private static final String Tag = "gradedTestAdapter";
+    private static final String TAG = "gradedTestAdapter";
 
     private Context mContext;
     int mResource;
 
-    public gradedTestAdapter(@NonNull Context context, int resource, ArrayList<GradedTest> objects) {
+    public GradedTestAdapter(@NonNull Context context, int resource, ArrayList<GradedTest> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;

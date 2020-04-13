@@ -12,7 +12,7 @@ import com.example.quizyou.R;
 import com.example.quizyou.Test.GradedTest;
 import com.example.quizyou.Test.Question.Question;
 import com.example.quizyou.Test.Test;
-import com.example.quizyou.Test.gradedTestAdapter;
+import com.example.quizyou.Test.GradedTestAdapter;
 
 import java.util.ArrayList;
 
@@ -87,7 +87,7 @@ public class ViewGradedTestActivity extends AppCompatActivity {
 
 
 
-        gradedTestAdapter adapter = new gradedTestAdapter(this, R.layout.adapter_view_layout, gradedList);
+        GradedTestAdapter adapter = new GradedTestAdapter(this, R.layout.adapter_view_layout, gradedList);
         mListView.setAdapter(adapter);
     }
 
