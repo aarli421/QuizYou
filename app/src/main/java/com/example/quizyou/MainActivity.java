@@ -259,7 +259,11 @@ public class MainActivity extends AppCompatActivity {
             //Log.d(TAG, ((Teacher) u).getStudents().get(0).toString());
             //Log.d(TAG, ((Student) u).getPassword());
 
-            startActivity(new Intent(getApplicationContext(), StudentActivity.class));
+            if (mSpinner.getSelectedItem().toString().equals("Student")) {
+                startActivity(new Intent(getApplicationContext(), StudentActivity.class));
+            } else if (mSpinner.getSelectedItem().toString().equals("Teacher")) {
+                startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
+            }
             finish();
             return;
         }
