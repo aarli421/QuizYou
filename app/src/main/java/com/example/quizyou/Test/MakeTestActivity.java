@@ -1,5 +1,6 @@
 package com.example.quizyou.Test;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
 import com.example.quizyou.Test.Question.Question;
 import com.example.quizyou.User.Teacher;
+import com.example.quizyou.User.TeacherActivity;
 
 import java.util.ArrayList;
 
@@ -131,6 +133,7 @@ public class MakeTestActivity extends AppCompatActivity {
                     index--;
                     questionTexts.get(index).display();
                 }
+                return;
             }
         });
 
@@ -141,7 +144,10 @@ public class MakeTestActivity extends AppCompatActivity {
                 for (int i = 0; i < questionTexts.size(); i++) {
                     questions.add(new Question(questionTexts.get(i).getPrompt(), questionTexts.get(i).getAnswer(), Integer.parseInt(questionTexts.get(i).getPoints())));
                 }
-                ((Teacher) MainActivity.u).addMadeTest(new Test(Long.parseLong(mTimeLimit.getText().toString()), questions, mTestName.getText().toString()));
+                ((Teacher) MainActivity.u).addMadeTest(new Test(1000 * 60 * Long.parseLong(mTimeLimit.getText().toString()), questions, mTestName.getText().toString()));
+                startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
+                finish();
+                return;
             }
         });
     }
