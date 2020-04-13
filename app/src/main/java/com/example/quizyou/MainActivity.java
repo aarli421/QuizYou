@@ -119,13 +119,15 @@ public class MainActivity extends AppCompatActivity {
         mSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String selection = mSpinner.getSelectedItem().toString();
+               String selection = mSpinner.getSelectedItem().toString();
+
 
                 if (selection.equals("Select One")) {
                     // TODO Tell user to select one
                 } else {
                     signUpWithEmailAuthCredential();
                 }
+
             }
         });
     }

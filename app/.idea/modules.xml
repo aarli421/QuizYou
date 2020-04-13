@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../QuizYou.iml" filepath="$PROJECT_DIR$/../QuizYou.iml" group="QuizYou" />
+      <module fileurl="file://$PROJECT_DIR$/QuizYou-app.iml" filepath="$PROJECT_DIR$/QuizYou-app.iml" group="QuizYou/app" />
       <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" group="QuizYou/app" />
+      <module fileurl="file://$PROJECT_DIR$/../repo-QuizYou.iml" filepath="$PROJECT_DIR$/../repo-QuizYou.iml" group="QuizYou" />
     </modules>
   </component>
 </project>
