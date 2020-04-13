@@ -165,11 +165,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String selection = mSpinner.getSelectedItem().toString();
 
-                if (selection.equals("Select One")) {
-                    // TODO Tell user to select one
-                } else {
+//                if (selection.equals("Select One")) {
+//                    // TODO Tell user to select one
+//                } else {
                     logInWithEmailAuthCredential();
-                }
+//                }
             }
         });
 
@@ -262,9 +262,11 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     Student s = ((Student) u);
                     startActivity(new Intent(getApplicationContext(), StudentActivity.class));
+                    Log.d(TAG, "User is student");
                 } catch (ClassCastException e) {
                     Teacher t = ((Teacher) u);
                     startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
+                    Log.d(TAG, "User is teacher");
                 }
             }
 
