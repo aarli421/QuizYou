@@ -9,17 +9,17 @@ import java.util.HashMap;
 
 public class Teacher implements User {
     private ArrayList<Student> students;
-    private ArrayList<Test> made, assigned;
+    private ArrayList<Test> madeTests, assignedTests;
     private ArrayList<TestResult> results;
     private ArrayList<GradedTest> gradedTests;
     private String name, email, password;
-    private int ID;
-    private static int staticID = 0;
+    private long ID;
+    private static long staticID = 0;
 
     public Teacher(String name, String email, String password) {
         students = new ArrayList<>();
-        made = new ArrayList<>();
-        assigned = new ArrayList<>();
+        madeTests = new ArrayList<>();
+        assignedTests = new ArrayList<>();
         results = new ArrayList<>();
         gradedTests = new ArrayList<>();
 
@@ -30,6 +30,18 @@ public class Teacher implements User {
         staticID++;
     }
 
+    public Teacher(String name, String email, String password, ArrayList<Student> students, ArrayList<Test> madeTests, ArrayList<Test> assignedTests, ArrayList<TestResult> results, ArrayList<GradedTest> gradedTests, long id) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.students = students;
+        this.madeTests = madeTests;
+        this.assignedTests = assignedTests;
+        this.results = results;
+        this.gradedTests = gradedTests;
+        this.ID = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -38,7 +50,7 @@ public class Teacher implements User {
         return email;
     }
 
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
@@ -51,11 +63,11 @@ public class Teacher implements User {
     }
 
     public ArrayList<Test> getMadeTests() {
-        return made;
+        return madeTests;
     }
 
     public ArrayList<Test> getAssignedTests() {
-        return assigned;
+        return assignedTests;
     }
 
     public ArrayList<TestResult> getResults() {
@@ -66,13 +78,17 @@ public class Teacher implements User {
         return gradedTests;
     }
 
+    public static void setStaticID(int staticID) {
+        Teacher.staticID = staticID;
+    }
+
     public void addMadeTest(Test t) {
-        made.add(t);
+        madeTests.add(t);
     }
 
     public void addAssignedTest(Test t) {
-        made.remove(t);
-        assigned.add(t);
+        madeTests.remove(t);
+        assignedTests.add(t);
     }
 
     public void addTestResults(TestResult r) {
@@ -81,5 +97,21 @@ public class Teacher implements User {
 
     public void addGradedTests(GradedTest g) {
         gradedTests.add(g);
+    }
+
+    public void addStudents(Student s) {
+        students.add(s);
+    }
+
+    public boolean equals(String email) {
+        if (email.equals(this.email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String toString() {
+        return "Name: " + name + " Email: " + email + " Password: " + password;
     }
 }

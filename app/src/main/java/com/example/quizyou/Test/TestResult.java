@@ -18,16 +18,16 @@ public class TestResult {
         answerer = student;
     }
 
-    public TestResult(ArrayList<Question> questions) {
-        this.questions = questions;
-    }
-
     public Student getAnswerer() {
         return answerer;
     }
 
     public ArrayList<Question> getQuestions() {
         return questions;
+    }
+
+    public ArrayList<String> getAnswers() {
+        return answers;
     }
 
     public Test getTest() {

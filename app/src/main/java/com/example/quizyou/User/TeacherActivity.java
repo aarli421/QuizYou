@@ -11,6 +11,7 @@ import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
 import com.example.quizyou.Test.GradeTestActivity;
 import com.example.quizyou.Test.MakeTestActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +43,7 @@ public class TeacherActivity extends AppCompatActivity {
         mLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -82,7 +84,5 @@ public class TeacherActivity extends AppCompatActivity {
                 return;
             }
         });
-
-
     }
 }
