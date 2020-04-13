@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
 import com.example.quizyou.Test.GradedTest;
 import com.example.quizyou.Test.Question.Question;
@@ -42,7 +43,7 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         });
 
         ListView mListView = (ListView) findViewById(R.id.list_view1);
-
+/*
         Question question = new Question("prompt", "answer", 5);
         Question question1 = new Question("prompt", "answer", 5);
         Question question2 = new Question("prompt", "answer", 5);
@@ -83,10 +84,14 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         gradedList.add(graded3);
         gradedList.add(graded4);
         gradedList.add(graded5);
+*/
+      //  ArrayList<GradedTest> obj = new ArrayList<>();
+      //  for(GradedTest test : ((Student) MainActivity.u).getReports()){
+       //     obj.add(((Student) MainActivity.u).getTaken());
+       // }
 
-
-        gradedTestAdapter adapter = new gradedTestAdapter(this, R.layout.adapter_view_layout, gradedList);
-        mListView.setAdapter(adapter);
+      //  gradedTestAdapter adapter = new gradedTestAdapter(this, R.layout.adapter_view_layout, gradedList);
+     //   mListView.setAdapter(adapter);
     }
 
 }
