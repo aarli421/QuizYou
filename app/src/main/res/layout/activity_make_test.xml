@@ -60,7 +60,7 @@
         android:id="@+id/submitButton"
         android:layout_width="99dp"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Submit" />
 
     <Button
         android:id="@+id/deleteButton"
@@ -72,6 +72,6 @@
         android:id="@+id/problem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit" />
+        android:text="Question 1" />
 
 </LinearLayout>
