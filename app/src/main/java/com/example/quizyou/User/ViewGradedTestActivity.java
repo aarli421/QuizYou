@@ -28,7 +28,7 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_graded_test);
 
-        mBack = findViewById (R.id.back_button);
+        mBack = findViewById(R.id.back_button);
 
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,16 +43,15 @@ public class ViewGradedTestActivity extends AppCompatActivity {
 
         ListView mListView = (ListView) findViewById(R.id.list_view1);
 
-        Question question = new Question( "prompt", "answer", 5) ;
-        Question question1 = new Question( "prompt", "answer", 5) ;
-        Question question2 = new Question( "prompt", "answer", 5) ;
-        Question question3 = new Question( "prompt", "answer", 5) ;
-        Question question4 = new Question( "prompt", "answer", 5) ;
-        Question question5 = new Question( "prompt", "answer", 5) ;
-        Question question6 = new Question( "prompt", "answer", 5) ;
-        Question question7 = new Question( "prompt", "answer", 5) ;
-        Question question8 = new Question( "prompt", "answer", 5) ;
-
+        Question question = new Question("prompt", "answer", 5);
+        Question question1 = new Question("prompt", "answer", 5);
+        Question question2 = new Question("prompt", "answer", 5);
+        Question question3 = new Question("prompt", "answer", 5);
+        Question question4 = new Question("prompt", "answer", 5);
+        Question question5 = new Question("prompt", "answer", 5);
+        Question question6 = new Question("prompt", "answer", 5);
+        Question question7 = new Question("prompt", "answer", 5);
+        Question question8 = new Question("prompt", "answer", 5);
 
 
         questionList.add(question);
@@ -66,17 +65,17 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         questionList.add(question8);
 
 
-        Test test1 = new Test(60, questionList,  "Test 1" );
-        Test test2 = new Test(60, questionList,  "Test 2" );
-        Test test3 = new Test(60, questionList,  "Test 3" );
-        Test test4 = new Test(60, questionList,  "Test 4" );
-        Test test5 = new Test(60, questionList,  "Test 5" );
+        Test test1 = new Test(60, questionList, "Test 1");
+        Test test2 = new Test(60, questionList, "Test 2");
+        Test test3 = new Test(60, questionList, "Test 3");
+        Test test4 = new Test(60, questionList, "Test 4");
+        Test test5 = new Test(60, questionList, "Test 5");
 
-        GradedTest graded1 = new GradedTest(test1, 40, 45,"good job");
-        GradedTest graded2 = new GradedTest(test2, 41, 45,"good job");
-        GradedTest graded3 = new GradedTest(test3, 40, 45,"good job");
-        GradedTest graded4 = new GradedTest(test4, 20, 45,"bad job");
-        GradedTest graded5 = new GradedTest(test5, 40, 45,"good job");
+        GradedTest graded1 = new GradedTest(test1, 40, 45, "good job");
+        GradedTest graded2 = new GradedTest(test2, 41, 45, "good job");
+        GradedTest graded3 = new GradedTest(test3, 40, 45, "good job");
+        GradedTest graded4 = new GradedTest(test4, 20, 45, "bad job");
+        GradedTest graded5 = new GradedTest(test5, 40, 45, "good job");
 
         ArrayList<GradedTest> gradedList = new ArrayList<>();
         gradedList.add(graded1);
@@ -84,7 +83,6 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         gradedList.add(graded3);
         gradedList.add(graded4);
         gradedList.add(graded5);
-
 
 
         gradedTestAdapter adapter = new gradedTestAdapter(this, R.layout.adapter_view_layout, gradedList);
