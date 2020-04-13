@@ -16,7 +16,7 @@ import com.example.quizyou.Test.TestActivity;
 
 public class StudentActivity extends AppCompatActivity {
 
-    private Button mLogout, mJoinClass, mSeeReports, mTakeTest;
+    private Button mLogout, mJoinClass, mMyReports, mTakeTest;
 
     // TODO Menu to view Email/Password/ID/Name/Code/Logout
     // TODO View list of students, list of test made, list of tests results, list of test assigned
@@ -29,7 +29,57 @@ public class StudentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student);
+        setContentView(R.layout.activity_teacher);
+
+        mLogout = findViewById(R.id.logout_button);
+        mJoinClass = findViewById(R.id.join_class_button);
+        mMyReports = findViewById(R.id.my_reports_button);
+        mTakeTest = findViewById(R.id.take_test_button);
+
+        mLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
+
+        mJoinClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GradeTestActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
+
+        mMyReports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ViewGradedTestActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
+
+        mTakeTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
+
 
     }
 }
