@@ -19,6 +19,8 @@ import com.example.quizyou.User.TeacherActivity;
 import java.util.ArrayList;
 
 public class MakeTestActivity extends AppCompatActivity {
+    private long timeLimit;
+    private Question question;
 
     // TODO Creating a question must have prompt, points, and answer
     // TODO Have a add question button
