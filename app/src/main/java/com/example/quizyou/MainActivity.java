@@ -87,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        userIsLoggedIn();
-
 //        Log.d(TAG, "Loading...");
 //        mDb.collection("users").document("Student").set(StudentActivity.students);
 //        System.out.println(StudentActivity.students);
@@ -96,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
 //        System.out.println(TeacherActivity.teachers);
 
         FirebaseApp.initializeApp(this);
+
+        userIsLoggedIn();
 
         mLoginEmail = findViewById(R.id.loginEmail);
         mLoginPassword = findViewById(R.id.loginPassword);
@@ -173,6 +173,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            if (mSpinner.getSelectedItem().toString().equals("Student")) {
+
+                            } else if (mSpinner.getSelectedItem().toString().equals("Teacher")) {
+
+                            }
+
                             userIsLoggedIn();
                         } else {
                             mLogin.setText("Login Failed");
