@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/testName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/timeLimit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Time Limit" />
+
+    <EditText
+        android:id="@+id/prompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Prompt"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Answer"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/points"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Points"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="99dp"
+        android:layout_height="wrap_content"
+        android:text="Next" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="99dp"
+        android:layout_height="wrap_content"
+        android:text="Back" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="99dp"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="98dp"
+        android:layout_height="wrap_content"
+        android:text="Delete" />
+
+    <TextView
+        android:id="@+id/problem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
+
+</LinearLayout>
