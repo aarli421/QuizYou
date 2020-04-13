@@ -7,6 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/../Nueva Hacks-QuizYou.iml" filepath="$PROJECT_DIR$/../Nueva Hacks-QuizYou.iml" group="QuizYou" />
       <module fileurl="file://$PROJECT_DIR$/../QuizYou.iml" filepath="$PROJECT_DIR$/../QuizYou.iml" group="QuizYou" />
       <module fileurl="file://$PROJECT_DIR$/QuizYou-app.iml" filepath="$PROJECT_DIR$/QuizYou-app.iml" group="QuizYou/app" />
+      <module fileurl="file://$PROJECT_DIR$/../Real-QuizYou.iml" filepath="$PROJECT_DIR$/../Real-QuizYou.iml" group="QuizYou" />
+      <module fileurl="file://$PROJECT_DIR$/Real-QuizYou-app.iml" filepath="$PROJECT_DIR$/Real-QuizYou-app.iml" group="QuizYou/app" />
       <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" group="QuizYou/app" />
     </modules>
   </component>

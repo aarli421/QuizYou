@@ -21,7 +21,7 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_graded_test);
 
-        mBack = findViewById (R.id.back_button);
+        mBack = findViewById(R.id.back_button);
 
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
