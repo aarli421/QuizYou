@@ -247,23 +247,35 @@ public class MainActivity extends AppCompatActivity {
             for (Object value : TeacherActivity.teachers.values()) {
                 if (((Teacher) value).equals(email)) {
                     u = ((Teacher) value);
+                    break;
                 }
             }
 
             for (Object value : StudentActivity.students.values()) {
                 if (((Student) value).equals(email)) {
                     u = ((Student) value);
+                    break;
+                }
+            }
+
+            if (u != null) {
+                try {
+                    Student s = ((Student) u);
+                    startActivity(new Intent(getApplicationContext(), StudentActivity.class));
+                } catch (ClassCastException e) {
+                    Teacher t = ((Teacher) u);
+                    startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
                 }
             }
 
             //Log.d(TAG, ((Teacher) u).getStudents().get(0).toString());
             //Log.d(TAG, ((Student) u).getPassword());
 
-            if (mSpinner.getSelectedItem().toString().equals("Student")) {
-                startActivity(new Intent(getApplicationContext(), StudentActivity.class));
-            } else if (mSpinner.getSelectedItem().toString().equals("Teacher")) {
-                startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
-            }
+//            if (mSpinner.getSelectedItem().toString().equals("Student")) {
+//                startActivity(new Intent(getApplicationContext(), StudentActivity.class));
+//            } else if (mSpinner.getSelectedItem().toString().equals("Teacher")) {
+//                startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
+//            }
             finish();
             return;
         }
