@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "756547878371",
+    "firebase_url": "https://quizyou-6b86f.firebaseio.com",
+    "project_id": "quizyou-6b86f",
+    "storage_bucket": "quizyou-6b86f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756547878371:android:6b50f90811e8b8748fb4d6",
+        "android_client_info": {
+          "package_name": "com.example.quizyou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756547878371-83ensf6qurivoop2cctu48q2p098sm2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVRhEP2Q48nvJvT-4YlcAK-EGwrmWJMps"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756547878371-83ensf6qurivoop2cctu48q2p098sm2q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -13,6 +13,10 @@ public class Test {
         this.questions = questions;
     }
 
+    public int getTimeLimit() {
+        return timeLimit;
+    }
+
     public ArrayList<Question> getQuestions() {
         return questions;
     }

@@ -1,5 +1,6 @@
 package com.example.quizyou.User;
 
+import com.example.quizyou.Test.GradedTest;
 import com.example.quizyou.Test.Test;
 import com.example.quizyou.Test.TestResult;
 
@@ -10,6 +11,7 @@ public class Teacher implements User {
     private ArrayList<Student> students;
     private ArrayList<Test> made, assigned;
     private HashMap<Test, ArrayList<TestResult>> results;
+    private HashMap<Test, ArrayList<GradedTest>> gradedTests;
     private String name, email, password;
     private int ID;
     private static int staticID = 0;
@@ -19,6 +21,7 @@ public class Teacher implements User {
         made = new ArrayList<>();
         assigned = new ArrayList<>();
         results = new HashMap<>();
+        gradedTests = new HashMap<>();
 
         this.name = name;
         this.email = email;
@@ -39,6 +42,10 @@ public class Teacher implements User {
         return ID;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public ArrayList<Student> getStudents() {
         return students;
     }
@@ -51,6 +58,14 @@ public class Teacher implements User {
         return assigned;
     }
 
+    public HashMap<Test, ArrayList<TestResult>> getResults() {
+        return results;
+    }
+
+    public HashMap<Test, ArrayList<GradedTest>> getGradedTests() {
+        return gradedTests;
+    }
+
     public ArrayList<TestResult> getResults(Test t) {
         return results.get(t);
     }
@@ -61,9 +76,14 @@ public class Teacher implements User {
 
     public void addAssignedTest(Test t) {
         results.put(t, new ArrayList<TestResult>());
+        gradedTests.put(t, new ArrayList<GradedTest>());
     }
 
     public void addTestResults(Test t, TestResult r) {
         results.get(t).add(r);
+    }
+
+    public void addGradedTests(Test t, GradedTest g) {
+        gradedTests.get(t).add(g);
     }
 }
