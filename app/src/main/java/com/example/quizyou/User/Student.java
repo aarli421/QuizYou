@@ -32,6 +32,10 @@ public class Student implements User {
         return email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public int getID() {
         return ID;
     }
