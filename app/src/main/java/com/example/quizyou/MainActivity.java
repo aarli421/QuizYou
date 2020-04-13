@@ -12,9 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.example.quizyou.Test.GradedTest;
+import com.example.quizyou.Test.Question.MultipleChoiceQuestion;
 import com.example.quizyou.Test.Question.Question;
 import com.example.quizyou.Test.Question.ShortAnswerQuestion;
 import com.example.quizyou.Test.Test;
+import com.example.quizyou.Test.TestResult;
 import com.example.quizyou.User.Student;
 import com.example.quizyou.User.StudentActivity;
 import com.example.quizyou.User.Teacher;
@@ -80,14 +83,25 @@ public class MainActivity extends AppCompatActivity {
 //        ArrayList<Question> questions = new ArrayList<>();
 //        questions.add(new ShortAnswerQuestion("Why do you like to eat chicken nuggets?", "Cuz I do", 5));
 //        questions.add(new ShortAnswerQuestion("Why do you like to nuggets?", "Bruhhh", 7));
-//        teacher1.addAssignedTest(new Test(5, questions));
-//        teacher1.add
-//        students.put(Integer.toString(1), );
-//        students.put(Integer.toString(2), new Teacher("yeah", "aarondfgsdf", "asasdf"));
-//        students.put(Integer.toString(3), new Teacher("ysjadhjfkhkh", "aarondfgsdf", "aem"));
-
-//        mDb.collection("users").document("students")
-//                .set(students);
+//        Test t1 = new Test(5, questions);
+//        questions.add(new MultipleChoiceQuestion("You suck diiiiiick", "bruhh", 10));
+//        Test t2 = new Test(6, questions);
+//        teacher1.addMadeTest(t1);
+//        teacher1.addAssignedTest(t1);
+//
+//        ArrayList<String> ans = new ArrayList<>();
+//        ans.add("69");
+//        ans.add("You suck dick");
+//        ans.add("you suck dick fuck gay ");
+//        teacher1.addTestResults(t1, new TestResult(t1, ans, new Student("fsadghfhkj", "sdfgs", "sdfgsdf")));
+//        teacher1.addGradedTests(t1, new GradedTest(5, 18, "notes"));
+//        students.put(Integer.toString(1), teacher1);
+////        students.put(Integer.toString(2), new Teacher("yeah", "aarondfgsdf", "asasdf"));
+////        students.put(Integer.toString(3), new Teacher("ysjadhjfkhkh", "aarondfgsdf", "aem"));
+//
+////        mDb.collection("users")
+////                .document("students")
+////                .set(students);
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override

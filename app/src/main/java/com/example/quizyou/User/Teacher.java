@@ -71,12 +71,14 @@ public class Teacher implements User {
     }
 
     public void addMadeTest(Test t) {
-
+        made.add(t);
     }
 
     public void addAssignedTest(Test t) {
+        made.remove(t);
         results.put(t, new ArrayList<TestResult>());
         gradedTests.put(t, new ArrayList<GradedTest>());
+        assigned.add(t);
     }
 
     public void addTestResults(Test t, TestResult r) {
