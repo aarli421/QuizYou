@@ -9,8 +9,8 @@ public class Student implements User {
     private ArrayList<Test> taken, pending;
     private ArrayList<GradedTest> reports;
     private String name, email, password;
-    private int ID;
-    private static int staticID = 0;
+    private long ID;
+    private static long staticID = 0;
 
     public Student(String name, String email, String password) {
         taken = new ArrayList<>();
@@ -22,6 +22,16 @@ public class Student implements User {
         this.password = password;
         ID = staticID;
         staticID++;
+    }
+
+    public Student(String name, String email, String password, ArrayList<Test> taken, ArrayList<Test> pending, ArrayList<GradedTest> reports, long id) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.taken = taken;
+        this.pending = pending;
+        this.reports = reports;
+        this.ID = id;
     }
 
     public String getName() {
@@ -36,7 +46,7 @@ public class Student implements User {
         return password;
     }
 
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
@@ -52,6 +62,10 @@ public class Student implements User {
         return reports;
     }
 
+    public static void setStaticID(int staticID) {
+        Student.staticID = staticID;
+    }
+
     public void addTaken(Test t) {
 
     }
@@ -62,5 +76,17 @@ public class Student implements User {
 
     public void addReport(GradedTest t) {
         reports.add(t);
+    }
+
+    public boolean equals(String email) {
+        if (email.equals(this.email)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String toString() {
+        return "Name: " + name + " Email: " + email + " Password: " + password;
     }
 }

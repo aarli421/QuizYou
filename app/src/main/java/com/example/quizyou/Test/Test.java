@@ -5,16 +5,22 @@ import com.example.quizyou.Test.Question.Question;
 import java.util.ArrayList;
 
 public class Test {
-    private int timeLimit;
+    private long timeLimit;
     private ArrayList<Question> questions;
+    private String name;
 
-    public Test(int timeLimit, ArrayList<Question> questions) {
+    public Test(long timeLimit, ArrayList<Question> questions, String name) {
         this.timeLimit = timeLimit;
         this.questions = questions;
+        this.name = name;
     }
 
-    public int getTimeLimit() {
+    public long getTimeLimit() {
         return timeLimit;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public ArrayList<Question> getQuestions() {
