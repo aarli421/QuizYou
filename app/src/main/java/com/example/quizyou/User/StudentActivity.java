@@ -1,22 +1,79 @@
 package com.example.quizyou.User;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
+import com.example.quizyou.Test.GradeTestActivity;
+import com.example.quizyou.Test.MakeTestActivity;
+import com.example.quizyou.Test.TestActivity;
 
 public class StudentActivity extends AppCompatActivity {
 
-    // TODO Menu to see Email/Password/ID/Code/Name/Logout
-    // TODO Show current test
-    // TODO View graded tests button
-    // TODO Enter code to go into teacher class
-    // TODO ArrayList of students
+    private Button mLogout, mJoinClass, mSeeReports, mTakeTest;
+
+    // TODO Menu to view Email/Password/ID/Name/Code/Logout
+    // TODO View list of students, list of test made, list of tests results, list of test assigned
+    // TODO Make test button
+    // TODO Grade test button
+    // TODO ArrayList of teachers
+
+    // I will finish this by wednesday
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        mLogout = findViewById(R.id.logout_button);
+        mJoinClass = findViewById(R.id.join_class_button);
+        mSeeReports = findViewById(R.id.see_reports_button);
+        mTakeTest = findViewById(R.id.take_test_button);
+
+        mLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
+
+        mSeeReports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ViewGradedTestActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
+
+        mTakeTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
+
+
+
     }
 }
