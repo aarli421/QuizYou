@@ -7,10 +7,12 @@ import java.util.ArrayList;
 
 public class TestResult {
     private ArrayList<Question> questions;
+    private ArrayList<String> answers;
     private Student answerer;
 
-    public TestResult(Test test, Student student) {
+    public TestResult(Test test, ArrayList<String> answers, Student student) {
         questions = test.getQuestions();
+        this.answers = answers;
         answerer = student;
     }
 
