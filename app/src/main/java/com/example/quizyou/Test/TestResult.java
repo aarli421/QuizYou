@@ -8,9 +8,11 @@ import java.util.ArrayList;
 public class TestResult {
     private ArrayList<Question> questions;
     private ArrayList<String> answers;
+    private Test test;
     private Student answerer;
 
     public TestResult(Test test, ArrayList<String> answers, Student student) {
+        this.test = test;
         questions = test.getQuestions();
         this.answers = answers;
         answerer = student;
@@ -26,5 +28,9 @@ public class TestResult {
 
     public ArrayList<Question> getQuestions() {
         return questions;
+    }
+
+    public Test getTest() {
+        return test;
     }
 }

@@ -3,8 +3,10 @@ package com.example.quizyou.Test;
 public class GradedTest {
     private int points, totalPoints;
     private String notes;
+    private Test test;
 
-    public GradedTest(int points, int totalPoints, String notes) {
+    public GradedTest(Test test, int points, int totalPoints, String notes) {
+        this.test = test;
         this.points = points;
         this.totalPoints = totalPoints;
         this.notes = notes;
@@ -20,5 +22,9 @@ public class GradedTest {
 
     public String getNotes() {
         return notes;
+    }
+
+    public Test getTest() {
+        return test;
     }
 }

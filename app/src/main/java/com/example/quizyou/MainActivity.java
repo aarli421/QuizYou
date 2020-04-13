@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,6 +22,7 @@ import com.example.quizyou.Test.TestResult;
 import com.example.quizyou.User.Student;
 import com.example.quizyou.User.StudentActivity;
 import com.example.quizyou.User.Teacher;
+import com.example.quizyou.User.TeacherActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,6 +32,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -37,6 +40,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner mSpinner;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private FirebaseFirestore mDb = FirebaseFirestore.getInstance();
+    private static FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 
     private final static String TAG = "MainActivity";
 
@@ -58,9 +63,39 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseApp.initializeApp(this);
 
-        //userIsLoggedIn();
+        mDb.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.getId().equals("Student")) {
+                                    StudentActivity.students = document.getData();
+                                    Log.d(TAG, document.getId() + " => " + StudentActivity.students);
+                                } else if (document.getId().equals("Teacher")) {
+                                    TeacherActivity.teachers = document.getData();
+                                    Log.d(TAG, document.getId() + " => " + TeacherActivity.teachers);
+                                }
+                            }
+
+                            handler.post(periodicUpdate);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+        userIsLoggedIn();
+
+//        Log.d(TAG, "Loading...");
+//        mDb.collection("users").document("Student").set(StudentActivity.students);
+//        System.out.println(StudentActivity.students);
+//        mDb.collection("users").document("Teacher").set(TeacherActivity.teachers);
+//        System.out.println(TeacherActivity.teachers);
+
+        FirebaseApp.initializeApp(this);
 
         mLoginEmail = findViewById(R.id.loginEmail);
         mLoginPassword = findViewById(R.id.loginPassword);
@@ -93,15 +128,15 @@ public class MainActivity extends AppCompatActivity {
 //        ans.add("69");
 //        ans.add("You suck dick");
 //        ans.add("you suck dick fuck gay ");
-//        teacher1.addTestResults(t1, new TestResult(t1, ans, new Student("fsadghfhkj", "sdfgs", "sdfgsdf")));
-//        teacher1.addGradedTests(t1, new GradedTest(5, 18, "notes"));
+//        teacher1.addTestResults(new TestResult(t1, ans, new Student("fsadghfhkj", "sdfgs", "sdfgsdf")));
+//        teacher1.addGradedTests(new GradedTest(t1, 5, 18, "notes"));
 //        students.put(Integer.toString(1), teacher1);
-////        students.put(Integer.toString(2), new Teacher("yeah", "aarondfgsdf", "asasdf"));
-////        students.put(Integer.toString(3), new Teacher("ysjadhjfkhkh", "aarondfgsdf", "aem"));
-//
-////        mDb.collection("users")
-////                .document("students")
-////                .set(students);
+//        students.put(Integer.toString(2), new Teacher("yeah", "aarondfgsdf", "asasdf"));
+//        students.put(Integer.toString(3), new Teacher("ysjadhjfkhkh", "aarondfgsdf", "aem"));
+
+//        mDb.collection("users")
+//                .document("students")
+//                .set(students);
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +189,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            if (mSpinner.getSelectedItem().toString().equals("Student")) {
+                                Student s = new Student(mSignUpName.getText().toString(), mSignUpEmail.getText().toString(), mSignUpPassword.getText().toString());
+                                StudentActivity.students.put(Integer.toString(s.getID()), s);
+                            } else if (mSpinner.getSelectedItem().toString().equals("Teacher")) {
+                                Teacher t = new Teacher(mSignUpName.getText().toString(), mSignUpEmail.getText().toString(), mSignUpPassword.getText().toString());
+                                TeacherActivity.teachers.put(Integer.toString(t.getID()), t);
+                            }
+
                             userIsLoggedIn();
                         }
                     }
@@ -168,4 +211,23 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
     }
+
+    Handler handler = new Handler();
+    private Runnable periodicUpdate = new Runnable() {
+        @Override
+        public void run() {
+            handler.postDelayed(periodicUpdate, 5*1000);
+
+            Log.d(TAG, "Saving...");
+
+            mDb.collection("users")
+                    .document("Student")
+                    .set(StudentActivity.students);
+
+            mDb.collection("users")
+                    .document("Teacher")
+                    .set(TeacherActivity.teachers);
+        }
+    };
+
 }
