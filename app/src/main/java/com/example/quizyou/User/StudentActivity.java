@@ -24,11 +24,6 @@ public class StudentActivity extends AppCompatActivity {
 
     public static Map<String, Object> students = new HashMap<>();
 
-    // TODO Menu to view Email/Password/ID/Name/Code/Logout
-    // TODO View list of students, list of test made, list of tests results, list of test assigned
-    // TODO Make test button
-    // TODO Grade test button
-    // TODO ArrayList of teachers
 
     // I will finish this by wednesday
 
