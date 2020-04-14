@@ -10,11 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDialog;
@@ -133,7 +136,6 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                         dialog.dismiss();
                     }
                 });
-
                 mSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -142,6 +144,7 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                             Log.d(TAG, ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudentIDs().toString());
                         } else {
                             // TODO Already joined class dialog
+                            Toast.makeText(StudentActivity.this,"Already joined " +  ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getName() +"'s class", Toast.LENGTH_LONG).show();
                         }
                         dialog.dismiss();
                     }
