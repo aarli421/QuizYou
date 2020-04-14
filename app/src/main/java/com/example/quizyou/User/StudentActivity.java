@@ -3,6 +3,7 @@ package com.example.quizyou.User;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -30,6 +31,7 @@ public class StudentActivity extends Activity {
 
     public static Map<String, Object> students = new HashMap<>();
 
+    private static final String TAG = "StudentActivity";
 
     // I will finish this by wednesday
 
@@ -62,16 +64,29 @@ public class StudentActivity extends Activity {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(new ContextThemeWrapper(StudentActivity.this, R.style.dialog));
                 View mView = getLayoutInflater().inflate(R.layout.activity_join_class, null);
 
-                EditText mResponse = (EditText)  mView.findViewById(R.id.editText3);
+                final EditText mResponse = (EditText)  mView.findViewById(R.id.code);
                 Button mSubmit = (Button) mView.findViewById(R.id.submit);
-                Button mbackDialog = (Button) mView.findViewById(R.id.backDialog);
+                Button mBackDialog = (Button) mView.findViewById(R.id.backDialog);
 
                 mBuilder.setView(mView);
                 final AlertDialog dialog = mBuilder.create();
                 dialog.show();
-                mbackDialog.setOnClickListener(new View.OnClickListener() {
+                mBackDialog.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                mSubmit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (!((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudents().contains((Student) MainActivity.u)) {
+                            ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).addStudents(((Student) MainActivity.u));
+                            Log.d(TAG, ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudents().toString());
+                        } else {
+                            // TODO Already joined class dialog
+                        }
                         dialog.dismiss();
                     }
                 });
