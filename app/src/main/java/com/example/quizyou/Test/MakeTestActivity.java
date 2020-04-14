@@ -30,7 +30,7 @@ public class MakeTestActivity extends AppCompatActivity {
     private int index = 0;
     private boolean goBack = false;
 
-    Button mNext, mBack;
+    Button mNext, mBack, mBackToHome;
     public static EditText mTestName, mTimeLimit, mPrompt, mAnswer, mPoints;
     public static TextView mProblem, mDelete, mSubmit;
 
@@ -54,6 +54,17 @@ public class MakeTestActivity extends AppCompatActivity {
         mBack = findViewById(R.id.backButton);
         mDelete = findViewById(R.id.deleteButton);
         mSubmit = findViewById(R.id.submitButton);
+        mBackToHome = findViewById(R.id.home_button);
+
+        mBackToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TeacherActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
 
         mNext.setOnClickListener(new View.OnClickListener() {
             @Override
