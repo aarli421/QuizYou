@@ -291,11 +291,11 @@ public class MainActivity extends AppCompatActivity {
 
             mDb.collection("users")
                     .document("Student")
-                    .set(StudentActivity.students);
+                    .update(StudentActivity.students);
 
             mDb.collection("users")
                     .document("Teacher")
-                    .set(TeacherActivity.teachers);
+                    .update(TeacherActivity.teachers);
         }
     };
 
