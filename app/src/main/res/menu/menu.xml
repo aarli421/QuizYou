@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/assign_test"
+            android:icon="@drawable/ic_pen_is"
+            android:title="@string/assign_test" />
+        <item
+            android:id="@+id/grade_test"
+            android:icon="@drawable/ic_pen_is"
+            android:title="@string/grade_tests" />
+        <item
+            android:icon="@drawable/ic_pen_is"
+            android:title="@string/student_reports"
+            android:id="@+id/student_reports"/>
+        <item
+            android:icon="@drawable/ic_pen_is"
+            android:title="@string/logout"
+            android:id="@+id/logout"/>
+
+    </group>
+
+
+</menu>

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">QuizYou</string>
+    <string name="assign_test">Assign Test</string>
+    <string name="grade_tests">Grade Tests</string>
+    <string name="student_reports">Student Reports</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="logout">Logout</string>
+
 </resources>
