@@ -12,9 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="78dp"
-        android:text="View Graded Tests"
-        android:textSize="0.2in"
+        android:layout_marginTop="72dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Graded Tests"
+        android:textColor="#000000"
+        android:textSize="36dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="78dp" />
@@ -25,8 +28,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:fontFamily="@font/droid_sans"
         android:text="Back"
-        android:layout_alignParentRight="true" />
+        android:textSize="17sp" />
 
     <ListView
         android:layout_width="match_parent"
@@ -38,6 +43,16 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="2dp"
         android:id="@+id/list_view1"/>
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="217dp"
+        android:layout_height="3dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="97dp"
+        android:layout_marginTop="129dp"
+        android:background="#000000" />
 
 
 </RelativeLayout>
