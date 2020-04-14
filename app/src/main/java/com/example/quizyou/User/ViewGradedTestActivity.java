@@ -71,12 +71,22 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         Test test3 = new Test(60, questionList,  "Test 3" );
         Test test4 = new Test(60, questionList,  "Test 4" );
         Test test5 = new Test(60, questionList,  "Test 5" );
+        Test test6 = new Test(60, questionList,  "Test 6" );
+        Test test7 = new Test(60, questionList,  "Test 7" );
+        Test test8 = new Test(60, questionList,  "Test 8" );
+        Test test9 = new Test(60, questionList,  "Test 9" );
 
         GradedTest graded1 = new GradedTest(test1, 40, 45,"good job");
         GradedTest graded2 = new GradedTest(test2, 41, 45,"good job");
         GradedTest graded3 = new GradedTest(test3, 40, 45,"good job");
         GradedTest graded4 = new GradedTest(test4, 20, 45,"bad job");
         GradedTest graded5 = new GradedTest(test5, 40, 45,"good job");
+        GradedTest graded6 = new GradedTest(test6, 40, 45,"good job");
+        GradedTest graded7 = new GradedTest(test7, 40, 45,"good job");
+        GradedTest graded8 = new GradedTest(test8, 40, 45,"good job");
+        GradedTest graded9 = new GradedTest(test9, 40, 45,"good job");
+
+
 
         ArrayList<GradedTest> gradedList = new ArrayList<>();
         gradedList.add(graded1);
@@ -84,6 +94,11 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         gradedList.add(graded3);
         gradedList.add(graded4);
         gradedList.add(graded5);
+        gradedList.add(graded6);
+        gradedList.add(graded7);
+        gradedList.add(graded8);
+        gradedList.add(graded9);
+
 
 
 
