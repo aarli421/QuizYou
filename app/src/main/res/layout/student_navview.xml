@@ -36,7 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="304dp"
             android:layout_marginLeft="304dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="56dp"
+            android:layout_marginRight="10dp"
             android:text="@string/back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -76,15 +77,15 @@
             tools:layout_editor_absoluteX="227dp" />
 
         <Button
-            android:id="@+id/take_test_button"
-            android:layout_width="339dp"
-            android:layout_height="186dp"
+            android:id="@+id/assign"
+            android:layout_width="331dp"
+            android:layout_height="158dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="37dp"
-            android:layout_marginLeft="37dp"
-            android:layout_marginTop="213dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="266dp"
             android:text="Take Test"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,12 +99,23 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="117dp"
-            android:layout_marginEnd="151dp"
-            android:layout_marginRight="151dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginEnd="145dp"
+            android:layout_marginRight="145dp"
             android:gravity="center"
             android:text="Home"
             android:textSize="40dp" />
+
+        <Spinner
+            android:id="@+id/pendingTestsSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="190dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp" />
 
 
     </RelativeLayout>
@@ -125,7 +137,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:id="@+id/nav_viewer1"
-        app:itemBackground="@color/colorPrimary"
+        app:itemBackground="@color/cardview_light_background"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/studentmenu">
 
