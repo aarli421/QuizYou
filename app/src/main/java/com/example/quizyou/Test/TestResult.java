@@ -10,12 +10,14 @@ public class TestResult {
     private ArrayList<String> answers;
     private Test test;
     private Student answerer;
+    private int exitedApp;
 
-    public TestResult(Test test, ArrayList<String> answers, Student student) {
+    public TestResult(Test test, ArrayList<String> answers, Student student, int exitedApp) {
         this.test = test;
         questions = test.getQuestions();
         this.answers = answers;
         answerer = student;
+        this.exitedApp = exitedApp;
     }
 
     public Student getAnswerer() {
@@ -28,6 +30,10 @@ public class TestResult {
 
     public ArrayList<String> getAnswers() {
         return answers;
+    }
+
+    public int getExitedApp() {
+        return exitedApp;
     }
 
     public Test getTest() {

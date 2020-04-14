@@ -87,13 +87,20 @@ public class GradeTestActivity extends AppCompatActivity {
                     }
                 }
 
+                TextView text = new TextView(getApplicationContext());
+                text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                Typeface face = Typeface.create("sans-serif-light", Typeface.NORMAL);
+                text.setTypeface(face);
+                text.setTextSize(36);
+                text.setText("Student exited the app " + result.getExitedApp() + " times during the test");
+                layout.addView(text);
+
                 int totalScore = 0;
                 if (result != null) {
                     for (int i = 0; i < result.getQuestions().size(); i++) {
 
-                        TextView text = new TextView(getApplicationContext());
+                        text = new TextView(getApplicationContext());
                         text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                        Typeface face = Typeface.create("sans-serif-light", Typeface.NORMAL);
                         text.setTypeface(face);
                         text.setTextSize(36);
                         text.setText(result.getQuestions().get(i).getPrompt() + "\nYour Answer: " + result.getQuestions().get(i).getAnswer() +
