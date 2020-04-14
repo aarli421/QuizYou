@@ -14,9 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.quizyou.Test.GradedTest;
-import com.example.quizyou.Test.Question.MultipleChoiceQuestion;
 import com.example.quizyou.Test.Question.Question;
-import com.example.quizyou.Test.Question.ShortAnswerQuestion;
 import com.example.quizyou.Test.Test;
 import com.example.quizyou.Test.TestResult;
 import com.example.quizyou.User.Student;
