@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
 import com.example.quizyou.User.ReportActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class logout extends Fragment {
     @Nullable
@@ -21,6 +22,7 @@ public class logout extends Fragment {
         View retView = inflater.inflate(R.layout.activity_main, container, false);
         Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
         startActivity(intent);
+        FirebaseAuth.getInstance().signOut();
         return retView;
     }
 }
