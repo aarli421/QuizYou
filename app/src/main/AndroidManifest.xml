@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".User.StudentActivity"></activity>
         <activity
             android:name=".User.TeacherActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".User.StudentActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name=".User.ReportActivity"></activity>
         <activity android:name=".User.ViewGradedTestActivity"></activity>
         <activity android:name=".Test.TestActivity"></activity>
