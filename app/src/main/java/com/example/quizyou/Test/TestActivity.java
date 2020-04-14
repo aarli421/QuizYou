@@ -1,5 +1,6 @@
 package com.example.quizyou.Test;
 
+import android.app.Application;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -33,14 +34,21 @@ public class TestActivity extends AppCompatActivity {
 
     private ArrayList<EditText> editTexts = new ArrayList<>();
 
-    private final Test test = null;
+    private Test test;
 
-    // TODO Create timer
+    private int exitedApp = 0;
+
+    // TODO Create timer UI
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+        ArrayList<Question> questions = new ArrayList<>();
+        questions.add(new Question("Why do you like to eat chicken nuggets?", "Cuz I do", 5));
+        questions.add(new Question("Why do you like to nuggets?", "Bruhhh", 7));
+        test = new Test(5, questions, "Random name");
 
         title = findViewById(R.id.testTitle);
         scrollViewLinearLayout = findViewById(R.id.testLinearLayout);
@@ -90,6 +98,19 @@ public class TestActivity extends AppCompatActivity {
 //        });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "Resumed the app");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        exitedApp++;
+        Log.d(TAG, "Exited the app");
+    }
+
     Handler handler = new Handler();
     private Runnable periodicUpdate = new Runnable() {
         @Override
@@ -107,7 +128,7 @@ public class TestActivity extends AppCompatActivity {
 
         for (Map.Entry<String, Object> m : TeacherActivity.teachers.entrySet()) {
             if (((Teacher) m.getValue()).getStudents().contains((Student) MainActivity.u) && ((Teacher) m.getValue()).getAssignedTests().contains(test)) {
-                ((Teacher) m.getValue()).addTestResults(new TestResult(test, answers, (Student) MainActivity.u));
+                ((Teacher) m.getValue()).addTestResults(new TestResult(test, answers, (Student) MainActivity.u, exitedApp));
                 ((Student) MainActivity.u).removePending(test);
                 ((Student) MainActivity.u).addTaken(test);
                 break;
@@ -118,5 +139,21 @@ public class TestActivity extends AppCompatActivity {
         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
+    }
+}
+
+class TestApplication extends Application {
+    private static boolean activityVisible;
+
+    public static boolean isActivityVisible() {
+        return activityVisible;
+    }
+
+    public static void activityResumed() {
+        activityVisible = true;
+    }
+
+    public static void activityPaused() {
+        activityVisible = false;
     }
 }

@@ -372,7 +372,8 @@ public class MainActivity extends AppCompatActivity {
         Student answerer = turnHashMapToStudent((HashMap<String, Object>) map.get("answerer"));
         Test test = turnHashMapToTest((HashMap<String, Object>) map.get("test"));
         ArrayList<String> answers = (ArrayList<String>) map.get("answers");
-        return new TestResult(test, answers, answerer);
+        int exitedApp = (int) (long) map.get("exitedApp");
+        return new TestResult(test, answers, answerer, exitedApp);
     }
 
     public GradedTest turnHashMapToGradedTest(HashMap<String, Object> map) {
