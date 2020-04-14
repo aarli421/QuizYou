@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             handler.post(periodicUpdate);
-                            userIsLoggedIn();
+                            //userIsLoggedIn();
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
@@ -295,15 +295,29 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             handler.postDelayed(periodicUpdate, 5*1000);
 
+            if (u != null) {
+                try {
+                    Student s = ((Student) u);
+                    mDb.collection("users")
+                            .document("Student")
+                            .update(
+                                    Long.toString(s.getID()), s
+                            );
+                    Log.d(TAG, "User is student");
+                } catch (ClassCastException e) {
+                    Teacher t = ((Teacher) u);
+                    mDb.collection("users")
+                            .document("Teacher")
+                            .update(
+                                    Long.toString(t.getID()), t
+                            );
+                    Log.d(TAG, "User is teacher");
+                }
+            } else {
+                return;
+            }
+
             Log.d(TAG, "Saving...");
-
-            mDb.collection("users")
-                    .document("Student")
-                    .update(StudentActivity.students);
-
-            mDb.collection("users")
-                    .document("Teacher")
-                    .update(TeacherActivity.teachers);
         }
     };
 
@@ -337,11 +351,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Teacher turnHashMapToTeacher(HashMap<String, Object> map) {
-        ArrayList<Student> students = new ArrayList<>();
-        ArrayList<Object> studentsList = (ArrayList<Object>) map.get("students");
-        for (Object obj : studentsList) {
-            HashMap<String, Object> testMap = (HashMap<String, Object>) obj;
-            students.add(turnHashMapToStudent(testMap));
+        ArrayList<String> studentIDs = new ArrayList<>();
+        ArrayList<Object> studentIDsList = (ArrayList<Object>) map.get("studentIDs");
+        for (Object obj : studentIDsList) {
+            studentIDs.add((String) obj);
         }
 
         ArrayList<Test> madeTests = new ArrayList<>();
@@ -373,7 +386,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return new Teacher((String) map.get("name"), (String) map.get("email"), (String) map.get("password"),
-                students, madeTests, assignedTests, results, gradedTests, (Long) map.get("id"));
+                studentIDs, madeTests, assignedTests, results, gradedTests, (Long) map.get("id"));
     }
 
     public TestResult turnHashMapToTestResult(HashMap<String, Object> map) {

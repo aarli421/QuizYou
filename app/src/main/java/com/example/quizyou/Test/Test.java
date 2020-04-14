@@ -10,7 +10,7 @@ public class Test {
     private String name;
 
     public Test(long timeLimit, ArrayList<Question> questions, String name) {
-        this.timeLimit = (long) 1000 * 60 * timeLimit;
+        this.timeLimit = timeLimit;
         this.questions = questions;
         this.name = name;
     }

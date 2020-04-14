@@ -139,9 +139,17 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                 mSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+<<<<<<< HEAD
                         if (!((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID()))) {
                             ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).addStudents(Long.toString(((Student) MainActivity.u).getID()));
                             Log.d(TAG, ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudentIDs().toString());
+=======
+
+                        if (!((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudents().contains((Student) MainActivity.u)) {
+                            ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).addStudents(((Student) MainActivity.u));
+                            Log.d(TAG, ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudents().toString());
+                            Toast.makeText(StudentActivity.this,"Joined " + ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getName() +"'s class", Toast.LENGTH_LONG).show();
+>>>>>>> fc53299f7bf0f608852cfa16330cc9c5d25e7866
                         } else {
                             // TODO Already joined class dialog
                             Toast.makeText(StudentActivity.this,"Already joined " +  ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getName() +"'s class", Toast.LENGTH_LONG).show();
