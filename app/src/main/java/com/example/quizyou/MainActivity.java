@@ -19,6 +19,7 @@ import com.example.quizyou.Test.Test;
 import com.example.quizyou.Test.TestResult;
 import com.example.quizyou.User.Student;
 import com.example.quizyou.User.StudentActivity;
+import com.example.quizyou.User.StudentHomeActivity;
 import com.example.quizyou.User.Teacher;
 import com.example.quizyou.User.TeacherActivity;
 import com.example.quizyou.User.User;
@@ -259,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
             if (u != null) {
                 try {
                     Student s = ((Student) u);
-                    startActivity(new Intent(getApplicationContext(), StudentActivity.class));
+                    startActivity(new Intent(getApplicationContext(), StudentHomeActivity.class));
                     Log.d(TAG, "User is student");
                 } catch (ClassCastException e) {
                     Teacher t = ((Teacher) u);

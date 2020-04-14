@@ -34,7 +34,7 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
+                Intent intent = new Intent(getApplicationContext(), StudentHomeActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();

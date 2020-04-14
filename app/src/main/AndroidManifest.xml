@@ -14,6 +14,10 @@
         <activity
             android:name=".User.TeacherActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".User.StudentHomeActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name=".User.ReportActivity"></activity>
         <activity android:name=".User.ViewGradedTestActivity"></activity>
         <activity android:name=".Test.TestActivity"></activity>
