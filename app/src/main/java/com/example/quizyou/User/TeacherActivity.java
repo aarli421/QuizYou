@@ -11,12 +11,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
 import com.example.quizyou.Test.GradeTestActivity;
 import com.example.quizyou.Test.MakeTestActivity;
+import com.example.quizyou.Test.Test;
 import com.example.quizyou.fragments.assign_text;
 import com.example.quizyou.fragments.grade_test;
 import com.example.quizyou.fragments.logout;
@@ -25,6 +30,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,6 +40,8 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         //implements OnNavigationItemSelectedListener {
 
     private Button mLogout, mGradeTests, mStudentReports, mAssignTest;
+
+    private Spinner mSpinner;
 
     public static Map<String, Object> teachers = new HashMap<>();
 
@@ -51,14 +59,12 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_view);
 
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.layout);
         NavigationView navigationView = findViewById(R.id.nav_viewer);
         navigationView.setNavigationItemSelectedListener(this);
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -67,8 +73,37 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
 //        getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new view_report()).commit();
 //        navigationView.setCheckedItem(R.id.student_reports);
 
+        View header = navigationView.getHeaderView(0);
 
+        TextView email = header.findViewById(R.id.email);
+        TextView name = header.findViewById(R.id.name);
 
+        mSpinner = findViewById(R.id.madeTestSpinner);
+        mAssignTest = findViewById(R.id.assign);
+
+        email.setText(((Teacher) MainActivity.u).getEmail());
+        name.setText(((Teacher) MainActivity.u).getName());
+
+        ArrayList<String> assignedTestNames = new ArrayList<>();
+        for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
+            assignedTestNames.add(t.getName());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, assignedTestNames);
+        mSpinner.setAdapter(adapter);
+
+        mAssignTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
+                    if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
+                        ((Teacher) MainActivity.u).addAssignedTest(t);
+                        break;
+                    }
+                }
+            }
+        });
     }
 
     //@Override

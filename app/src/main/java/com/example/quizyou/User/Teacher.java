@@ -89,6 +89,11 @@ public class Teacher implements User {
     public void addAssignedTest(Test t) {
         madeTests.remove(t);
         assignedTests.add(t);
+
+        for (Student s : students) {
+            ((Student) StudentActivity.students.get(Long.toString(s.getID()))).addPending(t);
+            s.addPending(t);
+        }
     }
 
     public void addTestResults(TestResult r) {
