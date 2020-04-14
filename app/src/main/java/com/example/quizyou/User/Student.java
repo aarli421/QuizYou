@@ -67,11 +67,15 @@ public class Student implements User {
     }
 
     public void addTaken(Test t) {
-
+        taken.add(t);
     }
 
     public void addPending(Test t) {
+        pending.add(t);
+    }
 
+    public void removePending(Test t) {
+        pending.remove(t);
     }
 
     public void addReport(GradedTest t) {
