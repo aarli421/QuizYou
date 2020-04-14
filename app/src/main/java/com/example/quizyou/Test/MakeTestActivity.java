@@ -157,7 +157,7 @@ public class MakeTestActivity extends AppCompatActivity {
                 for (int i = 0; i < questionTexts.size(); i++) {
                     questions.add(new Question(questionTexts.get(i).getPrompt(), questionTexts.get(i).getAnswer(), Integer.parseInt(questionTexts.get(i).getPoints())));
                 }
-                ((Teacher) MainActivity.u).addMadeTest(new Test(Long.parseLong(mTimeLimit.getText().toString()), questions, mTestName.getText().toString()));
+                ((Teacher) MainActivity.u).addMadeTest(new Test(60 * 1000 * Long.parseLong(mTimeLimit.getText().toString()), questions, mTestName.getText().toString()));
                 startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
                 finish();
                 return;
