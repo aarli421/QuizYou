@@ -7,8 +7,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,6 +27,7 @@ import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
 import com.example.quizyou.Test.GradeTestActivity;
 import com.example.quizyou.Test.MakeTestActivity;
+import com.example.quizyou.Test.Test;
 import com.example.quizyou.Test.TestActivity;
 import com.example.quizyou.fragments.logout;
 import com.example.quizyou.fragments.see_results;
@@ -34,6 +38,7 @@ import com.google.android.material.navigation.NavigationView.OnNavigationItemSel
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,7 +46,9 @@ import static com.example.quizyou.R.string.navigation_drawer_open;
 
 public class StudentActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
 
-    private Button mLogout, mJoinClass, mMyReports, mTakeTest;
+    private Button mLogout, mJoinClass, mMyReports, mTakeTest, mAssignTest;
+
+    private Spinner mSpinner;
 
     public static Map<String, Object> students = new HashMap<>();
 
@@ -56,12 +63,46 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_navview);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         drawer = findViewById(R.id.layout1);
         NavigationView navigationView = findViewById(R.id.nav_viewer1);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View header = navigationView.getHeaderView(0);
+
+        TextView email = header.findViewById(R.id.email);
+        TextView name = header.findViewById(R.id.name);
+
+        mSpinner = findViewById(R.id.pendingTestsSpinner);
+        mAssignTest = findViewById(R.id.assign);
+
+        email.setText(((Student) MainActivity.u).getEmail());
+        name.setText(((Student) MainActivity.u).getName());
+
+        ArrayList<String> PendingTestNames = new ArrayList<>();
+        for (Test t : ((Student) MainActivity.u).getPending()) {
+            PendingTestNames.add(t.getName());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, PendingTestNames);
+        mSpinner.setAdapter(adapter);
+
+        mAssignTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Test t : ((Student) MainActivity.u).getPending()) {
+                    if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
+                        ((Student) MainActivity.u).addPending(t);
+                        break;
+                    }
+                }
+            }
+        });
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, navigation_drawer_open, R.string.navigation_drawer_close);
@@ -134,16 +175,6 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
             }
         });
 
-        mTakeTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                return;
-            }
-        });
 
 
     }
