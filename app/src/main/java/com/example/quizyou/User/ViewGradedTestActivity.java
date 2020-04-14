@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,7 +23,8 @@ import java.util.ArrayList;
 
 public class ViewGradedTestActivity extends AppCompatActivity {
 
-    private Button mBack;
+    private ImageButton mBack;
+    private TextView mNoTests;
     private ArrayList<Question> questionList = new ArrayList<>();
 
     @Override
@@ -30,7 +33,7 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_graded_test);
 
         mBack = findViewById(R.id.back_button);
-
+        mNoTests = findViewById(R.id.textView6);
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,20 +116,14 @@ public class ViewGradedTestActivity extends AppCompatActivity {
 
 
 */
-      //  ArrayList<GradedTest> obj = new ArrayList<>();
-      //  for(GradedTest test : ((Student) MainActivity.u).getReports()){
-       //     obj.add(((Student) MainActivity.u).getTaken());
-       // }
-
-      //  gradedTestAdapter adapter = new gradedTestAdapter(this, R.layout.adapter_view_layout, gradedList);
-     //   mListView.setAdapter(adapter);
-
-
-
-
-        //GradedTestAdapter adapter = new GradedTestAdapter(this, R.layout.adapter_view_layout, gradedList);
-       // mListView.setAdapter(adapter);
- //master
+        if(((Student) MainActivity.u).getReports().size() == 0){
+            mNoTests.setText("No graded tests right now");
+        }
+        else{
+            mNoTests.setText("");
+        }
+        GradedTestAdapter adapter = new GradedTestAdapter(this, R.layout.adapter_view_layout, ((Student) MainActivity.u).getReports());
+        mListView.setAdapter(adapter);
     }
 
 }

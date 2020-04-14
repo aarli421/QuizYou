@@ -1,7 +1,9 @@
 package com.example.quizyou;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ContextThemeWrapper;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -178,6 +180,19 @@ public class MainActivity extends AppCompatActivity {
 
                 if (selection.equals("Select One")) {
                     // TODO Tell user to select one
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.dialog));
+                    View mView = getLayoutInflater().inflate(R.layout.activity_select_one, null);
+                    Button mClose = (Button) mView.findViewById(R.id.close);
+
+                    mBuilder.setView(mView);
+                    final AlertDialog dialog = mBuilder.create();
+                    dialog.show();
+                    mClose.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
                 } else {
                     signUpWithEmailAuthCredential();
                 }

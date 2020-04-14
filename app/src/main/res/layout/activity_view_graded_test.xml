@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
     <TextView
         android:id="@+id/textView2"
@@ -22,27 +22,20 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="78dp" />
 
-    <Button
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:fontFamily="@font/droid_sans"
-        android:text="Back"
-        android:textSize="17sp" />
-
     <ListView
+        android:id="@+id/list_view1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="145dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="2dp"
-        android:id="@+id/list_view1"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="183dp"
+        android:layout_marginEnd="-2dp">
+
+    </ListView>
 
     <View
         android:id="@+id/divider4"
@@ -53,6 +46,30 @@
         android:layout_marginStart="97dp"
         android:layout_marginTop="129dp"
         android:background="#000000" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="147dp"
+        android:fontFamily="@font/montserrat"
+        android:textColor="#000000" />
+
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="17dp"
+        android:layout_height="18dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginRight="34dp"
+        android:background="#FFFFFF"
+        android:tint="#000000"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
 
 </RelativeLayout>
