@@ -45,10 +45,14 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        ArrayList<Question> questions = new ArrayList<>();
-        questions.add(new Question("Why do you like to eat chicken nuggets?", "Cuz I do", 5));
-        questions.add(new Question("Why do you like to nuggets?", "Bruhhh", 7));
-        test = new Test(5, questions, "Random name");
+//        ArrayList<Question> questions = new ArrayList<>();
+//        questions.add(new Question("Why do you like to eat chicken nuggets?", "Cuz I do", 5));
+//        questions.add(new Question("Why do you like to nuggets?", "Bruhhh", 7));
+//        test = new Test(5, questions, "Random name");
+
+        test = StudentActivity.selectedTest;
+
+        if (test == null) return;
 
         title = findViewById(R.id.testTitle);
         scrollViewLinearLayout = findViewById(R.id.testLinearLayout);
@@ -127,33 +131,20 @@ public class TestActivity extends AppCompatActivity {
         }
 
         for (Map.Entry<String, Object> m : TeacherActivity.teachers.entrySet()) {
-            if (((Teacher) m.getValue()).getStudents().contains((Student) MainActivity.u) && ((Teacher) m.getValue()).getAssignedTests().contains(test)) {
+            Log.d(TAG, "Student: " + ((Student) MainActivity.u) + " Teacher: " + ((Teacher) m.getValue()));
+
+            if (((Teacher) m.getValue()).getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID())) && ((Teacher) m.getValue()).getAssignedTests().contains(test)) {
                 ((Teacher) m.getValue()).addTestResults(new TestResult(test, answers, (Student) MainActivity.u, exitedApp));
-                ((Student) MainActivity.u).removePending(test);
                 ((Student) MainActivity.u).addTaken(test);
                 break;
             }
         }
 
+        ((Student) MainActivity.u).addTaken(test);
+
         Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
-    }
-}
-
-class TestApplication extends Application {
-    private static boolean activityVisible;
-
-    public static boolean isActivityVisible() {
-        return activityVisible;
-    }
-
-    public static void activityResumed() {
-        activityVisible = true;
-    }
-
-    public static void activityPaused() {
-        activityVisible = false;
     }
 }

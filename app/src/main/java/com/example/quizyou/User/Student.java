@@ -68,6 +68,7 @@ public class Student implements User {
 
     public void addTaken(Test t) {
         taken.add(t);
+        removePending(t);
     }
 
     public void addPending(Test t) {
