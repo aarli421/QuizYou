@@ -46,11 +46,13 @@ import static com.example.quizyou.R.string.navigation_drawer_open;
 
 public class StudentActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
 
-    private Button mLogout, mJoinClass, mMyReports, mTakeTest, mAssignTest;
+    private Button mLogout, mJoinClass, mReports, mTakeTest, mAssignTest;
 
     private Spinner mSpinner;
 
     public static Map<String, Object> students = new HashMap<>();
+
+    public static Test selectedTest = null;
 
     private static final String TAG = "StudentActivity";
 
@@ -73,7 +75,6 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         TextView name = header.findViewById(R.id.name);
 
         mSpinner = findViewById(R.id.pendingTestsSpinner);
-        mAssignTest = findViewById(R.id.assign);
 
         email.setText(((Student) MainActivity.u).getEmail());
         name.setText(((Student) MainActivity.u).getName());
@@ -87,22 +88,8 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                 android.R.layout.simple_spinner_item, PendingTestNames);
         mSpinner.setAdapter(adapter);
 
-        mAssignTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (Test t : ((Student) MainActivity.u).getPending()) {
-                    if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
-                        ((Student) MainActivity.u).addPending(t);
-                        break;
-                    }
-                }
-            }
-        });
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, navigation_drawer_open, R.string.navigation_drawer_close);
@@ -111,8 +98,8 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
 
         mLogout = findViewById(R.id.logout_button);
         mJoinClass = findViewById(R.id.join_class_button);
-        mMyReports = findViewById(R.id.my_reports_button);
-        mTakeTest = findViewById(R.id.take_test_button);
+        mReports = findViewById(R.id.my_reports_button);
+        mTakeTest = findViewById(R.id.take_test);
 
         mLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,9 +137,9 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                 mSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudents().contains((Student) MainActivity.u)) {
-                            ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).addStudents(((Student) MainActivity.u));
-                            Log.d(TAG, ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudents().toString());
+                        if (!((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID()))) {
+                            ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).addStudents(Long.toString(((Student) MainActivity.u).getID()));
+                            Log.d(TAG, ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudentIDs().toString());
                         } else {
                             // TODO Already joined class dialog
                         }
@@ -164,18 +151,34 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         });
 
 
-        mMyReports.setOnClickListener(new View.OnClickListener() {
+        mReports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ViewGradedTestActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
                 return;
             }
         });
 
+        mTakeTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Test t : ((Student) MainActivity.u).getPending()) {
+                    if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
+                        selectedTest = t;
+                        break;
+                    }
+                }
 
+                Intent intent = new Intent(getApplicationContext(), TestActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
 
     }
 
