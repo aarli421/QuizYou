@@ -34,6 +34,8 @@ public class TestActivity extends AppCompatActivity {
 
     private ArrayList<EditText> editTexts = new ArrayList<>();
 
+    private Button mBack;
+
     private Test test;
 
     private int exitedApp = 0;
@@ -45,6 +47,16 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
+        mBack = findViewById(R.id.back_button);
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
 //        ArrayList<Question> questions = new ArrayList<>();
 //        questions.add(new Question("Why do you like to eat chicken nuggets?", "Cuz I do", 5));
 //        questions.add(new Question("Why do you like to nuggets?", "Bruhhh", 7));
