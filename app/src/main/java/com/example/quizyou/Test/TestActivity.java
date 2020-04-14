@@ -19,7 +19,6 @@ import com.example.quizyou.R;
 import com.example.quizyou.Test.Question.Question;
 import com.example.quizyou.User.Student;
 import com.example.quizyou.User.StudentActivity;
-import com.example.quizyou.User.StudentHomeActivity;
 import com.example.quizyou.User.Teacher;
 import com.example.quizyou.User.TeacherActivity;
 
@@ -136,7 +135,7 @@ public class TestActivity extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent(getApplicationContext(), StudentHomeActivity.class);
+        Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
         //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         finish();
