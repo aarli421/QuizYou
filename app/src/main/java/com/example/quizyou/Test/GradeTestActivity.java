@@ -31,7 +31,7 @@ public class GradeTestActivity extends AppCompatActivity {
     // TODO Display wrong errors
 
     Spinner mSpinner;
-    Button mSubmit = null;
+    Button mSubmit = null, mBack;
     TestResult result = null;
 
     private ArrayList<EditText> editTexts = new ArrayList<>();
@@ -44,6 +44,17 @@ public class GradeTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grade_test);
 
         mSpinner = findViewById(R.id.spinnerTests);
+        mBack = findViewById(R.id.back_button);
+
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TeacherActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
 
         //mSubmit = findViewById(R.id.submitGradedTest);
 
