@@ -20,7 +20,7 @@ import com.example.quizyou.Test.GradedTestAdapter;
 
 import java.util.ArrayList;
 
-//TODO implement test objects in array
+//TODO implement test objects in array--
 
 public class ViewGradedTestActivity extends AppCompatActivity {
 
