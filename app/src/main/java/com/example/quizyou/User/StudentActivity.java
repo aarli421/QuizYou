@@ -146,10 +146,7 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                 mSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        MainActivity.loadStudents = false;
-//                        MainActivity.loadTeachers = false;
                         MainActivity.load();
-                        while (!MainActivity.loadStudents || !MainActivity.loadTeachers) { }
 
                         Teacher t = (Teacher) TeacherActivity.teachers.get(mResponse.getText().toString());
 
@@ -157,7 +154,9 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                             t.addStudents(Long.toString(((Student) MainActivity.u).getID()));
 
                             //MainActivity.save();
-                            MainActivity.save(t);
+                            MainActivity.mDb.collection("Teachers")
+                                    .document(Long.toString(t.getID()))
+                                    .update("studentIDs", t.getStudentIDs());
 
                             Log.d(TAG, t.getStudentIDs().toString());
                         } else {
