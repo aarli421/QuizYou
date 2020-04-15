@@ -147,6 +147,9 @@ public class TestActivity extends AppCompatActivity {
         }
 
         MainActivity.load();
+        while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
+        MainActivity.loadStudents = false;
+        MainActivity.loadTeachers = false;
 
         for (Map.Entry<String, Object> m : TeacherActivity.teachers.entrySet()) {
             Log.d(TAG, ((Teacher) m.getValue()) + " " + ((Student) MainActivity.u));

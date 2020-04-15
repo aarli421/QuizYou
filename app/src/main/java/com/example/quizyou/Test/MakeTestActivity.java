@@ -170,6 +170,9 @@ public class MakeTestActivity extends AppCompatActivity {
                 }
 
                 MainActivity.load();
+                while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
+                MainActivity.loadStudents = false;
+                MainActivity.loadTeachers = false;
 
                 ((Teacher) MainActivity.u).addMadeTest(new Test(60 * 1000 * Long.parseLong(mTimeLimit.getText().toString()), questions, mTestName.getText().toString()));
 

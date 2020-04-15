@@ -147,6 +147,9 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                     @Override
                     public void onClick(View v) {
                         MainActivity.load();
+                        while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
+                        MainActivity.loadStudents = false;
+                        MainActivity.loadTeachers = false;
 
                         Teacher t = (Teacher) TeacherActivity.teachers.get(mResponse.getText().toString());
 
