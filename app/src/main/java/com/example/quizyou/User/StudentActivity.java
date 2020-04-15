@@ -146,21 +146,7 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                         Teacher t = (Teacher) TeacherActivity.teachers.get(mResponse.getText().toString());
 
                         if (!(t.getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID())))) {
-                            MainActivity.mDb.collection("users")
-                                    .get()
-                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                            if (task.isSuccessful()) {
-                                                MainActivity.readData(task);
-                                            } else {
-                                                Log.d(TAG, "Error getting documents: ", task.getException());
-                                            }
-                                        }
-                                    });
-
                             t.addStudents(Long.toString(((Student) MainActivity.u).getID()));
-
 
                             MainActivity.mDb.collection("users")
                                     .document("Teacher")
