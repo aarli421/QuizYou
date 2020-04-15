@@ -116,6 +116,7 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     });
                 } else {
+                    MainActivity.load();
                     signUpWithEmailAuthCredential();
                 }
             }
@@ -163,6 +164,8 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void userIsLoggedIn() {
+        MainActivity.load();
+
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             if (MainActivity.email == null) {
@@ -182,6 +185,8 @@ public class SignUpActivity extends AppCompatActivity {
                     break;
                 }
             }
+
+            MainActivity.save();
 
             if (MainActivity.u != null) {
                 try {
