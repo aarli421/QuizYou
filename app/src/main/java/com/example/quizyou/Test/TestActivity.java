@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quizyou.MainActivity;
@@ -21,6 +22,9 @@ import com.example.quizyou.User.Student;
 import com.example.quizyou.User.StudentActivity;
 import com.example.quizyou.User.Teacher;
 import com.example.quizyou.User.TeacherActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -146,8 +150,27 @@ public class TestActivity extends AppCompatActivity {
             Log.d(TAG, "Student: " + ((Student) MainActivity.u) + " Teacher: " + ((Teacher) m.getValue()));
 
             if (((Teacher) m.getValue()).getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID())) && ((Teacher) m.getValue()).getAssignedTests().contains(test)) {
+                MainActivity.mDb.collection("users")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                MainActivity.readData(task);
+                            } else {
+                                Log.d(TAG, "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
+
                 ((Teacher) m.getValue()).addTestResults(new TestResult(test, answers, (Student) MainActivity.u, exitedApp));
                 ((Student) MainActivity.u).addTaken(test);
+
+                MainActivity.mDb.collection("users")
+                        .document("Teacher")
+                        .update(
+                                Long.toString(((Teacher) m.getValue()).getID()), ((Teacher) m.getValue())
+                        );
                 break;
             }
         }

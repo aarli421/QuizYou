@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,9 +27,12 @@ import com.example.quizyou.fragments.assign_text;
 import com.example.quizyou.fragments.grade_test;
 import com.example.quizyou.fragments.logout;
 import com.example.quizyou.fragments.view_report;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,6 +46,8 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
     private Button mLogout, mGradeTests, mStudentReports, mAssignTest;
 
     private Spinner mSpinner;
+
+    private static final String TAG = "TeacherActivity";
 
     public static Map<String, Object> teachers = new HashMap<>();
 
@@ -96,9 +102,29 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         mAssignTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.mDb.collection("users")
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                MainActivity.readData(task);
+                            } else {
+                                Log.d(TAG, "Error getting documents: ", task.getException());
+                            }
+                        }
+                    });
+
                 for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
                     if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
                         ((Teacher) MainActivity.u).addAssignedTest(t);
+
+                        MainActivity.mDb.collection("users")
+                            .document("Teacher")
+                            .update(
+                                    Long.toString(((Teacher) MainActivity.u).getID()), ((Teacher) MainActivity.u)
+                            );
+
                         break;
                     }
                 }

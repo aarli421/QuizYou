@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quizyou.MainActivity;
@@ -15,8 +16,14 @@ import com.example.quizyou.R;
 import com.example.quizyou.Test.Question.Question;
 import com.example.quizyou.User.Teacher;
 import com.example.quizyou.User.TeacherActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MakeTestActivity extends AppCompatActivity {
     private long timeLimit;
@@ -157,7 +164,31 @@ public class MakeTestActivity extends AppCompatActivity {
                 for (int i = 0; i < questionTexts.size(); i++) {
                     questions.add(new Question(questionTexts.get(i).getPrompt(), questionTexts.get(i).getAnswer(), Integer.parseInt(questionTexts.get(i).getPoints())));
                 }
+
+                MainActivity.mDb.collection("users")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    MainActivity.readData(task);
+                                } else {
+                                    Log.d(TAG, "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
+
                 ((Teacher) MainActivity.u).addMadeTest(new Test(60 * 1000 * Long.parseLong(mTimeLimit.getText().toString()), questions, mTestName.getText().toString()));
+
+                Map<String, Object> saveMap = new HashMap<>();
+                saveMap.put(Long.toString(((Teacher) MainActivity.u).getID()), ((Teacher) MainActivity.u));
+
+                MainActivity.mDb.collection("users")
+                        .document("Teacher")
+                        .set(saveMap, SetOptions.merge());
+
+                Log.d(TAG, Long.toString(((Teacher) MainActivity.u).getID()));
+
                 startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
                 finish();
                 return;

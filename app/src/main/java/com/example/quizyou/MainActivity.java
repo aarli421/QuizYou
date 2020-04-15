@@ -46,13 +46,14 @@ public class MainActivity extends AppCompatActivity {
     // TODO Store in Firebase
     // TODO Adding read from Firebase
 
-    private EditText mLoginEmail, mLoginPassword, mSignUpName, mSignUpEmail, mSignUpPassword;
-    private Button mLogin, mSignUp;
-    private Spinner mSpinner;
-    private String email, password;
+    private EditText mLoginEmail, mLoginPassword;
+
+    private Button mLogin;
+
+    public static String email, password;
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private static FirebaseFirestore mDb = FirebaseFirestore.getInstance();
+    public static FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 
     private final static String TAG = "MainActivity";
 
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_layout_xd);
 
         mDb.collection("users")
                 .get()
@@ -69,31 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (document.getId().equals("Student")) {
-                                    //StudentActivity.students = document.getData();
-                                    for (Map.Entry<String, Object> m : document.getData().entrySet()) {
-                                        HashMap<String, Object> studentMap = (HashMap<String, Object>) m.getValue();
-                                        Student s = turnHashMapToStudent(studentMap);
-                                        StudentActivity.students.put(Long.toString(s.getID()), s);
-                                    }
-
-                                    Student.setStaticID(document.getData().size());
-
-                                    Log.d(TAG, document.getId() + " => " + StudentActivity.students);
-                                } else if (document.getId().equals("Teacher")) {
-                                    //TeacherActivity.teachers = document.getData();
-                                    for (Map.Entry<String, Object> m : document.getData().entrySet()) {
-                                        HashMap<String, Object> teacherMap = (HashMap<String, Object>) m.getValue();
-                                        Teacher t = turnHashMapToTeacher(teacherMap);
-                                        TeacherActivity.teachers.put(Long.toString(t.getID()), t);
-                                    }
-                                    Teacher.setStaticID(document.getData().size());
-
-                                    Log.d(TAG, document.getId() + " => " + TeacherActivity.teachers);
-                                }
-                            }
-
+                            readData(task);
                             handler.post(periodicUpdate);
                             userIsLoggedIn();
                         } else {
@@ -112,19 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
         mLoginEmail = findViewById(R.id.loginEmail);
         mLoginPassword = findViewById(R.id.loginPassword);
-        mSignUpName = findViewById(R.id.signUpName);
-        mSignUpEmail = findViewById(R.id.signUpEmail);
-        mSignUpPassword = findViewById(R.id.signUpPassword);
 
         mLogin = findViewById(R.id.login);
-        mSignUp = findViewById(R.id.signUp);
-
-        mSpinner = findViewById(R.id.spinner);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinner.setAdapter(adapter);
 
 //        HashMap<Object, Teacher> students = new HashMap<>();
 //        Teacher teacher1 = new Teacher("Teacher Trump", "teachertrump@gmail.com", "teachertrump");
@@ -156,39 +122,7 @@ public class MainActivity extends AppCompatActivity {
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String selection = mSpinner.getSelectedItem().toString();
-
-//                if (selection.equals("Select One")) {
-//                    // TODO Tell user to select one
-//                } else {
                     logInWithEmailAuthCredential();
-//                }
-            }
-        });
-
-        mSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String selection = mSpinner.getSelectedItem().toString();
-
-                if (selection.equals("Select One")) {
-                    // TODO Tell user to select one
-                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.dialog));
-                    View mView = getLayoutInflater().inflate(R.layout.activity_select_one, null);
-                    Button mClose = (Button) mView.findViewById(R.id.close);
-
-                    mBuilder.setView(mView);
-                    final AlertDialog dialog = mBuilder.create();
-                    dialog.show();
-                    mClose.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-                } else {
-                    signUpWithEmailAuthCredential();
-                }
             }
         });
     }
@@ -201,11 +135,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-//                            if (mSpinner.getSelectedItem().toString().equals("Student")) {
-//
-//                            } else if (mSpinner.getSelectedItem().toString().equals("Teacher")) {
-//
-//                            }
 
                             email = mLoginEmail.getText().toString();
                             password = mLoginPassword.getText().toString();
@@ -213,31 +142,6 @@ public class MainActivity extends AppCompatActivity {
                             userIsLoggedIn();
                         } else {
                             mLogin.setText("Login Failed");
-                        }
-                    }
-                });
-    }
-
-    private void signUpWithEmailAuthCredential() {
-        if (mSignUpName.getText().toString() == null || mSignUpEmail.getText().toString() == null || mSignUpPassword.getText().toString() == null) return;
-
-        mAuth.createUserWithEmailAndPassword(mSignUpEmail.getText().toString(), mSignUpPassword.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            if (mSpinner.getSelectedItem().toString().equals("Student")) {
-                                Student s = new Student(mSignUpName.getText().toString(), mSignUpEmail.getText().toString(), mSignUpPassword.getText().toString());
-                                StudentActivity.students.put(Long.toString(s.getID()), s);
-                            } else if (mSpinner.getSelectedItem().toString().equals("Teacher")) {
-                                Teacher t = new Teacher(mSignUpName.getText().toString(), mSignUpEmail.getText().toString(), mSignUpPassword.getText().toString());
-                                TeacherActivity.teachers.put(Long.toString(t.getID()), t);
-                            }
-
-                            email = mSignUpEmail.getText().toString();
-                            password = mSignUpPassword.getText().toString();
-
-                            userIsLoggedIn();
                         }
                     }
                 });
@@ -276,21 +180,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            //Log.d(TAG, ((Teacher) u).getStudents().get(0).toString());
-            //Log.d(TAG, ((Student) u).getPassword());
-
-//            if (mSpinner.getSelectedItem().toString().equals("Student")) {
-//                startActivity(new Intent(getApplicationContext(), StudentActivity.class));
-//            } else if (mSpinner.getSelectedItem().toString().equals("Teacher")) {
-//                startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
-//            }
             finish();
             return;
         }
     }
 
-    Handler handler = new Handler();
-    private Runnable periodicUpdate = new Runnable() {
+    public static Handler handler = new Handler();
+    public static Runnable periodicUpdate = new Runnable() {
         @Override
         public void run() {
             handler.postDelayed(periodicUpdate, 5*1000);
@@ -303,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
                             .update(
                                     Long.toString(s.getID()), s
                             );
-                    Log.d(TAG, "User is student");
                 } catch (ClassCastException e) {
                     Teacher t = ((Teacher) u);
                     mDb.collection("users")
@@ -311,7 +206,6 @@ public class MainActivity extends AppCompatActivity {
                             .update(
                                     Long.toString(t.getID()), t
                             );
-                    Log.d(TAG, "User is teacher");
                 }
             } else {
                 return;
@@ -321,8 +215,34 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    public static void readData(Task<QuerySnapshot> task) {
+        for (QueryDocumentSnapshot document : task.getResult()) {
+            if (document.getId().equals("Student")) {
+                //StudentActivity.students = document.getData();
+                for (Map.Entry<String, Object> m : document.getData().entrySet()) {
+                    HashMap<String, Object> studentMap = (HashMap<String, Object>) m.getValue();
+                    Student s = turnHashMapToStudent(studentMap);
+                    StudentActivity.students.put(Long.toString(s.getID()), s);
+                }
 
-    public Student turnHashMapToStudent(HashMap<String, Object> map) {
+                Student.setStaticID(document.getData().size());
+
+                Log.d(TAG, document.getId() + " => " + StudentActivity.students);
+            } else if (document.getId().equals("Teacher")) {
+                //TeacherActivity.teachers = document.getData();
+                for (Map.Entry<String, Object> m : document.getData().entrySet()) {
+                    HashMap<String, Object> teacherMap = (HashMap<String, Object>) m.getValue();
+                    Teacher t = turnHashMapToTeacher(teacherMap);
+                    TeacherActivity.teachers.put(Long.toString(t.getID()), t);
+                }
+                Teacher.setStaticID(document.getData().size());
+
+                Log.d(TAG, document.getId() + " => " + TeacherActivity.teachers);
+            }
+        }
+    }
+
+    private static Student turnHashMapToStudent(HashMap<String, Object> map) {
         ArrayList<Test> taken = new ArrayList<>();
         ArrayList<Object> takenList = (ArrayList<Object>) map.get("taken");
         for (Object obj : takenList) {
@@ -350,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
         return s;
     }
 
-    public Teacher turnHashMapToTeacher(HashMap<String, Object> map) {
+    private static Teacher turnHashMapToTeacher(HashMap<String, Object> map) {
         ArrayList<String> studentIDs = new ArrayList<>();
         ArrayList<Object> studentIDsList = (ArrayList<Object>) map.get("studentIDs");
         for (Object obj : studentIDsList) {
@@ -389,7 +309,7 @@ public class MainActivity extends AppCompatActivity {
                 studentIDs, madeTests, assignedTests, results, gradedTests, (Long) map.get("id"));
     }
 
-    public TestResult turnHashMapToTestResult(HashMap<String, Object> map) {
+    private static TestResult turnHashMapToTestResult(HashMap<String, Object> map) {
         Student answerer = turnHashMapToStudent((HashMap<String, Object>) map.get("answerer"));
         Test test = turnHashMapToTest((HashMap<String, Object>) map.get("test"));
         ArrayList<String> answers = (ArrayList<String>) map.get("answers");
@@ -397,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
         return new TestResult(test, answers, answerer, exitedApp);
     }
 
-    public GradedTest turnHashMapToGradedTest(HashMap<String, Object> map) {
+    private static GradedTest turnHashMapToGradedTest(HashMap<String, Object> map) {
         String notes = (String) map.get("notes");
         int points = (int) (long) map.get("points");
         int totalPoints = (int) (long) map.get("totalPoints");
@@ -406,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
         return new GradedTest(turnHashMapToTest(testMap), points, totalPoints, notes);
     }
 
-    public Test turnHashMapToTest(HashMap<String, Object> map) {
+    private static Test turnHashMapToTest(HashMap<String, Object> map) {
         String name = (String) map.get("name");
         long timeLimit = (Long) map.get("timeLimit");
         ArrayList<Object> questionsList = (ArrayList<Object>) map.get("questions");
@@ -415,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
         return new Test(timeLimit, questions, name);
     }
 
-    public ArrayList<Question> turnObjListToQuestionsList(ArrayList<Object> questionsList) {
+    private static ArrayList<Question> turnObjListToQuestionsList(ArrayList<Object> questionsList) {
         ArrayList<Question> questions = new ArrayList<>();
         for (Object obj : questionsList) {
             HashMap<String, Object> question = (HashMap<String, Object>) obj;
