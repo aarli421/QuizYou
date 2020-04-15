@@ -92,15 +92,20 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
 
         resetSpinner();
 
+        Log.d(TAG, "During initialization: " + MainActivity.loadStudents + " " + MainActivity.loadTeachers);
+
         mAssignTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
                     if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
+
+//                        MainActivity.loadStudents = false;
+//                        MainActivity.loadTeachers = false;
                         MainActivity.load();
-                        while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
-                        MainActivity.loadStudents = false;
-                        MainActivity.loadTeachers = false;
+                        while (!MainActivity.loadStudents || !MainActivity.loadTeachers) {
+                            System.out.println("Loading...");
+                        }
 
                         ((Teacher) MainActivity.u).addAssignedTest(t);
 

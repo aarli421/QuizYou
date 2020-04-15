@@ -63,6 +63,8 @@ public class MakeTestActivity extends AppCompatActivity {
         mSubmit = findViewById(R.id.submitButton);
         mBackToHome = findViewById(R.id.home_button);
 
+        Log.d(TAG, "During initialization: " + MainActivity.loadStudents + " " + MainActivity.loadTeachers);
+
         mBackToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -169,10 +171,13 @@ public class MakeTestActivity extends AppCompatActivity {
                     questions.add(new Question(questionTexts.get(i).getPrompt(), questionTexts.get(i).getAnswer(), Integer.parseInt(questionTexts.get(i).getPoints())));
                 }
 
+//                MainActivity.loadStudents = false;
+//                MainActivity.loadTeachers = false;
+                Log.d(TAG, MainActivity.loadStudents + " " + MainActivity.loadTeachers);
                 MainActivity.load();
-                while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
-                MainActivity.loadStudents = false;
-                MainActivity.loadTeachers = false;
+                while (!MainActivity.loadStudents || !MainActivity.loadTeachers) {
+                    System.out.println("Loading...");
+                }
 
                 ((Teacher) MainActivity.u).addMadeTest(new Test(60 * 1000 * Long.parseLong(mTimeLimit.getText().toString()), questions, mTestName.getText().toString()));
 
