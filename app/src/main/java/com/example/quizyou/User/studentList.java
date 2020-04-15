@@ -37,15 +37,10 @@ public class studentList extends ArrayAdapter<Student> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         String name = getItem(position).getName();
 
-
-        Student student = new Student(name, "hi","hi");
-
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
         TextView tvTestName = (TextView) convertView.findViewById(R.id.textView1);
-        //Button btViewStudent = (Button)convertView.findViewById(R.id.view_student);
-
         tvTestName.setText(name);
 
         return convertView;
