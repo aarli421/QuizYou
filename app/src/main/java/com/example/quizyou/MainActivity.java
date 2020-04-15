@@ -75,53 +75,51 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_layout_xd);
 
         mDb.collection("Students")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            StudentActivity.students.put(document.getId(), turnHashMapToStudent((HashMap<String, Object>) document.getData()));
-                        }
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    StudentActivity.students.put(document.getId(), turnHashMapToStudent((HashMap<String, Object>) document.getData()));
+                }
 
-                        Log.d(TAG, StudentActivity.students.toString());
+                Log.d(TAG, StudentActivity.students.toString());
 
-                        if (oneFinished) {
-                            //handler.post(periodicUpdate);
-                            //userIsLoggedIn();
-                        } else {
-                            oneFinished = true;
-                        }
-                    }
-                });
+                if (oneFinished) {
+                    //handler.post(periodicUpdate);
+                    userIsLoggedIn();
+                } else {
+                    oneFinished = true;
+                }
+                }
+            });
 
         mDb.collection("Teachers")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
 
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                TeacherActivity.teachers.put(document.getId(), turnHashMapToTeacher((HashMap<String, Object>) document.getData()));
-                            }
-
-                            Log.d(TAG, TeacherActivity.teachers.toString());
-
-                            if (oneFinished) {
-                                //handler.post(periodicUpdate);
-                                //userIsLoggedIn();
-                            } else {
-                                oneFinished = true;
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        TeacherActivity.teachers.put(document.getId(), turnHashMapToTeacher((HashMap<String, Object>) document.getData()));
                     }
-                });
+
+                    Log.d(TAG, TeacherActivity.teachers.toString());
+
+                    if (oneFinished) {
+                        //handler.post(periodicUpdate);
+                        userIsLoggedIn();
+                    } else {
+                        oneFinished = true;
+                    }
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+                }
+            });
 
         FirebaseApp.initializeApp(this);
-
-        // Sign Up Code
 
         mLoginEmail = findViewById(R.id.loginEmail);
         mLoginPassword = findViewById(R.id.loginPassword);
@@ -140,20 +138,20 @@ public class MainActivity extends AppCompatActivity {
         if (mLoginEmail.getText().toString() == null || mLoginPassword.getText().toString() == null) return;
 
         mAuth.signInWithEmailAndPassword(mLoginEmail.getText().toString(), mLoginPassword.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
 
-                            email = mLoginEmail.getText().toString();
-                            password = mLoginPassword.getText().toString();
+                        email = mLoginEmail.getText().toString();
+                        password = mLoginPassword.getText().toString();
 
-                            userIsLoggedIn();
-                        } else {
-                            mLogin.setText("Login Failed");
-                        }
+                        userIsLoggedIn();
+                    } else {
+                        mLogin.setText("Login Failed");
                     }
-                });
+                }
+            });
     }
 
     private void userIsLoggedIn() {
@@ -194,6 +192,44 @@ public class MainActivity extends AppCompatActivity {
             save();
             return;
         }
+    }
+
+    public static void load() {
+        mDb.collection("Students")
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            StudentActivity.students.put(document.getId(), turnHashMapToStudent((HashMap<String, Object>) document.getData()));
+                        }
+
+                        Log.d(TAG, StudentActivity.students.toString());
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
+                    }
+
+                    Log.d(TAG, StudentActivity.students.toString());
+                }
+            });
+
+    mDb.collection("Teachers")
+        .get()
+        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        TeacherActivity.teachers.put(document.getId(), turnHashMapToTeacher((HashMap<String, Object>) document.getData()));
+                    }
+
+                    Log.d(TAG, TeacherActivity.teachers.toString());
+                } else {
+                    Log.d(TAG, "Error getting documents: ", task.getException());
+                }
+            }
+        });
     }
 
     //public static Handler handler = new Handler();

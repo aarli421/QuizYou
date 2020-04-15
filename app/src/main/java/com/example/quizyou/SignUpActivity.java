@@ -56,24 +56,9 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         FirebaseApp.initializeApp(this);
 
-//        MainActivity.mDb.collection("users")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            MainActivity.readData(task);
-//                            MainActivity.handler.post(MainActivity.periodicUpdate);
-//                            userIsLoggedIn();
-//                        } else {
-//                            Log.d(TAG, "Error getting documents: ", task.getException());
-//                        }
-//                    }
-//                });
-
-        //mSpinner = findViewById(R.id.dropdown);
-
         initList();
+
+        mSpinner = findViewById(R.id.dropdown);
 
         mAdapter = new UserAdapter(this, mUserList);
         mSpinner.setAdapter(mAdapter);
@@ -106,7 +91,7 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                selection = mSpinner.getSelectedItem().toString();
+                //selection = mSpinner.getSelectedItem().toString();
 
                 if (selection.equals("Select One")) {
                     // TODO Tell user to select one
@@ -132,6 +117,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void initList(){
         mUserList = new ArrayList<>();
+        mUserList.add(new UserItem("Select One", R.drawable.cursor));
         mUserList.add(new UserItem("Teacher", R.drawable.teacher));
         mUserList.add(new UserItem("Student", R.drawable.student));
     }
