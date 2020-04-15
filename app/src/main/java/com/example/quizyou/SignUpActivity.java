@@ -183,6 +183,8 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
 
+            MainActivity.save();
+
 //            MainActivity.loadStudents = false;
 //            MainActivity.loadTeachers = false;
 //            MainActivity.load();
