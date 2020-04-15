@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/dropdown">
+
+
+
+    <ImageView
+        android:id="@+id/image_view_user"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/teacher"
+        tools:ignore="DuplicateIds" />
+
+    <TextView
+        android:id="@+id/text_view_name"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/image_view_user"
+        android:layout_alignParentTop="true"
+        android:layout_margin="16dp"
+        android:layout_toEndOf="@+id/image_view_user"
+        android:gravity="center"
+        android:text="Teacher"
+        android:textColor="@android:color/black"
+        android:textSize="30sp" />
+
+</RelativeLayout>

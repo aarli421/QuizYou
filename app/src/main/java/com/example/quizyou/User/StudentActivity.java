@@ -36,10 +36,13 @@ import com.example.quizyou.fragments.logout;
 import com.example.quizyou.fragments.see_results;
 import com.example.quizyou.fragments.student_home;
 import com.example.quizyou.fragments.take_test;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.navigation.NavigationView.OnNavigationItemSelectedListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -136,12 +139,36 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                         dialog.dismiss();
                     }
                 });
+
                 mSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID()))) {
-                            ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).addStudents(Long.toString(((Student) MainActivity.u).getID()));
-                            Log.d(TAG, ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getStudentIDs().toString());
+                        Teacher t = (Teacher) TeacherActivity.teachers.get(mResponse.getText().toString());
+
+                        if (!(t.getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID())))) {
+                            MainActivity.mDb.collection("users")
+                                    .get()
+                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                MainActivity.readData(task);
+                                            } else {
+                                                Log.d(TAG, "Error getting documents: ", task.getException());
+                                            }
+                                        }
+                                    });
+
+                            t.addStudents(Long.toString(((Student) MainActivity.u).getID()));
+
+
+                            MainActivity.mDb.collection("users")
+                                    .document("Teacher")
+                                    .update(
+                                            Long.toString(t.getID()), t
+                                    );
+
+                            Log.d(TAG, t.getStudentIDs().toString());
                         } else {
                             // TODO Already joined class dialog
                             Toast.makeText(StudentActivity.this,"Already joined " +  ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getName() +"'s class", Toast.LENGTH_LONG).show();
