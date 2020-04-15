@@ -24,6 +24,7 @@ import com.example.quizyou.User.StudentActivity;
 import com.example.quizyou.User.Teacher;
 import com.example.quizyou.User.TeacherActivity;
 import com.example.quizyou.User.User;
+import com.example.quizyou.signUpSpinner.UserAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -46,9 +47,18 @@ public class MainActivity extends AppCompatActivity {
     // TODO Store in Firebase
     // TODO Adding read from Firebase
 
+    // Sign Up Stuff
+
+    private EditText mSignUpName, mSignUpEmail, mSignUpPassword;
+    private Button mSignUp;
+    private Spinner mSpinner;
+
+
     private EditText mLoginEmail, mLoginPassword;
 
     private Button mLogin;
+
+    private boolean oneFinished = false;
 
     public static String email, password;
 
@@ -62,62 +72,97 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_layout_xd);
+        setContentView(R.layout.activity_main);
 
-        mDb.collection("users")
+        mDb.collection("Students")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            StudentActivity.students.put(document.getId(), turnHashMapToStudent((HashMap<String, Object>) document.getData()));
+                        }
+
+                        Log.d(TAG, StudentActivity.students.toString());
+
+                        if (oneFinished) {
+                            //handler.post(periodicUpdate);
+                            //userIsLoggedIn();
+                        } else {
+                            oneFinished = true;
+                        }
+                    }
+                });
+
+        mDb.collection("Teachers")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            readData(task);
-                            handler.post(periodicUpdate);
-                            userIsLoggedIn();
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                TeacherActivity.teachers.put(document.getId(), turnHashMapToTeacher((HashMap<String, Object>) document.getData()));
+                            }
+
+                            Log.d(TAG, TeacherActivity.teachers.toString());
+
+                            if (oneFinished) {
+                                //handler.post(periodicUpdate);
+                                //userIsLoggedIn();
+                            } else {
+                                oneFinished = true;
+                            }
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
                     }
                 });
 
-//        Log.d(TAG, "Loading...");
-//        mDb.collection("users").document("Student").set(StudentActivity.students);
-//        System.out.println(StudentActivity.students);
-//        mDb.collection("users").document("Teacher").set(TeacherActivity.teachers);
-//        System.out.println(TeacherActivity.teachers);
-
         FirebaseApp.initializeApp(this);
+
+        // Sign Up Code
+
+        mSpinner = findViewById(R.id.spinner);
+        mSignUpName = findViewById(R.id.signUpName);
+        mSignUpEmail = findViewById(R.id.signUpEmail);
+        mSignUpPassword = findViewById(R.id.signUpPassword);
+        mSignUp = findViewById(R.id.signUp);
+
+
+        mSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String selection = mSpinner.getSelectedItem().toString();
+
+                if (selection.equals("Select One")) {
+                    // TODO Tell user to select one
+                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.dialog));
+                    View mView = getLayoutInflater().inflate(R.layout.activity_select_one, null);
+                    Button mClose = (Button) mView.findViewById(R.id.close);
+
+                    mBuilder.setView(mView);
+                    final AlertDialog dialog = mBuilder.create();
+                    dialog.show();
+                    mClose.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                } else {
+                    signUpWithEmailAuthCredential();
+                }
+            }
+        });
+
+
 
         mLoginEmail = findViewById(R.id.loginEmail);
         mLoginPassword = findViewById(R.id.loginPassword);
 
         mLogin = findViewById(R.id.login);
-
-//        HashMap<Object, Teacher> students = new HashMap<>();
-//        Teacher teacher1 = new Teacher("Teacher Trump", "teachertrump@gmail.com", "teachertrump");
-//        ArrayList<Question> questions = new ArrayList<>();
-//        questions.add(new ShortAnswerQuestion("Why do you like to eat chicken nuggets?", "Cuz I do", 5));
-//        questions.add(new ShortAnswerQuestion("Why do you like to nuggets?", "Bruhhh", 7));
-//        Test t1 = new Test(5, questions, "Random name");
-//        questions.add(new MultipleChoiceQuestion("You suck diiiiiick", "bruhh", 10));
-//        Test t2 = new Test(6, questions, "Test two that I did not add");
-//        teacher1.addMadeTest(t1);
-//        teacher1.addAssignedTest(t1);
-//        teacher1.addMadeTest(t2);
-//
-//        ArrayList<String> ans = new ArrayList<>();
-//        ans.add("69");
-//        ans.add("You suck dick");
-//        ans.add("you suck dick fuck gay ");
-//        teacher1.addTestResults(new TestResult(t1, ans, new Student("fsadghfhkj", "sdfgs", "sdfgsdf")));
-//        teacher1.addGradedTests(new GradedTest(t1, 5, 18, "notes"));
-        //teacher1.addStudents(new Student("hfaushfdjs", "ilikepie@gmail.com", "fhasgdhfh"));
-        //students.put(Integer.toString(2), new Teacher("yeah", "aarondfgsdf", "asasdf"));
-        //students.put(Integer.toString(3), new Teacher("ysjadhjfkhkh", "aarondfgsdf", "aem"));
-        //TeacherActivity.teachers.put(Integer.toString(0), teacher1);
-
-//        mDb.collection("users")
-//                .document("students")
-//                .set(students);
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +170,31 @@ public class MainActivity extends AppCompatActivity {
                     logInWithEmailAuthCredential();
             }
         });
+    }
+
+    private void signUpWithEmailAuthCredential() {
+        if (mSignUpName.getText().toString() == null || mSignUpEmail.getText().toString() == null || mSignUpPassword.getText().toString() == null) return;
+
+        mAuth.createUserWithEmailAndPassword(mSignUpEmail.getText().toString(), mSignUpPassword.getText().toString())
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            if (mSpinner.getSelectedItem().toString().equals("Student")) {
+                                Student s = new Student(mSignUpName.getText().toString(), mSignUpEmail.getText().toString(), mSignUpPassword.getText().toString());
+                                StudentActivity.students.put(Long.toString(s.getID()), s);
+                            } else if (mSpinner.getSelectedItem().toString().equals("Teacher")) {
+                                Teacher t = new Teacher(mSignUpName.getText().toString(), mSignUpEmail.getText().toString(), mSignUpPassword.getText().toString());
+                                TeacherActivity.teachers.put(Long.toString(t.getID()), t);
+                            }
+
+                            MainActivity.email = mSignUpEmail.getText().toString();
+                            MainActivity.password = mSignUpPassword.getText().toString();
+
+                            userIsLoggedIn();
+                        }
+                    }
+                });
     }
 
     private void logInWithEmailAuthCredential() {
@@ -181,64 +251,34 @@ public class MainActivity extends AppCompatActivity {
             }
 
             finish();
+
+            save();
             return;
         }
     }
 
-    public static Handler handler = new Handler();
-    public static Runnable periodicUpdate = new Runnable() {
-        @Override
-        public void run() {
-            handler.postDelayed(periodicUpdate, 5*1000);
+    //public static Handler handler = new Handler();
+    public static void save() {
+        //handler.postDelayed(periodicUpdate, 5*1000);
 
-            if (u != null) {
-                try {
-                    Student s = ((Student) u);
-                    mDb.collection("users")
-                            .document("Student")
-                            .update(
-                                    Long.toString(s.getID()), s
-                            );
-                } catch (ClassCastException e) {
-                    Teacher t = ((Teacher) u);
-                    mDb.collection("users")
-                            .document("Teacher")
-                            .update(
-                                    Long.toString(t.getID()), t
-                            );
-                }
-            } else {
-                return;
+        if (u != null) {
+            try {
+                Student s = ((Student) u);
+                mDb.collection("Students")
+                        .document(Long.toString(s.getID()))
+                        .set(s);
+
+                Log.d(TAG, "Saving student...");
+            } catch (ClassCastException e) {
+                Teacher t = ((Teacher) u);
+                Map<String, Object> map = new HashMap<>();
+                mDb.collection("Teachers")
+                        .document(Long.toString(t.getID()))
+                        .set(t);
+                Log.d(TAG, "Saving teacher...");
             }
-
-            Log.d(TAG, "Saving...");
-        }
-    };
-
-    public static void readData(Task<QuerySnapshot> task) {
-        for (QueryDocumentSnapshot document : task.getResult()) {
-            if (document.getId().equals("Student")) {
-                //StudentActivity.students = document.getData();
-                for (Map.Entry<String, Object> m : document.getData().entrySet()) {
-                    HashMap<String, Object> studentMap = (HashMap<String, Object>) m.getValue();
-                    Student s = turnHashMapToStudent(studentMap);
-                    StudentActivity.students.put(Long.toString(s.getID()), s);
-                }
-
-                Student.setStaticID(document.getData().size());
-
-                Log.d(TAG, document.getId() + " => " + StudentActivity.students);
-            } else if (document.getId().equals("Teacher")) {
-                //TeacherActivity.teachers = document.getData();
-                for (Map.Entry<String, Object> m : document.getData().entrySet()) {
-                    HashMap<String, Object> teacherMap = (HashMap<String, Object>) m.getValue();
-                    Teacher t = turnHashMapToTeacher(teacherMap);
-                    TeacherActivity.teachers.put(Long.toString(t.getID()), t);
-                }
-                Teacher.setStaticID(document.getData().size());
-
-                Log.d(TAG, document.getId() + " => " + TeacherActivity.teachers);
-            }
+        } else {
+            return;
         }
     }
 

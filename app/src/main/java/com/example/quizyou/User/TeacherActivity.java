@@ -102,32 +102,19 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         mAssignTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.mDb.collection("users")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                MainActivity.readData(task);
-                            } else {
-                                Log.d(TAG, "Error getting documents: ", task.getException());
-                            }
-                        }
-                    });
+            for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
+                if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
+                    ((Teacher) MainActivity.u).addAssignedTest(t);
 
-                for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
-                    if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
-                        ((Teacher) MainActivity.u).addAssignedTest(t);
+                    MainActivity.mDb.collection("users")
+                        .document("Teacher")
+                        .update(
+                                Long.toString(((Teacher) MainActivity.u).getID()), ((Teacher) MainActivity.u)
+                        );
 
-                        MainActivity.mDb.collection("users")
-                            .document("Teacher")
-                            .update(
-                                    Long.toString(((Teacher) MainActivity.u).getID()), ((Teacher) MainActivity.u)
-                            );
-
-                        break;
-                    }
+                    break;
                 }
+            }
             }
         });
     }

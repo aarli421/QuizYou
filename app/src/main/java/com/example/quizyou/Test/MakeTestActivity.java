@@ -165,27 +165,14 @@ public class MakeTestActivity extends AppCompatActivity {
                     questions.add(new Question(questionTexts.get(i).getPrompt(), questionTexts.get(i).getAnswer(), Integer.parseInt(questionTexts.get(i).getPoints())));
                 }
 
-                MainActivity.mDb.collection("users")
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    MainActivity.readData(task);
-                                } else {
-                                    Log.d(TAG, "Error getting documents: ", task.getException());
-                                }
-                            }
-                        });
-
                 ((Teacher) MainActivity.u).addMadeTest(new Test(60 * 1000 * Long.parseLong(mTimeLimit.getText().toString()), questions, mTestName.getText().toString()));
 
                 Map<String, Object> saveMap = new HashMap<>();
                 saveMap.put(Long.toString(((Teacher) MainActivity.u).getID()), ((Teacher) MainActivity.u));
 
-                MainActivity.mDb.collection("users")
-                        .document("Teacher")
-                        .set(saveMap, SetOptions.merge());
+                MainActivity.mDb.collection("Teachers")
+                        .document(Long.toString(((Teacher) MainActivity.u).getID()))
+                        .set((Teacher) MainActivity.u);
 
                 Log.d(TAG, Long.toString(((Teacher) MainActivity.u).getID()));
 

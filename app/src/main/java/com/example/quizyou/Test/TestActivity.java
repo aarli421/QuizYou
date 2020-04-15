@@ -150,27 +150,12 @@ public class TestActivity extends AppCompatActivity {
             Log.d(TAG, "Student: " + ((Student) MainActivity.u) + " Teacher: " + ((Teacher) m.getValue()));
 
             if (((Teacher) m.getValue()).getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID())) && ((Teacher) m.getValue()).getAssignedTests().contains(test)) {
-                MainActivity.mDb.collection("users")
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                MainActivity.readData(task);
-                            } else {
-                                Log.d(TAG, "Error getting documents: ", task.getException());
-                            }
-                        }
-                    });
-
                 ((Teacher) m.getValue()).addTestResults(new TestResult(test, answers, (Student) MainActivity.u, exitedApp));
                 ((Student) MainActivity.u).addTaken(test);
 
-                MainActivity.mDb.collection("users")
-                        .document("Teacher")
-                        .update(
-                                Long.toString(((Teacher) m.getValue()).getID()), ((Teacher) m.getValue())
-                        );
+                MainActivity.mDb.collection("Teachers")
+                        .document(Long.toString(((Teacher) m.getValue()).getID()))
+                        .set(((Teacher) m.getValue()));
                 break;
             }
         }

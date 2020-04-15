@@ -56,22 +56,22 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         FirebaseApp.initializeApp(this);
 
-        MainActivity.mDb.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            MainActivity.readData(task);
-                            MainActivity.handler.post(MainActivity.periodicUpdate);
-                            userIsLoggedIn();
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
+//        MainActivity.mDb.collection("users")
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            MainActivity.readData(task);
+//                            MainActivity.handler.post(MainActivity.periodicUpdate);
+//                            userIsLoggedIn();
+//                        } else {
+//                            Log.d(TAG, "Error getting documents: ", task.getException());
+//                        }
+//                    }
+//                });
 
-        mSpinner = findViewById(R.id.dropdown);
+        //mSpinner = findViewById(R.id.dropdown);
 
         initList();
 
@@ -86,6 +86,8 @@ public class SignUpActivity extends AppCompatActivity {
         mSignUpName = findViewById(R.id.signUpName);
         mSignUpEmail = findViewById(R.id.signUpEmail);
         mSignUpPassword = findViewById(R.id.signUpPassword);
+
+        mSignUp = findViewById(R.id.signUp);
 
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
