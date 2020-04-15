@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (oneFinished) {
                     //handler.post(periodicUpdate);
-                    userIsLoggedIn();
+                    //userIsLoggedIn();
                 } else {
                     oneFinished = true;
                 }
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (oneFinished) {
                         //handler.post(periodicUpdate);
-                        userIsLoggedIn();
+                        //userIsLoggedIn();
                     } else {
                         oneFinished = true;
                     }
@@ -212,9 +212,13 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
+                        int index = 0;
                         for (QueryDocumentSnapshot document : task.getResult()) {
+                            index++;
                             StudentActivity.students.put(document.getId(), turnHashMapToStudent((HashMap<String, Object>) document.getData()));
                         }
+
+                        Student.setStaticID(index);
 
                         Log.d(TAG, StudentActivity.students.toString());
                     } else {
