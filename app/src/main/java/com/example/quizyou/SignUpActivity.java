@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,6 +39,8 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     private EditText mSignUpName, mSignUpEmail, mSignUpPassword;
+
+    private TextView mLoginHere;
 
     private ArrayList<UserItem> mUserList;
     private UserAdapter mAdapter;
@@ -74,11 +77,15 @@ public class SignUpActivity extends AppCompatActivity {
 
         mSignUp = findViewById(R.id.signUp);
 
+        mLoginHere = findViewById(R.id.loginHere);
+
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                UserItem clickedItem = (UserItem) parent.getItemAtPosition(position);
-                selection = clickedItem.getUserName();
+                selection = parent.getItemAtPosition(position).toString();
+                //selection = clickedItem.getUserName();
+
+                Log.d(TAG, selection);
             }
 
             @Override
@@ -111,6 +118,14 @@ public class SignUpActivity extends AppCompatActivity {
                 } else {
                     signUpWithEmailAuthCredential();
                 }
+            }
+        });
+
+        mLoginHere.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
             }
         });
     }

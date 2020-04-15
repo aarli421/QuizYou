@@ -146,16 +146,21 @@ public class TestActivity extends AppCompatActivity {
             answers.add(editText.getText().toString());
         }
 
-        for (Map.Entry<String, Object> m : TeacherActivity.teachers.entrySet()) {
-            Log.d(TAG, "Student: " + ((Student) MainActivity.u) + " Teacher: " + ((Teacher) m.getValue()));
+        MainActivity.load();
 
-            if (((Teacher) m.getValue()).getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID())) && ((Teacher) m.getValue()).getAssignedTests().contains(test)) {
+        for (Map.Entry<String, Object> m : TeacherActivity.teachers.entrySet()) {
+            Log.d(TAG, ((Teacher) m.getValue()) + " " + ((Student) MainActivity.u));
+
+            if (((Teacher) m.getValue()).getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID()))) {// && ((Teacher) m.getValue()).getAssignedTests().contains(test)) {
                 ((Teacher) m.getValue()).addTestResults(new TestResult(test, answers, (Student) MainActivity.u, exitedApp));
                 ((Student) MainActivity.u).addTaken(test);
 
-                MainActivity.mDb.collection("Teachers")
-                        .document(Long.toString(((Teacher) m.getValue()).getID()))
-                        .set(((Teacher) m.getValue()));
+                MainActivity.save();
+                MainActivity.save((Teacher) m.getValue());
+
+                handler.removeCallbacksAndMessages(null);
+
+                Log.d(TAG, "Entered");
                 break;
             }
         }

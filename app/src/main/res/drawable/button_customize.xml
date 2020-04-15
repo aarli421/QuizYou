@@ -2,6 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
 
     <!-- this xml is titled as customized login button but it customizes register and logout buttons as well -->
-    <solid android:color="#E155DC"/>
+    <solid android:color="#FFFFFF"/>
     <corners android:radius="10dp"/>
 </shape>

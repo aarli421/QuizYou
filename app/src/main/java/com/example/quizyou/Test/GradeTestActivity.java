@@ -56,25 +56,7 @@ public class GradeTestActivity extends AppCompatActivity {
             }
         });
 
-        //mSubmit = findViewById(R.id.submitGradedTest);
-
         ArrayList<String> list = new ArrayList<>();
-
-//        final Teacher teacher1 = new Teacher("Teacher Trump", "teachertrump@gmail.com", "teachertrump");
-//        ArrayList<Question> questions = new ArrayList<>();
-//        questions.add(new Question("Why do you like to eat chicken nuggets?", "Cuz I do", 5));
-//        questions.add(new Question("Why do you like to nuggets?", "Bruhhh", 7));
-//        Test t1 = new Test(5, questions, "Random name");
-//        ArrayList<String> ans = new ArrayList<>();
-//        ans.add("69");
-//        ans.add("You suck dick");
-//        ans.add("you suck dick fuck gay ");
-//        teacher1.addTestResults(new TestResult(t1, ans, new Student("fsadghfhkj", "sdfgs", "sdfgsdf")));
-//
-//        ans.add("69");
-//        ans.add("You dic dick dick diiiiiiiiiiiiccccccccccckkkkkkkkkk");
-//        ans.add("you ");
-//        teacher1.addTestResults(new TestResult(t1, ans, new Student("Brandon's dick", "sdfgs", "sdfgsdf")));
 
         for (TestResult t : ((Teacher) MainActivity.u).getResults()) {
             list.add(t.getAnswerer().getName() + "'s " + t.getTest().getName());
@@ -142,6 +124,8 @@ public class GradeTestActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             if (result != null) {
+                                MainActivity.load();
+
                                 int score = 0;
                                 for (int i = 0; i < editTexts.size(); i++) {
                                     score += Integer.parseInt(editTexts.get(i).getText().toString());
@@ -149,9 +133,13 @@ public class GradeTestActivity extends AppCompatActivity {
 
                                 final String note = notes.getText().toString();
 
-                                ((Teacher) MainActivity.u).addGradedTests(new GradedTest(result.getTest(), score, finalTotalScore, note));
-                                result.getAnswerer().addReport(new GradedTest(result.getTest(), score, finalTotalScore, note));
+                                ((Teacher) MainActivity.u).removeTestResults(result);
+                                ((Teacher) MainActivity.u).addGradedTests(new GradedTest(result.getTest(), score, finalTotalScore, note, result.getAnswerer().getID()));
+                                result.getAnswerer().addReport(new GradedTest(result.getTest(), score, finalTotalScore, note, result.getAnswerer().getID()));
                                 Log.d(TAG, "Score: " + score + " Final Score: " + finalTotalScore + " Note: " + note);
+
+                                MainActivity.save();
+                                MainActivity.save(result.getAnswerer());
 
                                 startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
                                 finish();

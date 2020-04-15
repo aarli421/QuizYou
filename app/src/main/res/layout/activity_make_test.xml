@@ -17,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Time Limit" />
+        android:hint="Time Limit"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/prompt"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Points"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/nextButton"

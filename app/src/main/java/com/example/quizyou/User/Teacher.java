@@ -1,5 +1,6 @@
 package com.example.quizyou.User;
 
+import com.example.quizyou.MainActivity;
 import com.example.quizyou.Test.GradedTest;
 import com.example.quizyou.Test.Test;
 import com.example.quizyou.Test.TestResult;
@@ -92,11 +93,16 @@ public class Teacher implements User {
 
         for (String id : studentIDs) {
             ((Student) StudentActivity.students.get(id)).addPending(t);
+            MainActivity.save((Student) StudentActivity.students.get(id));
         }
     }
 
     public void addTestResults(TestResult r) {
         results.add(r);
+    }
+
+    public void removeTestResults(TestResult r) {
+        results.remove(r);
     }
 
     public void addGradedTests(GradedTest g) {

@@ -9,7 +9,6 @@
         android:id="@+id/login"
         android:layout_width="400dp"
         android:layout_height="56dp"
-
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
@@ -24,7 +23,11 @@
         android:textColor="@color/cardview_light_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="602dp" />
+        tools:layout_editor_absoluteY="602dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="4dp"
+        android:layout_marginLeft="7dp" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -36,7 +39,9 @@
         android:layout_marginEnd="7dp"
         android:layout_marginBottom="-31dp"
         app:srcCompat="@drawable/password_edit_text"
-        tools:layout_editor_absoluteY="487dp" />
+        tools:layout_editor_absoluteY="487dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="7dp" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -81,7 +86,7 @@
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName"
+        android:inputType="textWebEmailAddress"
         tools:layout_editor_absoluteX="53dp"
         tools:layout_editor_absoluteY="497dp" />
 
@@ -140,5 +145,39 @@
         android:layout_marginRight="-2dp"
         android:layout_marginBottom="145dp"
         app:srcCompat="@drawable/clipboard" />
+
+    <TextView
+        android:id="@+id/goToSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/login"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="162dp"
+        android:layout_marginLeft="162dp"
+        android:layout_marginTop="86dp"
+        android:layout_marginEnd="163dp"
+        android:layout_marginRight="163dp"
+        android:layout_marginBottom="19dp"
+        android:text="Register Here" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/login"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="131dp"
+        android:layout_marginLeft="131dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="45dp"
+        android:text="Don't have an account?" />
 
 </RelativeLayout>

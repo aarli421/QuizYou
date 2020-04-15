@@ -22,6 +22,7 @@
         <activity android:name=".Test.TestActivity"></activity>
         <activity android:name=".Test.GradeTestActivity"></activity>
         <activity android:name=".Test.MakeTestActivity"></activity>
+        <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

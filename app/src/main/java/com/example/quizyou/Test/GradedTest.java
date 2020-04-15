@@ -4,12 +4,14 @@ public class GradedTest {
     private int points, totalPoints;
     private String notes, score, testName;
     private Test test;
+    private long studentId;
 
-    public GradedTest(Test test, int points, int totalPoints, String notes) {
+    public GradedTest(Test test, int points, int totalPoints, String notes, long studentId) {
         this.test = test;
         this.points = points;
         this.totalPoints = totalPoints;
         this.notes = notes;
+        this.studentId = studentId;
     }
 
     public GradedTest(String testName, String score, String notes) {
@@ -30,6 +32,10 @@ public class GradedTest {
 
     public String getNotes() {
         return notes;
+    }
+
+    public long getStudentId() {
+        return studentId;
     }
 
     public String getTestName(){return test.getName();}
