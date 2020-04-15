@@ -117,6 +117,10 @@ public class SignUpActivity extends AppCompatActivity {
                     });
                 } else {
                     MainActivity.load();
+                    while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
+                    MainActivity.loadStudents = false;
+                    MainActivity.loadTeachers = false;
+
                     signUpWithEmailAuthCredential();
                 }
             }
@@ -164,8 +168,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void userIsLoggedIn() {
-        MainActivity.load();
-
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             if (MainActivity.email == null) {
@@ -186,7 +188,10 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
 
-            MainActivity.save();
+            MainActivity.load();
+            while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
+            MainActivity.loadStudents = false;
+            MainActivity.loadTeachers = false;
 
             if (MainActivity.u != null) {
                 try {

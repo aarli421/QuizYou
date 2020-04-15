@@ -6,20 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
-import androidx.appcompat.app.AppCompatActivity;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.quizyou.R;
-import com.example.quizyou.User.ReportActivity;
 import com.example.quizyou.User.Student;
-import com.example.quizyou.User.StudentActivity;
-import com.example.quizyou.User.TeacherActivity;
 import com.example.quizyou.User.ViewGradedTestActivity;
-import com.example.quizyou.User.studentList;
 
 import java.util.ArrayList;
 

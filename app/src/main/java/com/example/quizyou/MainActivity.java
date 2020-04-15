@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mGoToSignUp;
 
     private boolean oneFinished = false;
+    public static boolean loadStudents = false, loadTeachers = false;
 
     public static String email, password;
 
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (oneFinished) {
                     //handler.post(periodicUpdate);
-                    userIsLoggedIn();
+                    //userIsLoggedIn();
                 } else {
                     oneFinished = true;
                 }
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (oneFinished) {
                         //handler.post(periodicUpdate);
-                        userIsLoggedIn();
+                        //userIsLoggedIn();
                     } else {
                         oneFinished = true;
                     }
@@ -219,6 +220,8 @@ public class MainActivity extends AppCompatActivity {
 
                         Student.setStaticID(index);
 
+                        loadStudents = true;
+
                         Log.d(TAG, StudentActivity.students.toString());
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
@@ -234,9 +237,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
+                    int index = 0;
                     for (QueryDocumentSnapshot document : task.getResult()) {
+                        index++;
                         TeacherActivity.teachers.put(document.getId(), turnHashMapToTeacher((HashMap<String, Object>) document.getData()));
                     }
+
+                    Teacher.setStaticID(index);
+
+                    loadTeachers = true;
 
                     Log.d(TAG, TeacherActivity.teachers.toString());
                 } else {

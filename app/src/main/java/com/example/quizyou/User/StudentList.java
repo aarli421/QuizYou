@@ -18,14 +18,14 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class studentList extends ArrayAdapter<Student> {
+public class StudentList extends ArrayAdapter<Student> {
 
     private static final String Tag = "studentList";
 
     private Context mContext;
     int mResource;
 
-    public studentList(@NonNull Context context, int resource, ArrayList<Student> objects) {
+    public StudentList(@NonNull Context context, int resource, ArrayList<Student> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;

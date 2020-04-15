@@ -125,6 +125,11 @@ public class GradeTestActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             if (result != null) {
                                 MainActivity.load();
+                                while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
+                                MainActivity.loadStudents = false;
+                                MainActivity.loadTeachers = false;
+
+                                Log.d(TAG, editTexts.toString());
 
                                 int score = 0;
                                 for (int i = 0; i < editTexts.size(); i++) {

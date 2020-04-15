@@ -63,7 +63,7 @@ public class ReportActivity extends AppCompatActivity {
             mNoTests.setText("");
         }
 
-        studentList adapter = new studentList(this, R.layout.adapt_view_layout, studentsReportsList);
+        StudentList adapter = new StudentList(this, R.layout.adapt_view_layout, studentsReportsList);
         mListView.setAdapter(adapter);
     }
 }
