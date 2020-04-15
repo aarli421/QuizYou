@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (oneFinished) {
                     //handler.post(periodicUpdate);
-                    //userIsLoggedIn();
+                    userIsLoggedIn();
                 } else {
                     oneFinished = true;
                 }
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (oneFinished) {
                         //handler.post(periodicUpdate);
-                        //userIsLoggedIn();
+                        userIsLoggedIn();
                     } else {
                         oneFinished = true;
                     }
@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            load();
             if (u != null) {
                 try {
                     Student s = ((Student) u);
@@ -199,8 +200,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             finish();
-
-            save();
             return;
         }
     }

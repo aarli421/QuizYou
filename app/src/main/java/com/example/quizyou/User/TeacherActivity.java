@@ -95,10 +95,11 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         mAssignTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.load();
 
                 for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
                     if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
+                        MainActivity.load();
+
                         ((Teacher) MainActivity.u).addAssignedTest(t);
 
                         MainActivity.save();
