@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.quizyou.Test.GradedTest;
 import com.example.quizyou.Test.Question.Question;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mLoginEmail, mLoginPassword;
 
     private Button mLogin;
+    private TextView mGoToSignUp;
 
     private boolean oneFinished = false;
 
@@ -125,11 +127,20 @@ public class MainActivity extends AppCompatActivity {
         mLoginPassword = findViewById(R.id.loginPassword);
 
         mLogin = findViewById(R.id.login);
+        mGoToSignUp = findViewById(R.id.goToSignUp);
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    logInWithEmailAuthCredential();
+                logInWithEmailAuthCredential();
+            }
+        });
+
+        mGoToSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
+                finish();
             }
         });
     }
@@ -243,18 +254,32 @@ public class MainActivity extends AppCompatActivity {
                         .document(Long.toString(s.getID()))
                         .set(s);
 
-                Log.d(TAG, "Saving student...");
+                Log.d(TAG, "Saving " + s.getName() + "...");
             } catch (ClassCastException e) {
                 Teacher t = ((Teacher) u);
-                Map<String, Object> map = new HashMap<>();
                 mDb.collection("Teachers")
                         .document(Long.toString(t.getID()))
                         .set(t);
-                Log.d(TAG, "Saving teacher...");
+
+                Log.d(TAG, "Saving " + t.getName() + "...");
             }
-        } else {
-            return;
         }
+    }
+
+    public static void save(Student s) {
+        mDb.collection("Students")
+                .document(Long.toString(s.getID()))
+                .set(s);
+
+        Log.d(TAG, "Saving " + s.getName() + "...");
+    }
+
+    public static void save(Teacher t) {
+        mDb.collection("Teachers")
+                .document(Long.toString(t.getID()))
+                .set(t);
+
+        Log.d(TAG, "Saving " + t.getName() + "...");
     }
 
     private static Student turnHashMapToStudent(HashMap<String, Object> map) {
@@ -336,9 +361,10 @@ public class MainActivity extends AppCompatActivity {
         String notes = (String) map.get("notes");
         int points = (int) (long) map.get("points");
         int totalPoints = (int) (long) map.get("totalPoints");
+        long id = (long) map.get("studentId");
         HashMap<String, Object> testMap = (HashMap<String, Object>) map.get("test");
 
-        return new GradedTest(turnHashMapToTest(testMap), points, totalPoints, notes);
+        return new GradedTest(turnHashMapToTest(testMap), points, totalPoints, notes, id);
     }
 
     private static Test turnHashMapToTest(HashMap<String, Object> map) {

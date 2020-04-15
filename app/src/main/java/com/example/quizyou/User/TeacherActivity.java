@@ -90,6 +90,28 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         email.setText(((Teacher) MainActivity.u).getEmail());
         name.setText(((Teacher) MainActivity.u).getName());
 
+        resetSpinner();
+
+        mAssignTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.load();
+
+                for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
+                    if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
+                        ((Teacher) MainActivity.u).addAssignedTest(t);
+
+                        MainActivity.save();
+
+                        resetSpinner();
+                        break;
+                    }
+                }
+            }
+        });
+    }
+
+    public void resetSpinner() {
         ArrayList<String> assignedTestNames = new ArrayList<>();
         for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
             assignedTestNames.add(t.getName());
@@ -98,25 +120,6 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, assignedTestNames);
         mSpinner.setAdapter(adapter);
-
-        mAssignTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
-                if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
-                    ((Teacher) MainActivity.u).addAssignedTest(t);
-
-                    MainActivity.mDb.collection("users")
-                        .document("Teacher")
-                        .update(
-                                Long.toString(((Teacher) MainActivity.u).getID()), ((Teacher) MainActivity.u)
-                        );
-
-                    break;
-                }
-            }
-            }
-        });
     }
 
     //@Override

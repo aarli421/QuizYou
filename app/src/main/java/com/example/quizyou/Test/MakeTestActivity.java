@@ -160,19 +160,20 @@ public class MakeTestActivity extends AppCompatActivity {
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (!goBack && mPrompt.getText().toString().length() != 0 && mAnswer.getText().toString().length() != 0 && mPoints.getText().toString().length() != 0) {
+                    questionTexts.add(new QuestionTexts(mPrompt.getText().toString(), mPoints.getText().toString(), mAnswer.getText().toString()));
+                }
+
                 ArrayList<Question> questions = new ArrayList<>();
                 for (int i = 0; i < questionTexts.size(); i++) {
                     questions.add(new Question(questionTexts.get(i).getPrompt(), questionTexts.get(i).getAnswer(), Integer.parseInt(questionTexts.get(i).getPoints())));
                 }
 
+                MainActivity.load();
+
                 ((Teacher) MainActivity.u).addMadeTest(new Test(60 * 1000 * Long.parseLong(mTimeLimit.getText().toString()), questions, mTestName.getText().toString()));
 
-                Map<String, Object> saveMap = new HashMap<>();
-                saveMap.put(Long.toString(((Teacher) MainActivity.u).getID()), ((Teacher) MainActivity.u));
-
-                MainActivity.mDb.collection("Teachers")
-                        .document(Long.toString(((Teacher) MainActivity.u).getID()))
-                        .set((Teacher) MainActivity.u);
+                MainActivity.save();
 
                 Log.d(TAG, Long.toString(((Teacher) MainActivity.u).getID()));
 

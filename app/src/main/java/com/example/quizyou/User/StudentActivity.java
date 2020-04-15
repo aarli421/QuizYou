@@ -85,13 +85,17 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         email.setText(((Student) MainActivity.u).getEmail());
         name.setText(((Student) MainActivity.u).getName());
 
-        ArrayList<String> PendingTestNames = new ArrayList<>();
+        ArrayList<String> pendingTestNames = new ArrayList<>();
         for (Test t : ((Student) MainActivity.u).getPending()) {
-            PendingTestNames.add(t.getName());
+            pendingTestNames.add(t.getName());
+        }
+
+        if (pendingTestNames.size() == 0) {
+            pendingTestNames.add("No Tests Available");
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, PendingTestNames);
+                android.R.layout.simple_spinner_item, pendingTestNames);
         mSpinner.setAdapter(adapter);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -122,7 +126,6 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         mJoinClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(new ContextThemeWrapper(StudentActivity.this, R.style.dialog));
                 View mView = getLayoutInflater().inflate(R.layout.activity_join_class, null);
 
@@ -143,16 +146,15 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                 mSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        MainActivity.load();
+
                         Teacher t = (Teacher) TeacherActivity.teachers.get(mResponse.getText().toString());
 
                         if (!(t.getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID())))) {
                             t.addStudents(Long.toString(((Student) MainActivity.u).getID()));
 
-                            MainActivity.mDb.collection("users")
-                                    .document("Teacher")
-                                    .update(
-                                            Long.toString(t.getID()), t
-                                    );
+                            //MainActivity.save();
+                            MainActivity.save(t);
 
                             Log.d(TAG, t.getStudentIDs().toString());
                         } else {
@@ -181,6 +183,11 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         mTakeTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mSpinner.getSelectedItem().toString().equals("No Tests Available")) {
+                    // TODO Say there are no tests
+                    return;
+                }
+
                 for (Test t : ((Student) MainActivity.u).getPending()) {
                     if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
                         selectedTest = t;
