@@ -146,10 +146,10 @@ public class TestActivity extends AppCompatActivity {
             answers.add(editText.getText().toString());
         }
 
+//        MainActivity.loadStudents = false;
+//        MainActivity.loadTeachers = false;
         MainActivity.load();
-        while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
-        MainActivity.loadStudents = false;
-        MainActivity.loadTeachers = false;
+        while (!MainActivity.loadStudents || !MainActivity.loadTeachers) { }
 
         for (Map.Entry<String, Object> m : TeacherActivity.teachers.entrySet()) {
             Log.d(TAG, ((Teacher) m.getValue()) + " " + ((Student) MainActivity.u));

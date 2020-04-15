@@ -146,10 +146,10 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                 mSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+//                        MainActivity.loadStudents = false;
+//                        MainActivity.loadTeachers = false;
                         MainActivity.load();
-                        while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
-                        MainActivity.loadStudents = false;
-                        MainActivity.loadTeachers = false;
+                        while (!MainActivity.loadStudents || !MainActivity.loadTeachers) { }
 
                         Teacher t = (Teacher) TeacherActivity.teachers.get(mResponse.getText().toString());
 

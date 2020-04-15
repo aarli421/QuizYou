@@ -124,10 +124,12 @@ public class GradeTestActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             if (result != null) {
+//                                MainActivity.loadStudents = false;
+//                                MainActivity.loadTeachers = false;
                                 MainActivity.load();
-                                while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
-                                MainActivity.loadStudents = false;
-                                MainActivity.loadTeachers = false;
+                                while (!MainActivity.loadStudents || !MainActivity.loadTeachers) {
+                                    System.out.println("Loading...");
+                                }
 
                                 Log.d(TAG, editTexts.toString());
 
