@@ -123,42 +123,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Sign Up Code
 
-        mSpinner = findViewById(R.id.spinner);
-        mSignUpName = findViewById(R.id.signUpName);
-        mSignUpEmail = findViewById(R.id.signUpEmail);
-        mSignUpPassword = findViewById(R.id.signUpPassword);
-        mSignUp = findViewById(R.id.signUp);
-
-
-        mSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String selection = mSpinner.getSelectedItem().toString();
-
-                if (selection.equals("Select One")) {
-                    // TODO Tell user to select one
-                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(new ContextThemeWrapper(MainActivity.this, R.style.dialog));
-                    View mView = getLayoutInflater().inflate(R.layout.activity_select_one, null);
-                    Button mClose = (Button) mView.findViewById(R.id.close);
-
-                    mBuilder.setView(mView);
-                    final AlertDialog dialog = mBuilder.create();
-                    dialog.show();
-                    mClose.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                        }
-                    });
-                } else {
-                    signUpWithEmailAuthCredential();
-                }
-            }
-        });
-
-
-
         mLoginEmail = findViewById(R.id.loginEmail);
         mLoginPassword = findViewById(R.id.loginPassword);
 
@@ -170,31 +134,6 @@ public class MainActivity extends AppCompatActivity {
                     logInWithEmailAuthCredential();
             }
         });
-    }
-
-    private void signUpWithEmailAuthCredential() {
-        if (mSignUpName.getText().toString() == null || mSignUpEmail.getText().toString() == null || mSignUpPassword.getText().toString() == null) return;
-
-        mAuth.createUserWithEmailAndPassword(mSignUpEmail.getText().toString(), mSignUpPassword.getText().toString())
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            if (mSpinner.getSelectedItem().toString().equals("Student")) {
-                                Student s = new Student(mSignUpName.getText().toString(), mSignUpEmail.getText().toString(), mSignUpPassword.getText().toString());
-                                StudentActivity.students.put(Long.toString(s.getID()), s);
-                            } else if (mSpinner.getSelectedItem().toString().equals("Teacher")) {
-                                Teacher t = new Teacher(mSignUpName.getText().toString(), mSignUpEmail.getText().toString(), mSignUpPassword.getText().toString());
-                                TeacherActivity.teachers.put(Long.toString(t.getID()), t);
-                            }
-
-                            MainActivity.email = mSignUpEmail.getText().toString();
-                            MainActivity.password = mSignUpPassword.getText().toString();
-
-                            userIsLoggedIn();
-                        }
-                    }
-                });
     }
 
     private void logInWithEmailAuthCredential() {
