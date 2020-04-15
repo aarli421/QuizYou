@@ -146,10 +146,7 @@ public class TestActivity extends AppCompatActivity {
             answers.add(editText.getText().toString());
         }
 
-//        MainActivity.loadStudents = false;
-//        MainActivity.loadTeachers = false;
         MainActivity.load();
-        while (!MainActivity.loadStudents || !MainActivity.loadTeachers) { }
 
         for (Map.Entry<String, Object> m : TeacherActivity.teachers.entrySet()) {
             Log.d(TAG, ((Teacher) m.getValue()) + " " + ((Student) MainActivity.u));
@@ -158,8 +155,16 @@ public class TestActivity extends AppCompatActivity {
                 ((Teacher) m.getValue()).addTestResults(new TestResult(test, answers, (Student) MainActivity.u, exitedApp));
                 ((Student) MainActivity.u).addTaken(test);
 
-                MainActivity.save();
-                MainActivity.save((Teacher) m.getValue());
+                MainActivity.mDb.collection("Students")
+                        .document(Long.toString(((Student) MainActivity.u).getID()))
+                        .update("taken", ((Student) MainActivity.u).getTaken(),
+                                "pending", ((Student) MainActivity.u).getPending());
+
+                MainActivity.mDb.collection("Teachers")
+                        .document(Long.toString(((Teacher) m.getValue()).getID()))
+                        .update("results", ((Teacher) m.getValue()).getStudentIDs());
+
+                //MainActivity.save((Teacher) m.getValue());
 
                 handler.removeCallbacksAndMessages(null);
 

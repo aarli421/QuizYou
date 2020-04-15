@@ -124,12 +124,7 @@ public class GradeTestActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             if (result != null) {
-//                                MainActivity.loadStudents = false;
-//                                MainActivity.loadTeachers = false;
                                 MainActivity.load();
-                                while (!MainActivity.loadStudents || !MainActivity.loadTeachers) {
-                                    System.out.println("Loading...");
-                                }
 
                                 Log.d(TAG, editTexts.toString());
 
@@ -145,8 +140,17 @@ public class GradeTestActivity extends AppCompatActivity {
                                 result.getAnswerer().addReport(new GradedTest(result.getTest(), score, finalTotalScore, note, result.getAnswerer().getID()));
                                 Log.d(TAG, "Score: " + score + " Final Score: " + finalTotalScore + " Note: " + note);
 
-                                MainActivity.save();
-                                MainActivity.save(result.getAnswerer());
+                                MainActivity.mDb.collection("Students")
+                                        .document(Long.toString(result.getAnswerer().getID()))
+                                        .update("reports", result.getAnswerer().getReports());
+
+                                MainActivity.mDb.collection("Teachers")
+                                        .document(Long.toString(((Teacher) MainActivity.u).getID()))
+                                        .update("results", ((Teacher) MainActivity.u).getResults(),
+                                                "gradedTests", ((Teacher) MainActivity.u).getGradedTests());
+
+                                //MainActivity.save();
+                                //MainActivity.save(result.getAnswerer());
 
                                 startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
                                 finish();
