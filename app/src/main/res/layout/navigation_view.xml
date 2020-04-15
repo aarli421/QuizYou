@@ -10,7 +10,7 @@
     tools:context=".MainActivity"
     tools:openDrawer="start">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -23,7 +23,7 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:elevation="4dp" />
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/der_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,26 +31,52 @@
 
             <Spinner
                 android:id="@+id/madeTestSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="396dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="298dp" />
 
             <Button
                 android:id="@+id/assign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Assign"/>
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="334dp"
+                android:text="Assign" />
 
-        </LinearLayout>
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="156dp"
+                android:layout_height="146dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="96dp"
+                android:layout_marginEnd="19dp"
+                android:layout_marginRight="19dp"
+                app:srcCompat="@drawable/ic_name" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:id="@+id/nav_viewer"
-        app:itemBackground="@color/colorPrimary"
+        app:itemBackground="@color/cardview_light_background"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu">
 
     </com.google.android.material.navigation.NavigationView>
+
 </androidx.drawerlayout.widget.DrawerLayout>
