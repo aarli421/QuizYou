@@ -116,11 +116,6 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    MainActivity.load();
-                    MainActivity.loadStudents = false;
-                    MainActivity.loadTeachers = false;
-                    while (!MainActivity.loadStudents || !MainActivity.loadTeachers) { }
-
                     signUpWithEmailAuthCredential();
                 }
             }
@@ -190,8 +185,8 @@ public class SignUpActivity extends AppCompatActivity {
 
 //            MainActivity.loadStudents = false;
 //            MainActivity.loadTeachers = false;
-            MainActivity.load();
-            while (!MainActivity.loadStudents || !MainActivity.loadTeachers) { }
+//            MainActivity.load();
+//            while (!MainActivity.loadStudents || !MainActivity.loadTeachers) { }
 
             if (MainActivity.u != null) {
                 try {
