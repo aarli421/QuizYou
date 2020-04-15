@@ -162,7 +162,7 @@ public class TestActivity extends AppCompatActivity {
 
                 MainActivity.mDb.collection("Teachers")
                         .document(Long.toString(((Teacher) m.getValue()).getID()))
-                        .update("results", ((Teacher) m.getValue()).getStudentIDs());
+                        .update("results", ((Teacher) m.getValue()).getResults());
 
                 //MainActivity.save((Teacher) m.getValue());
 
