@@ -2,6 +2,7 @@ package com.example.quizyou.User;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import android.widget.Spinner;
@@ -52,7 +54,7 @@ import static com.example.quizyou.R.string.navigation_drawer_open;
 
 public class StudentActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
 
-    private Button mLogout, mJoinClass, mReports, mTakeTest, mAssignTest;
+    private Button mLogout, mJoinClass, mReports, mTakeTest;
 
     private Spinner mSpinner;
 
@@ -131,7 +133,7 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
 
                 final EditText mResponse = (EditText)  mView.findViewById(R.id.code);
                 Button mSubmit = (Button) mView.findViewById(R.id.submit);
-                Button mBackDialog = (Button) mView.findViewById(R.id.backDialog);
+                ImageButton mBackDialog = mView.findViewById(R.id.backDialog);
 
                 mBuilder.setView(mView);
                 final AlertDialog dialog = mBuilder.create();
