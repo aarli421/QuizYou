@@ -28,6 +28,7 @@ import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
@@ -60,6 +61,8 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
 
     private Spinner mSpinner;
 
+    private SwipeRefreshLayout mPullRefresh;
+
     public static Map<String, Object> students = new HashMap<>();
 
     public static Test selectedTest = null;
@@ -76,6 +79,8 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_navview);
+
+        mPullRefresh = findViewById(R.id.pullToRefresh);
 
         drawer = findViewById(R.id.layout1);
         NavigationView navigationView = findViewById(R.id.nav_viewer1);
@@ -119,7 +124,7 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
 
         userName.setText(((Student)MainActivity.u).getName());
       
-        mRefresh = findViewById(R.id.reloadButton);
+        //mRefresh = findViewById(R.id.reloadButton);
 
         mJoinClass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -203,31 +208,43 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
             }
         });
 
-        mRefresh.setOnClickListener(new View.OnClickListener() {
+        mPullRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View v) {
+            public void onRefresh() {
                 MainActivity.load();
                 Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
                 //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
+                mPullRefresh.setRefreshing(false);
             }
         });
+
+//        mRefresh.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                MainActivity.load();
+//                Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
+//                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
     }
 
     public boolean onNavigationItemSelected (@NonNull MenuItem menuItem) {
         switch(menuItem.getItemId()){
-            case R.id.take_test:
-                getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new take_test()).commit();
-                break;
-
-            case R.id.see_results:
-                getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new see_results()).commit();
-                break;
-
-            case R.id.see_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new student_home()).commit();
-                break;
+//            case R.id.take_test:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new take_test()).commit();
+//                break;
+//
+//            case R.id.see_results:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new see_results()).commit();
+//                break;
+//
+//            case R.id.see_home:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new student_home()).commit();
+//                break;
 
             case R.id.logout:
                 getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new logout()).commit();

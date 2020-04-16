@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,6 +48,8 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
 
     private Spinner mSpinner;
 
+    private SwipeRefreshLayout mPullRefresh;
+
     private static final String TAG = "TeacherActivity";
 
     public static Map<String, Object> teachers = new HashMap<>();
@@ -65,16 +68,18 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_view);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.layout);
         NavigationView navigationView = findViewById(R.id.nav_viewer);
         navigationView.setNavigationItemSelectedListener(this);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        mPullRefresh = findViewById(R.id.pullToRefreshTeacher);
+
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
 
 //        getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new view_report()).commit();
 //        navigationView.setCheckedItem(R.id.student_reports);
@@ -112,6 +117,18 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
                         break;
                     }
                 }
+            }
+        });
+
+        mPullRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                MainActivity.load();
+                Intent intent = new Intent(getApplicationContext(), TeacherActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                mPullRefresh.setRefreshing(false);
             }
         });
     }
