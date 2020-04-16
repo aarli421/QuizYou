@@ -52,7 +52,7 @@ import static com.example.quizyou.R.string.navigation_drawer_open;
 
 public class StudentActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
 
-    private Button mLogout, mJoinClass, mReports, mTakeTest, mAssignTest;
+    private Button  mJoinClass, mReports, mTakeTest, mAssignTest;
 
     private Spinner mSpinner;
 
@@ -61,6 +61,8 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
     public static Test selectedTest = null;
 
     private static final String TAG = "StudentActivity";
+
+    private TextView userName;
 
     // I will finish this by wednesday
 
@@ -81,6 +83,7 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         TextView name = header.findViewById(R.id.name);
 
         mSpinner = findViewById(R.id.pendingTestsSpinner);
+        userName = findViewById(R.id.user);
 
         email.setText(((Student) MainActivity.u).getEmail());
         name.setText(((Student) MainActivity.u).getName());
@@ -106,22 +109,12 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
 //        drawer.addDrawerListener(toggle);
 //        toggle.syncState();
 
-        mLogout = findViewById(R.id.logout_button);
         mJoinClass = findViewById(R.id.join_class_button);
         mReports = findViewById(R.id.my_reports_button);
         mTakeTest = findViewById(R.id.take_test);
 
-        mLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                return;
-            }
-        });
+        userName.setText(((Student)MainActivity.u).getName());
+
 
         mJoinClass.setOnClickListener(new View.OnClickListener() {
             @Override
