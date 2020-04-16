@@ -44,7 +44,9 @@ import static com.example.quizyou.R.string.navigation_drawer_open;
 public class TeacherActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
         //implements OnNavigationItemSelectedListener {
 
-    private Button mLogout, mGradeTests, mStudentReports, mAssignTest;
+    private Button mLogout, mGradeTests, mStudentReports, mAssignTest, mMakeTest;
+
+    private TextView userText;
 
     private Spinner mSpinner;
 
@@ -91,6 +93,20 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
 
         mSpinner = findViewById(R.id.madeTestSpinner);
         mAssignTest = findViewById(R.id.assign);
+        mMakeTest = findViewById(R.id.make);
+        userText = findViewById(R.id.user);
+
+        userText.setText(((Teacher)MainActivity.u).getName());
+
+        mMakeTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MakeTestActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
 
         email.setText(((Teacher) MainActivity.u).getEmail());
         name.setText(((Teacher) MainActivity.u).getName());
