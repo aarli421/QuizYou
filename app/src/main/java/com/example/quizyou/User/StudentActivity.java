@@ -98,13 +98,13 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                 android.R.layout.simple_spinner_item, pendingTestNames);
         mSpinner.setAdapter(adapter);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
 
         mLogout = findViewById(R.id.logout_button);
         mJoinClass = findViewById(R.id.join_class_button);
