@@ -124,6 +124,8 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseApp.initializeApp(this);
 
+        load();
+
         mLoginEmail = findViewById(R.id.loginEmail);
         mLoginPassword = findViewById(R.id.loginPassword);
 
@@ -187,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
-            load();
             if (u != null) {
                 try {
                     Student s = ((Student) u);
@@ -212,6 +213,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     if (task.isSuccessful()) {
+                        StudentActivity.students.clear();
+
                         int index = 0;
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             index++;
@@ -231,6 +234,8 @@ public class MainActivity extends AppCompatActivity {
         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                TeacherActivity.teachers.clear();
+
                 if (task.isSuccessful()) {
                     int index = 0;
                     for (QueryDocumentSnapshot document : task.getResult()) {

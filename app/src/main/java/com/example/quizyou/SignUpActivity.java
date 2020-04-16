@@ -59,6 +59,8 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
         FirebaseApp.initializeApp(this);
 
+        MainActivity.load();
+
         initList();
 
         mSpinner = findViewById(R.id.dropdown);
@@ -164,6 +166,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void userIsLoggedIn() {
         FirebaseUser user = mAuth.getCurrentUser();
+
         if (user != null) {
             if (MainActivity.email == null) {
                 MainActivity.email = user.getEmail();
