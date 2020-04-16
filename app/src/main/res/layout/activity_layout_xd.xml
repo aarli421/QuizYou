@@ -113,9 +113,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="-33dp"
-        android:layout_marginLeft="-33dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginStart="-30dp"
+        android:layout_marginLeft="-30dp"
+        android:layout_marginTop="97dp"
         app:srcCompat="@drawable/quiz_text" />
 
     <ImageView
@@ -127,11 +127,11 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="-6dp"
-        android:layout_marginLeft="-6dp"
-        android:layout_marginTop="184dp"
-        android:layout_marginEnd="194dp"
-        android:layout_marginRight="194dp"
+        android:layout_marginStart="-4dp"
+        android:layout_marginLeft="-4dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginEnd="192dp"
+        android:layout_marginRight="192dp"
         app:srcCompat="@drawable/you_text" />
 
     <TextView
@@ -167,5 +167,19 @@
         android:layout_marginTop="60dp"
         android:layout_marginBottom="45dp"
         android:text="Don't have an account?" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="match_parent"
+        android:layout_height="546dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="73dp"
+        android:layout_marginLeft="73dp"
+        android:layout_marginTop="-120dp"
+        android:layout_marginEnd="-43dp"
+        app:srcCompat="@drawable/balloons" />
 
 </RelativeLayout>

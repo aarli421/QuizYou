@@ -192,15 +192,15 @@
         android:layout_marginBottom="0dp"></FrameLayout>
 
 
-<!--    <com.google.android.material.navigation.NavigationView-->
-<!--        android:id="@+id/nav_viewer1"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_gravity="start"-->
-<!--        app:headerLayout="@layout/nav_header"-->
-<!--        app:itemBackground="@color/cardview_light_background"-->
-<!--        app:menu="@menu/studentmenu">-->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_viewer1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header"
+        app:itemBackground="@color/cardview_light_background"
+        app:menu="@menu/studentmenu">
 
-<!--    </com.google.android.material.navigation.NavigationView>-->
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
