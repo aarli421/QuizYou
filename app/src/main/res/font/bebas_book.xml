@@ -2,13 +2,13 @@
 <font-family xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <font
-        android:font="@font/bebas_bold"
+        android:font="@font/bebasneue_book"
         android:fontStyle="normal"
         android:fontWeight="400"
 
-        app:font = "@font/bebas_bold"
+        app:font = "@font/bebasneue_book"
         app:fontStyle="normal"
-        app:fontWeight="100"/>
+        app:fontWeight="400"/>
 
 
 </font-family>
