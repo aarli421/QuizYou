@@ -132,20 +132,6 @@
         android:layout_marginRight="194dp"
         app:srcCompat="@drawable/you_text" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="172dp"
-        android:layout_height="273dp"
-        android:layout_above="@+id/loginEmail"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="51dp"
-        android:layout_marginEnd="-2dp"
-        android:layout_marginRight="-2dp"
-        android:layout_marginBottom="145dp"
-        app:srcCompat="@drawable/clipboard" />
-
     <TextView
         android:id="@+id/goToSignUp"
         android:layout_width="wrap_content"
