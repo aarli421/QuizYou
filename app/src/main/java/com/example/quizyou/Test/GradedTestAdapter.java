@@ -52,7 +52,5 @@ public class GradedTestAdapter extends ArrayAdapter<GradedTest> {
         tvComments.setText(comments);
 
         return convertView;
-
-
     }
 }

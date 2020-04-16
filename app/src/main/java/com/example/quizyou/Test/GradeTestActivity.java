@@ -31,7 +31,7 @@ public class GradeTestActivity extends AppCompatActivity {
     // TODO Display wrong errors
 
     Spinner mSpinner;
-    Button mSubmit = null, mBack;
+    Button mSubmit, mBack, mGradeSelected;
     TestResult result = null;
 
     private ArrayList<EditText> editTexts = new ArrayList<>();
@@ -45,6 +45,7 @@ public class GradeTestActivity extends AppCompatActivity {
 
         mSpinner = findViewById(R.id.spinnerTests);
         mBack = findViewById(R.id.back_button);
+        mGradeSelected = findViewById(R.id.gradeSelectedButton);
 
         Log.d(TAG, ((Teacher) MainActivity.u).getResults().toString());
 
@@ -73,6 +74,8 @@ public class GradeTestActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 LinearLayout layout = findViewById(R.id.linearLayout);
                 layout.removeAllViews();
+
+                editTexts.clear();
 
                 String name = parent.getItemAtPosition(position).toString();
 

@@ -105,10 +105,9 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         gradedList.add(graded8);
         gradedList.add(graded9);
 */
-        if(((Student) MainActivity.u).getReports().size() == 0){
+        if (((Student) MainActivity.u).getReports().size() == 0){
             mNoTests.setText("No graded tests right now");
-        }
-        else{
+        } else {
             mNoTests.setText("");
         }
         GradedTestAdapter adapter = new GradedTestAdapter(this, R.layout.adapter_view_layout, ((Student) MainActivity.u).getReports());

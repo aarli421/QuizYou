@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class StudentList extends ArrayAdapter<Student> {
 
-    private static final String Tag = "studentList";
+    private static final String TAG = "studentList";
 
     private Context mContext;
     int mResource;
