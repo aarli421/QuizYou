@@ -27,18 +27,6 @@
 
 
         <Button
-            android:id="@+id/logout_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="304dp"
-            android:layout_marginLeft="304dp"
-            android:layout_marginTop="56dp"
-            android:layout_marginRight="10dp"
-            android:text="@string/back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
             android:id="@+id/join_class_button"
             android:layout_width="172dp"
             android:layout_height="231dp"
@@ -116,6 +104,19 @@
             android:layout_marginTop="190dp"
             android:layout_marginEnd="1dp"
             android:layout_marginRight="1dp" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="31dp"
+            android:layout_marginRight="31dp"
+            android:tint="#555555"
+            app:srcCompat="@android:drawable/ic_popup_sync" />
 
 
     </RelativeLayout>
