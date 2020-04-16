@@ -46,7 +46,7 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
 
     private Button mLogout, mGradeTests, mStudentReports, mAssignTest, mMakeTest;
 
-    private TextView userText;
+    private TextView userText, mClassID;
 
     private Spinner mSpinner;
 
@@ -95,6 +95,9 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         mAssignTest = findViewById(R.id.assign);
         mMakeTest = findViewById(R.id.make);
         userText = findViewById(R.id.user);
+
+        mClassID = findViewById(R.id.classID);
+        mClassID.setText("Class ID: " + ((Teacher) MainActivity.u).getID());
 
         userText.setText(((Teacher)MainActivity.u).getName());
 
