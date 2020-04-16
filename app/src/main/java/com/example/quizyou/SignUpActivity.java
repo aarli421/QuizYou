@@ -77,7 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         mSignUp = findViewById(R.id.signUp);
 
-        mLoginHere = findViewById(R.id.loginHere);
+        //mLoginHere = findViewById(R.id.loginHere);
 
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -121,13 +121,13 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-        mLoginHere.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                finish();
-            }
-        });
+//        mLoginHere.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                finish();
+//            }
+//        });
     }
 
     private void initList(){
