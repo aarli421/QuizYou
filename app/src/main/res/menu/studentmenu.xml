@@ -4,19 +4,19 @@
     tools:context=".MainActivity">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/see_home"
-            android:icon="@drawable/ic_home_black_24dp"
-            android:title="@string/home" />
+<!--        <item-->
+<!--            android:id="@+id/see_home"-->
+<!--            android:icon="@drawable/ic_home_black_24dp"-->
+<!--            android:title="@string/home" />-->
 
-        <item
-            android:id="@+id/take_test"
-            android:icon="@drawable/ic_pen_is"
-            android:title="@string/take_test" />
-        <item
-            android:id="@+id/see_results"
-            android:icon="@drawable/ic_remove_red_eye_black_24dp"
-            android:title="@string/see_results" />
+<!--        <item-->
+<!--            android:id="@+id/take_test"-->
+<!--            android:icon="@drawable/ic_pen_is"-->
+<!--            android:title="@string/take_test" />-->
+<!--        <item-->
+<!--            android:id="@+id/see_results"-->
+<!--            android:icon="@drawable/ic_remove_red_eye_black_24dp"-->
+<!--            android:title="@string/see_results" />-->
 
         <item
             android:icon="@drawable/ic_exit"
