@@ -31,18 +31,17 @@ import java.util.Map;
 
 public class TestActivity extends AppCompatActivity {
 
-    private TextView title;
-    private LinearLayout scrollViewLinearLayout;
+    private TextView mName, mTimeRemaining, mPrompt, mQuestionNumber;
+    private EditText mAnswer;
 
     private static final String TAG = "TestActivity";
+    private Button mSubmit, mNext, mBack;
 
-    private ArrayList<EditText> editTexts = new ArrayList<>();
-
-    private Button mBack;
+    private String[] answersArr;
 
     private Test test;
 
-    private int exitedApp = 0;
+    private int exitedApp = 0, index = 0;
 
     // TODO Create timer UI
 
@@ -51,71 +50,63 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        mBack = findViewById(R.id.back_button);
-        mBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
-                startActivity(intent);
-                finish();
-                return;
-            }
-        });
-//        ArrayList<Question> questions = new ArrayList<>();
-//        questions.add(new Question("Why do you like to eat chicken nuggets?", "Cuz I do", 5));
-//        questions.add(new Question("Why do you like to nuggets?", "Bruhhh", 7));
-//        test = new Test(5, questions, "Random name");
-
         test = StudentActivity.selectedTest;
-
         if (test == null) return;
 
-        title = findViewById(R.id.testTitle);
-        scrollViewLinearLayout = findViewById(R.id.testLinearLayout);
+        answersArr = new String[test.getQuestions().size()];
 
-        title.setText(test.getName());
-        for (Question q : test.getQuestions()) {
-            TextView text = new TextView(getApplicationContext());
-            text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            Typeface face = Typeface.create("sans-serif-light", Typeface.NORMAL);
-            text.setTypeface(face);
-            text.setTextSize(24);
-            text.setText(q.getPrompt());
-            scrollViewLinearLayout.addView(text);
+        mAnswer = findViewById(R.id.answer);
 
-            EditText editText = new EditText(getApplicationContext());
-            editText.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            editText.setHint("Answer");
-            editTexts.add(editText);
-            scrollViewLinearLayout.addView(editText);
-        }
+        mName = findViewById(R.id.takeTestName);
+        mTimeRemaining = findViewById(R.id.timeRemaining);
+        mPrompt = findViewById(R.id.takeTestPrompt);
+        mQuestionNumber = findViewById(R.id.takeTestQuestionNumber);
 
-        Button mSubmit = new Button(getApplicationContext());
-        mSubmit.setText("Submit");
-        scrollViewLinearLayout.addView(mSubmit);
+        mSubmit = findViewById(R.id.submitTest);
+        mNext = findViewById(R.id.nextQuestion);
+        mBack = findViewById(R.id.previousQuestion);
+
+        mName.setText(test.getName());
+        mTimeRemaining.setText(Long.toString(test.getTimeLimit()));
+
+        display();
+
+        for (int i = 0; i < answersArr.length; i++) answersArr[i] = "";
 
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                answersArr[index] = mAnswer.getText().toString();
+
                 finishTest(test);
             }
         });
 
-        handler.postDelayed(periodicUpdate, test.getTimeLimit());
+        mNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (index < test.getQuestions().size() - 1) {
+                    answersArr[index] = mAnswer.getText().toString();
 
-//        mBack = findViewById (R.id.back_button);
-//
-//        mBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                startActivity(intent);
-//                finish();
-//                return;
-//
-//            }
-//        });
+                    index++;
+                    display();
+                }
+            }
+        });
+
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (index > 0) {
+                    answersArr[index] = mAnswer.getText().toString();
+
+                    index--;
+                    display();
+                }
+            }
+        });
+
+        handler.postDelayed(periodicUpdate, test.getTimeLimit());
     }
 
     @Override
@@ -140,10 +131,18 @@ public class TestActivity extends AppCompatActivity {
         }
     };
 
+    public void display() {
+        mAnswer.setText(answersArr[index]);
+        mPrompt.setText(test.getQuestions().get(index).getPrompt());
+        int questionNum = index + 1;
+        mQuestionNumber.setText("Question " + questionNum);
+    }
+
     public void finishTest(Test test) {
         ArrayList<String> answers = new ArrayList<>();
-        for (EditText editText : editTexts) {
-            answers.add(editText.getText().toString());
+        for (String ans : answersArr) {
+            if (ans == null) ans = "";
+            answers.add(ans);
         }
 
         MainActivity.load();
@@ -163,8 +162,6 @@ public class TestActivity extends AppCompatActivity {
                 MainActivity.mDb.collection("Teachers")
                         .document(Long.toString(((Teacher) m.getValue()).getID()))
                         .update("results", ((Teacher) m.getValue()).getResults());
-
-                //MainActivity.save((Teacher) m.getValue());
 
                 handler.removeCallbacksAndMessages(null);
 

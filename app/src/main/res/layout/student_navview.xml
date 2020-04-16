@@ -87,17 +87,6 @@
             android:textColor="@color/cardview_light_background"
             android:textSize="17dp" />
 
-        <Spinner
-            android:id="@+id/pendingTestsSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="179dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginRight="1dp" />
-
         <TextView
             android:id="@+id/user"
             android:layout_width="342dp"
@@ -108,10 +97,10 @@
             android:layout_marginStart="43dp"
             android:layout_marginLeft="43dp"
             android:layout_marginTop="99dp"
-            android:fontFamily="sans-serif-light"
+            android:fontFamily="@font/bebas_book"
             android:text="Happy Penis"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textSize="40dp" />
+            android:textColor="#757575"
+            android:textSize="50sp" />
 
         <ImageView
             android:id="@+id/imageView11"
@@ -188,6 +177,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <Spinner
+            android:id="@+id/pendingTestsSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="179dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp" />
 
     </RelativeLayout>
 
