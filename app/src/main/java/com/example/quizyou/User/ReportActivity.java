@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 public class ReportActivity extends AppCompatActivity {
 
-    private Button mViewStudent;
     private Button mBack;
     private ArrayList<Student> students = new ArrayList<>();
     private TextView mNoTests;
@@ -34,6 +33,8 @@ public class ReportActivity extends AppCompatActivity {
         mBack = findViewById (R.id.back_button);
         mNoTests = findViewById(R.id.textView69);
 
+
+
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +45,8 @@ public class ReportActivity extends AppCompatActivity {
                 return;
             }
         });
+
+
 
         ListView mListView = (ListView) findViewById(R.id.list_view1);
         ArrayList<Student> studentsReportsList = new ArrayList<>();
@@ -62,6 +65,8 @@ public class ReportActivity extends AppCompatActivity {
         } else {
             mNoTests.setText("");
         }
+
+
 
         StudentList adapter = new StudentList(this, R.layout.adapt_view_layout, studentsReportsList);
         mListView.setAdapter(adapter);
