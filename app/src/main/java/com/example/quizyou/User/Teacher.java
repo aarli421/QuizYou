@@ -93,7 +93,11 @@ public class Teacher implements User {
 
         for (String id : studentIDs) {
             ((Student) StudentActivity.students.get(id)).addPending(t);
-            MainActivity.save((Student) StudentActivity.students.get(id));
+
+            MainActivity.mDb.collection("Students")
+                .document(id)
+                .update("pending", ((Student) StudentActivity.students.get(id)).getPending());
+
         }
     }
 
