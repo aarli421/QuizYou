@@ -10,22 +10,25 @@
     tools:context=".MainActivity"
     tools:openDrawer="start">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/pullToRefreshTeacher"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ListView
-            android:id="@+id/listView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/der_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="210dp"
+            android:layout_height="98dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.079"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.067"
+            app:srcCompat="@drawable/welcome_text" />
 
         <TextView
             android:id="@+id/user"
@@ -44,6 +47,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.196" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/pullToRefreshTeacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+            </ListView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <ImageView
             android:id="@+id/imageView14"
@@ -109,6 +129,16 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.821" />
 
+        <TextView
+            android:id="@+id/classID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Class ID: "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Spinner
             android:id="@+id/madeTestSpinner"
             android:layout_width="240dp"
@@ -123,25 +153,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.406" />
 
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="210dp"
-            android:layout_height="98dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.079"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.067"
-            app:srcCompat="@drawable/welcome_text" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <com.google.android.material.navigation.NavigationView
+    <com.google.android.material.navigation.NavigationView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
@@ -150,6 +164,6 @@
             app:headerLayout="@layout/nav_header"
             app:menu="@menu/menu">
 
-        </com.google.android.material.navigation.NavigationView>
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
