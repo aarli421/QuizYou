@@ -116,11 +116,6 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    MainActivity.load();
-                    while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
-                    MainActivity.loadStudents = false;
-                    MainActivity.loadTeachers = false;
-
                     signUpWithEmailAuthCredential();
                 }
             }
@@ -188,10 +183,12 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
 
-            MainActivity.load();
-            while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
-            MainActivity.loadStudents = false;
-            MainActivity.loadTeachers = false;
+            MainActivity.save();
+
+//            MainActivity.loadStudents = false;
+//            MainActivity.loadTeachers = false;
+//            MainActivity.load();
+//            while (!MainActivity.loadStudents || !MainActivity.loadTeachers) { }
 
             if (MainActivity.u != null) {
                 try {

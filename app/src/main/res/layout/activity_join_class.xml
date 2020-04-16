@@ -12,20 +12,18 @@
         android:layout_height="wrap_content">
 
 
-        <Button
-            android:id="@+id/backDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="194dp"
+            android:layout_height="103dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="7dp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginTop="3dp"
-            android:background="@android:color/transparent"
-            android:text="Back"
-            android:textColor="@color/cardview_light_background" />
-
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="76dp"
+            android:layout_marginRight="76dp"
+            app:srcCompat="@drawable/enter_code" />
 
         <EditText
             android:id="@+id/code"
@@ -35,13 +33,30 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="53dp"
-            android:layout_marginLeft="53dp"
-            android:layout_marginTop="131dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/button_customize"
             android:ems="10"
             android:hint="Code"
             android:inputType="textPersonName" />
+
+        <ImageButton
+            android:id="@+id/backDialog"
+            android:layout_width="80dp"
+            android:layout_height="64dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="42dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_toStartOf="@+id/imageView12"
+            android:layout_toLeftOf="@+id/imageView12"
+            android:tint="#423E3E"
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
         <ImageView
             android:id="@+id/imageView4"
@@ -51,9 +66,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="174dp"
-            android:layout_marginEnd="86dp"
-            android:layout_marginRight="86dp"
+            android:layout_marginTop="123dp"
+            android:layout_marginEnd="71dp"
+            android:layout_marginRight="71dp"
             app:srcCompat="@drawable/button_1" />
 
         <Button
@@ -65,35 +80,12 @@
             android:layout_alignParentRight="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="184dp"
-            android:layout_marginEnd="126dp"
-            android:layout_marginRight="126dp"
+            android:layout_marginTop="133dp"
+            android:layout_marginEnd="110dp"
+            android:layout_marginRight="110dp"
             android:background="@android:color/transparent"
             android:text="Submit"
             android:textColor="@color/cardview_light_background" />
-
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="106dp"
-            android:layout_height="78dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="6dp"
-            android:layout_marginLeft="6dp"
-            android:layout_marginTop="-4dp"
-            app:srcCompat="@drawable/back_button" />
-
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="194dp"
-            android:layout_height="103dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="68dp"
-            android:layout_marginEnd="91dp"
-            android:layout_marginRight="91dp"
-            app:srcCompat="@drawable/enter_code" />
 
 
     </RelativeLayout>

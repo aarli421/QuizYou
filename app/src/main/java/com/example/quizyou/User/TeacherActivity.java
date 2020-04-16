@@ -98,13 +98,15 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
                 for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
                     if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
                         MainActivity.load();
-                        while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
-                        MainActivity.loadStudents = false;
-                        MainActivity.loadTeachers = false;
 
                         ((Teacher) MainActivity.u).addAssignedTest(t);
 
-                        MainActivity.save();
+                        MainActivity.mDb.collection("Teachers")
+                                .document(Long.toString(((Teacher) MainActivity.u).getID()))
+                                .update("madeTests", ((Teacher) MainActivity.u).getMadeTests(),
+                                        "assignedTests", ((Teacher) MainActivity.u).getAssignedTests());
+
+                        //MainActivity.save();
 
                         resetSpinner();
                         break;
