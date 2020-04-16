@@ -3,18 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
 
     <Button
         android:id="@+id/login"
         android:layout_width="400dp"
         android:layout_height="56dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
         android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
         android:layout_marginBottom="68dp"
         android:background="@drawable/login_button_background"
         android:gravity="center"
@@ -23,38 +28,35 @@
         android:textColor="@color/cardview_light_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="602dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="4dp"
-        android:layout_marginLeft="7dp" />
+        tools:layout_editor_absoluteY="602dp" />
 
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="388dp"
         android:layout_height="413dp"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
         android:layout_marginBottom="-31dp"
         app:srcCompat="@drawable/password_edit_text"
-        tools:layout_editor_absoluteY="487dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="7dp" />
+        tools:layout_editor_absoluteY="487dp" />
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="416dp"
-        android:layout_height="82dp"
+        android:layout_width="388dp"
+        android:layout_height="72dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="-3dp"
-        android:layout_marginBottom="210dp"
-        app:srcCompat="@drawable/login_email_background"
-        tools:layout_editor_absoluteY="466dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="-3dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="206dp"
+        app:srcCompat="@drawable/login_email_background"
+        tools:layout_editor_absoluteY="466dp" />
 
     <EditText
         android:id="@+id/loginPassword"
@@ -95,14 +97,14 @@
         android:layout_width="49dp"
         android:layout_height="42dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginBottom="227dp"
         app:srcCompat="@drawable/mail"
         tools:layout_editor_absoluteX="-5dp"
-        tools:layout_editor_absoluteY="487dp"
-        android:layout_marginLeft="16dp"
-        android:layout_alignParentLeft="true" />
+        tools:layout_editor_absoluteY="487dp" />
 
     <ImageView
         android:id="@+id/imageView"
