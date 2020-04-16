@@ -99,9 +99,6 @@ public class SignUpActivity extends AppCompatActivity {
         mSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //selection = mSpinner.getSelectedItem().toString();
-
                 if (selection.equals("Select One")) {
                     // TODO Tell user to select one
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(new ContextThemeWrapper(SignUpActivity.this, R.style.dialog));

@@ -2,7 +2,9 @@ package com.example.quizyou.User;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -11,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
+import com.example.quizyou.Test.TestActivity;
 
 import java.util.ArrayList;
 
@@ -20,7 +23,9 @@ public class ReportActivity extends AppCompatActivity {
     private ArrayList<Student> students = new ArrayList<>();
     private TextView mNoTests;
 
+    public static Student selectedStudent;
 
+    private static final String TAG = "ReportActivity";
 
     // TODO List all of the teacher's students and grades for each test in a dropdown menu
     // TODO Back button
@@ -59,6 +64,17 @@ public class ReportActivity extends AppCompatActivity {
                 }
             }
         }
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedStudent = (Student) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), ViewStudentReportActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         if (studentsReportsList.size() == 0) {
             mNoTests.setText("No students right now");
