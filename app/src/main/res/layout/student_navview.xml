@@ -28,17 +28,19 @@
 
         <Button
             android:id="@+id/join_class_button"
-            android:layout_width="165dp"
-            android:layout_height="168dp"
+            android:layout_width="136dp"
+            android:layout_height="190dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="35dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="512dp"
-            android:layout_marginBottom="51dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginLeft="44dp"
+            android:layout_marginTop="469dp"
+            android:layout_marginBottom="87dp"
+            android:background="@android:color/transparent"
             android:text="Join Class"
+            android:textColor="@color/cardview_light_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.418"
@@ -47,17 +49,19 @@
 
         <Button
             android:id="@+id/my_reports_button"
-            android:layout_width="154dp"
-            android:layout_height="162dp"
+            android:layout_width="144dp"
+            android:layout_height="165dp"
             android:layout_below="@+id/take_test"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="31dp"
-            android:layout_marginRight="31dp"
-            android:layout_marginBottom="52dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="72dp"
+            android:background="@android:color/transparent"
             android:text="My Reports"
+            android:textColor="@color/cardview_light_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.416"
@@ -66,19 +70,19 @@
 
         <Button
             android:id="@+id/take_test"
-            android:layout_width="331dp"
-            android:layout_height="158dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
+            android:layout_width="250dp"
+            android:layout_height="136dp"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="45dp"
-            android:layout_marginLeft="45dp"
-            android:layout_marginTop="315dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="297dp"
+            android:layout_marginEnd="87dp"
+            android:layout_marginRight="87dp"
+            android:background="@android:color/transparent"
             android:text="Take Test"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteY="498dp" />
+            android:textColor="@color/cardview_light_background" />
 
         <Spinner
             android:id="@+id/pendingTestsSpinner"
@@ -87,7 +91,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="273dp"
+            android:layout_marginTop="245dp"
             android:layout_marginEnd="1dp"
             android:layout_marginRight="1dp" />
 
@@ -100,7 +104,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="33dp"
             android:layout_marginLeft="33dp"
-            android:layout_marginTop="187dp"
+            android:layout_marginTop="160dp"
             android:fontFamily="sans-serif-light"
             android:text="Aaron Li"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -113,10 +117,54 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="24dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="71dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="55dp"
             app:srcCompat="@drawable/welcome_text" />
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="288dp"
+            android:layout_height="371dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="59dp"
+            android:layout_marginLeft="59dp"
+            android:layout_marginTop="177dp"
+            app:srcCompat="@drawable/panel_3" />
+
+        <ImageView
+            android:id="@+id/imageView15"
+            android:layout_width="229dp"
+            android:layout_height="213dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-1dp"
+            android:layout_marginLeft="-1dp"
+            android:layout_marginTop="467dp"
+            android:layout_marginEnd="187dp"
+            android:layout_marginRight="187dp"
+            android:layout_marginBottom="66dp"
+            app:srcCompat="@drawable/panel_1" />
+
+        <ImageView
+            android:id="@+id/imageView16"
+            android:layout_width="229dp"
+            android:layout_height="213dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="196dp"
+            android:layout_marginLeft="196dp"
+            android:layout_marginTop="465dp"
+            android:layout_marginBottom="68dp"
+            app:srcCompat="@drawable/panel_1" />
 
 
     </RelativeLayout>
@@ -133,15 +181,15 @@
         android:layout_marginBottom="0dp"></FrameLayout>
 
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_viewer1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:itemBackground="@color/cardview_light_background"
-        app:menu="@menu/studentmenu">
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:id="@+id/nav_viewer1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="start"-->
+<!--        app:headerLayout="@layout/nav_header"-->
+<!--        app:itemBackground="@color/cardview_light_background"-->
+<!--        app:menu="@menu/studentmenu">-->
 
-    </com.google.android.material.navigation.NavigationView>
+<!--    </com.google.android.material.navigation.NavigationView>-->
 
 </androidx.drawerlayout.widget.DrawerLayout>
