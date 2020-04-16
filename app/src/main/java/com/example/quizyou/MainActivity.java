@@ -35,6 +35,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView mGoToSignUp;
 
     private boolean oneFinished = false;
-    public static boolean loadStudents = false, loadTeachers = false;
 
     public static String email, password;
 
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (oneFinished) {
                     //handler.post(periodicUpdate);
-                    //userIsLoggedIn();
+                    userIsLoggedIn();
                 } else {
                     oneFinished = true;
                 }
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (oneFinished) {
                         //handler.post(periodicUpdate);
-                        //userIsLoggedIn();
+                        userIsLoggedIn();
                     } else {
                         oneFinished = true;
                     }
@@ -219,15 +219,10 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         Student.setStaticID(index);
-
-                        loadStudents = true;
-
                         Log.d(TAG, StudentActivity.students.toString());
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
                     }
-
-                    Log.d(TAG, StudentActivity.students.toString());
                 }
             });
 
@@ -244,8 +239,6 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     Teacher.setStaticID(index);
-
-                    loadTeachers = true;
 
                     Log.d(TAG, TeacherActivity.teachers.toString());
                 } else {
@@ -264,14 +257,14 @@ public class MainActivity extends AppCompatActivity {
                 Student s = ((Student) u);
                 mDb.collection("Students")
                         .document(Long.toString(s.getID()))
-                        .set(s);
+                        .set(s, SetOptions.merge());
 
                 Log.d(TAG, "Saving " + s.getName() + "...");
             } catch (ClassCastException e) {
                 Teacher t = ((Teacher) u);
                 mDb.collection("Teachers")
                         .document(Long.toString(t.getID()))
-                        .set(t);
+                        .set(t, SetOptions.merge());
 
                 Log.d(TAG, "Saving " + t.getName() + "...");
             }

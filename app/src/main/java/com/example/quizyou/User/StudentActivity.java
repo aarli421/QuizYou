@@ -2,6 +2,7 @@ package com.example.quizyou.User;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import android.widget.Spinner;
@@ -52,7 +55,8 @@ import static com.example.quizyou.R.string.navigation_drawer_open;
 
 public class StudentActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
 
-    private Button  mJoinClass, mReports, mTakeTest, mAssignTest;
+    private Button mLogout, mJoinClass, mReports, mTakeTest;
+    private ImageView mRefresh;
 
     private Spinner mSpinner;
 
@@ -114,7 +118,8 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         mTakeTest = findViewById(R.id.take_test);
 
         userName.setText(((Student)MainActivity.u).getName());
-
+      
+        mRefresh = findViewById(R.id.reloadButton);
 
         mJoinClass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +129,7 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
 
                 final EditText mResponse = (EditText)  mView.findViewById(R.id.code);
                 Button mSubmit = (Button) mView.findViewById(R.id.submit);
-                Button mBackDialog = (Button) mView.findViewById(R.id.backDialog);
+                ImageButton mBackDialog = mView.findViewById(R.id.backDialog);
 
                 mBuilder.setView(mView);
                 final AlertDialog dialog = mBuilder.create();
@@ -140,9 +145,6 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                     @Override
                     public void onClick(View v) {
                         MainActivity.load();
-                        while (!MainActivity.loadStudents && !MainActivity.loadTeachers) { }
-                        MainActivity.loadStudents = false;
-                        MainActivity.loadTeachers = false;
 
                         Teacher t = (Teacher) TeacherActivity.teachers.get(mResponse.getText().toString());
 
@@ -150,7 +152,9 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                             t.addStudents(Long.toString(((Student) MainActivity.u).getID()));
 
                             //MainActivity.save();
-                            MainActivity.save(t);
+                            MainActivity.mDb.collection("Teachers")
+                                    .document(Long.toString(t.getID()))
+                                    .update("studentIDs", t.getStudentIDs());
 
                             Log.d(TAG, t.getStudentIDs().toString());
                         } else {
@@ -199,6 +203,16 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
             }
         });
 
+        mRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.load();
+                Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public boolean onNavigationItemSelected (@NonNull MenuItem menuItem) {
@@ -221,10 +235,6 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         }
 
         finish();
-
-
-
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
