@@ -58,8 +58,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="-1dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="-4dp"
         app:srcCompat="@drawable/name_text" />
 
     <ImageView
@@ -120,6 +120,7 @@
         android:hint="Password"
         android:inputType="textPassword" />
 
+
     <EditText
         android:id="@+id/signUpName"
         android:layout_width="323dp"
@@ -127,14 +128,15 @@
 
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginEnd="34dp"
         android:layout_marginRight="34dp"
+        android:layout_marginBottom="315dp"
         android:background="@android:color/transparent"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName" />
-
 
     <Spinner
         android:id="@+id/dropdown"
@@ -175,11 +177,11 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="-51dp"
-        android:layout_marginLeft="-51dp"
-        android:layout_marginTop="87dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="-151dp"
+        android:layout_marginStart="-49dp"
+        android:layout_marginLeft="-49dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginBottom="-148dp"
         app:srcCompat="@drawable/person" />
 
 </RelativeLayout>
