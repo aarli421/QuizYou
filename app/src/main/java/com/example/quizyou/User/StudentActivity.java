@@ -162,6 +162,7 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
                                     .update("studentIDs", t.getStudentIDs());
 
                             Log.d(TAG, t.getStudentIDs().toString());
+                            Toast.makeText(StudentActivity.this,"Joined " +  ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getName() +"'s class", Toast.LENGTH_LONG).show();
                         } else {
                             // TODO Already joined class dialog
                             Toast.makeText(StudentActivity.this,"Already joined " +  ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getName() +"'s class", Toast.LENGTH_LONG).show();
