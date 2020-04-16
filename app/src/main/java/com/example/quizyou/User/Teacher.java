@@ -126,6 +126,10 @@ public class Teacher implements User {
     }
 
     public String toString() {
-        return "Name: " + name + " Email: " + email + " Password: " + password;
+        if (results.size() > 0) {
+            return "Name: " + name + " Email: " + email + " Password: " + password + " Static ID: " + staticID + " Results: " + results.get(0).getAnswerer().getName();
+        } else {
+            return "Name: " + name + " Email: " + email + " Password: " + password + " Static ID: " + staticID;
+        }
     }
 }

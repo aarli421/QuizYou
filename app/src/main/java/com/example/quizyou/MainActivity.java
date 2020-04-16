@@ -82,18 +82,23 @@ public class MainActivity extends AppCompatActivity {
             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    StudentActivity.students.put(document.getId(), turnHashMapToStudent((HashMap<String, Object>) document.getData()));
-                }
 
-                Log.d(TAG, StudentActivity.students.toString());
+                    int index = 0;
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        index++;
+                        StudentActivity.students.put(document.getId(), turnHashMapToStudent((HashMap<String, Object>) document.getData()));
+                    }
 
-                if (oneFinished) {
-                    //handler.post(periodicUpdate);
-                    userIsLoggedIn();
-                } else {
-                    oneFinished = true;
-                }
+                    Student.setStaticID(index);
+
+                    Log.d(TAG, StudentActivity.students.toString());
+
+                    if (oneFinished) {
+                        //handler.post(periodicUpdate);
+                        userIsLoggedIn();
+                    } else {
+                        oneFinished = true;
+                    }
                 }
             });
 
@@ -102,23 +107,29 @@ public class MainActivity extends AppCompatActivity {
             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
+                    if (task.isSuccessful()) {
 
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        TeacherActivity.teachers.put(document.getId(), turnHashMapToTeacher((HashMap<String, Object>) document.getData()));
-                    }
+                        int index = 0;
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            index++;
+                            TeacherActivity.teachers.put(document.getId(), turnHashMapToTeacher((HashMap<String, Object>) document.getData()));
+                        }
 
-                    Log.d(TAG, TeacherActivity.teachers.toString());
+                        Teacher.setStaticID(index);
 
-                    if (oneFinished) {
-                        //handler.post(periodicUpdate);
-                        userIsLoggedIn();
+                        Log.d(TAG, TeacherActivity.teachers.toString());
+
+                        Log.d(TAG, ((Teacher) TeacherActivity.teachers.get("0")).getResults().toString());
+
+                        if (oneFinished) {
+                            //handler.post(periodicUpdate);
+                            userIsLoggedIn();
+                        } else {
+                            oneFinished = true;
+                        }
                     } else {
-                        oneFinished = true;
+                        Log.d(TAG, "Error getting documents: ", task.getException());
                     }
-                } else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
-                }
                 }
             });
 
@@ -222,6 +233,17 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         Student.setStaticID(index);
+
+                        if (u != null) {
+                            try {
+                                Student s = ((Student) u);
+                                u = (Student) StudentActivity.students.get(Long.toString(s.getID()));
+                                Log.d(TAG, "Student " + ((Student) u).getName() + " was updated");
+                            } catch (ClassCastException e) {
+                                Log.d(TAG, "Could not cast because of " + e);
+                            }
+                        }
+
                         Log.d(TAG, StudentActivity.students.toString());
                     } else {
                         Log.d(TAG, "Error getting documents: ", task.getException());
@@ -229,28 +251,38 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-    mDb.collection("Teachers")
-        .get()
-        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                TeacherActivity.teachers.clear();
+        mDb.collection("Teachers")
+            .get()
+            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    TeacherActivity.teachers.clear();
 
-                if (task.isSuccessful()) {
-                    int index = 0;
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        index++;
-                        TeacherActivity.teachers.put(document.getId(), turnHashMapToTeacher((HashMap<String, Object>) document.getData()));
+                    if (task.isSuccessful()) {
+                        int index = 0;
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            index++;
+                            TeacherActivity.teachers.put(document.getId(), turnHashMapToTeacher((HashMap<String, Object>) document.getData()));
+                        }
+
+                        Teacher.setStaticID(index);
+
+                        if (u != null) {
+                            try {
+                                Teacher t = ((Teacher) u);
+                                u = (Teacher) TeacherActivity.teachers.get(Long.toString(t.getID()));
+                                Log.d(TAG, "Teacher " + ((Teacher) u).getName() + " was updated");
+                            } catch (ClassCastException e) {
+                                Log.d(TAG, "Could not cast because of " + e);
+                            }
+                        }
+
+                        Log.d(TAG, TeacherActivity.teachers.toString());
+                    } else {
+                        Log.d(TAG, "Error getting documents: ", task.getException());
                     }
-
-                    Teacher.setStaticID(index);
-
-                    Log.d(TAG, TeacherActivity.teachers.toString());
-                } else {
-                    Log.d(TAG, "Error getting documents: ", task.getException());
                 }
-            }
-        });
+            });
     }
 
     //public static Handler handler = new Handler();

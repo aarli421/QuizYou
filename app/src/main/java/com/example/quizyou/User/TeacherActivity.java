@@ -166,9 +166,6 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
 
         finish();
 
-
-
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

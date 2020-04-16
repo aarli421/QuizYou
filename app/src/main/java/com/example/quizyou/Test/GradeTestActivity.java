@@ -46,6 +46,8 @@ public class GradeTestActivity extends AppCompatActivity {
         mSpinner = findViewById(R.id.spinnerTests);
         mBack = findViewById(R.id.back_button);
 
+        Log.d(TAG, ((Teacher) MainActivity.u).getResults().toString());
+
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +59,7 @@ public class GradeTestActivity extends AppCompatActivity {
         });
 
         ArrayList<String> list = new ArrayList<>();
-
+        Log.d(TAG, ((Teacher) MainActivity.u).getResults().toString());
         for (TestResult t : ((Teacher) MainActivity.u).getResults()) {
             list.add(t.getAnswerer().getName() + "'s " + t.getTest().getName());
         }

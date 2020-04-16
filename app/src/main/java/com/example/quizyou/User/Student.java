@@ -92,6 +92,6 @@ public class Student implements User {
     }
 
     public String toString() {
-        return "Name: " + name + " Email: " + email + " Password: " + password;
+        return "Name: " + name + " Email: " + email + " Password: " + password + " Static ID: " + staticID;
     }
 }
