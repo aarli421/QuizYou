@@ -59,7 +59,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="147dp"
         android:fontFamily="@font/bebasneue_book"
-        android:textColor="#000000" />
+        android:textColor="#656565"
+        android:textSize="14sp" />
 
     <ImageButton
         android:id="@+id/back_button"
