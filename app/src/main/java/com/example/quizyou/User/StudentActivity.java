@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import android.widget.Spinner;
@@ -55,6 +56,7 @@ import static com.example.quizyou.R.string.navigation_drawer_open;
 public class StudentActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
 
     private Button mLogout, mJoinClass, mReports, mTakeTest;
+    private ImageView mRefresh;
 
     private Spinner mSpinner;
 
@@ -108,22 +110,24 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
 //        drawer.addDrawerListener(toggle);
 //        toggle.syncState();
 
-        mLogout = findViewById(R.id.logout_button);
+        //mLogout = findViewById(R.id.logout_button);
         mJoinClass = findViewById(R.id.join_class_button);
         mReports = findViewById(R.id.my_reports_button);
         mTakeTest = findViewById(R.id.take_test);
 
-        mLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-                return;
-            }
-        });
+        mRefresh = findViewById(R.id.reloadButton);
+
+//        mLogout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().signOut();
+//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                startActivity(intent);
+//                finish();
+//                return;
+//            }
+//        });
 
         mJoinClass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,6 +211,16 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
             }
         });
 
+        mRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.load();
+                Intent intent = new Intent(getApplicationContext(), StudentActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     public boolean onNavigationItemSelected (@NonNull MenuItem menuItem) {
@@ -229,10 +243,6 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         }
 
         finish();
-
-
-
-
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
