@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <EditText
-        android:id="@+id/answer"
+        android:id="@+id/editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
@@ -20,7 +20,7 @@
         tools:layout_editor_absoluteY="120dp" />
 
     <TextView
-        android:id="@+id/takeTestQuestionNumber"
+        android:id="@+id/takeTestAnswer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Question Number" />
@@ -42,22 +42,4 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Test Name" />
-
-    <Button
-        android:id="@+id/submitTest"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Submit" />
-
-    <Button
-        android:id="@+id/nextQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="next" />
-
-    <Button
-        android:id="@+id/previousQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="back" />
 </LinearLayout>
