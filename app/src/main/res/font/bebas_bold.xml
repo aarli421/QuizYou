@@ -2,11 +2,11 @@
 <font-family xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <font
-        android:font="@font/droid_sans"
+        android:font="@font/bebasneue_bold"
         android:fontStyle="normal"
         android:fontWeight="400"
 
-        app:font = "@font/droid_sans"
+        app:font = "@font/bebasneue_bold"
         app:fontStyle="normal"
         app:fontWeight="400"/>
 
