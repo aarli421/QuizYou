@@ -50,6 +50,8 @@ public class MakeTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_test);
 
+        this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+
         mTestName = findViewById(R.id.testName);
         mTimeLimit = findViewById(R.id.timeLimit);
 

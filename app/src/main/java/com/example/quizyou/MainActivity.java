@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in_out);
 
+        this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+
         quizView = findViewById(R.id.quizText);
         youView = findViewById(R.id.youText);
 

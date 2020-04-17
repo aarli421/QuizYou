@@ -36,6 +36,8 @@ public class ViewGradedTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_graded_test);
+        this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+
 
         mPullRefresh = findViewById(R.id.pullToRefreshGradedTests);
 

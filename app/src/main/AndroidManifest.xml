@@ -25,7 +25,7 @@
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".User.ViewStudentReportActivity"></activity>
         <activity android:name=".Test.GradeStudentTestActivity"></activity>
-        <activity android:name=".SplashscreenActivity"
+        <activity android:name=".SplashscreenActivity" android:theme="@style/AppTheme.SplashScreen"
             ><intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />

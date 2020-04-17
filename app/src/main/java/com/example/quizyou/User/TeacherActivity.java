@@ -80,6 +80,8 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         NavigationView navigationView = findViewById(R.id.nav_viewer);
         navigationView.setNavigationItemSelectedListener(this);
 
+        this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+
         mPullRight = findViewById(R.id.pullRightArrowTeacher);
         mPullRefresh = findViewById(R.id.pullToRefreshTeacher);
 
@@ -180,8 +182,7 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
 
                         MainActivity.mDb.collection("Teachers")
                                 .document(Long.toString(((Teacher) MainActivity.u).getID()))
-                                .update("madeTests", ((Teacher) MainActivity.u).getMadeTests(),
-                                        "assignedTests", ((Teacher) MainActivity.u).getAssignedTests());
+                                .update("assignedTests", ((Teacher) MainActivity.u).getAssignedTests());
 
 
                         Toast.makeText(TeacherActivity.this,"Test " + t.getName() + " Successfully Assigned", Toast.LENGTH_LONG).show();

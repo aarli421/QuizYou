@@ -88,7 +88,7 @@ public class Teacher implements User {
     }
 
     public void addAssignedTest(Test t) {
-        madeTests.remove(t);
+        //madeTests.remove(t);
         assignedTests.add(t);
 
         for (String id : studentIDs) {

@@ -36,6 +36,8 @@ public class GradeStudentTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_student_test);
 
+        this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+
         //MainActivity.load();
         mStart = findViewById(R.id.timeStart);
         mStopped = findViewById(R.id.timeStopped);

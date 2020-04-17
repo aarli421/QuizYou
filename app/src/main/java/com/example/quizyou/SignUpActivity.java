@@ -70,6 +70,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         initList();
 
+        this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+
         mSpinner = findViewById(R.id.dropdown);
 
         final Animation animation;

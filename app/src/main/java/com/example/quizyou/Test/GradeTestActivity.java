@@ -46,6 +46,8 @@ public class GradeTestActivity extends AppCompatActivity {
         mBack = findViewById(R.id.back_button);
         mListView = findViewById(R.id.grade_list_view);
 
+        this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+
         Log.d(TAG, ((Teacher) MainActivity.u).getResults().toString());
 
         mPullRefresh = findViewById(R.id.pullToRefreshGradeTests);

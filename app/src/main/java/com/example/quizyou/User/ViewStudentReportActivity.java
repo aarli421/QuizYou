@@ -31,6 +31,8 @@ public class ViewStudentReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_student_report);
 
+        this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+
         mBack = findViewById(R.id.back_button);
         mNoTests = findViewById(R.id.textView6);
         mListView = findViewById(R.id.student_list_view);
