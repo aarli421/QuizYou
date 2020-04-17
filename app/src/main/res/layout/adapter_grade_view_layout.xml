@@ -13,7 +13,13 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/student_name_teacher"
+        android:fontFamily="@font/bebas_regular"
+        android:gravity="center"
         android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,7 +30,12 @@
         android:layout_marginStart="196dp"
         android:layout_marginLeft="196dp"
         android:layout_marginTop="16dp"
+        android:background="@drawable/test_name_teacher"
+        android:fontFamily="@font/bebas_regular"
+        android:gravity="center"
         android:text="TextView"
+        android:textSize="18sp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

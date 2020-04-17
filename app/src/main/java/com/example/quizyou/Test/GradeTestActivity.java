@@ -38,7 +38,7 @@ public class GradeTestActivity extends AppCompatActivity {
 
 //        mSpinner = findViewById(R.id.spinnerTests);
         mBack = findViewById(R.id.back_button);
-        mGradeSelected = findViewById(R.id.gradeSelectedButton);
+       // mGradeSelected = findViewById(R.id.gradeSelectedButton);
         mListView = findViewById(R.id.grade_list_view);
 
         Log.d(TAG, ((Teacher) MainActivity.u).getResults().toString());
