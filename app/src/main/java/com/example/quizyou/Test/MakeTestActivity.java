@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -201,6 +202,11 @@ public class MakeTestActivity extends AppCompatActivity {
                     questionTexts.add(new QuestionTexts(mPrompt.getText().toString(), mPoints.getText().toString(), mAnswer.getText().toString()));
                 }
 
+                else{
+                    Toast.makeText(MakeTestActivity.this , "Please fill out all sections", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 ArrayList<Question> questions = new ArrayList<>();
                 for (int i = 0; i < questionTexts.size(); i++) {
                     questions.add(new Question(questionTexts.get(i).getPrompt(), questionTexts.get(i).getAnswer(), Integer.parseInt(questionTexts.get(i).getPoints())));
@@ -217,6 +223,8 @@ public class MakeTestActivity extends AppCompatActivity {
                 //MainActivity.save();
 
                 Log.d(TAG, Long.toString(((Teacher) MainActivity.u).getID()));
+
+                Toast.makeText(MakeTestActivity.this,"Test " + mTestName.getText() + " Successfully Made", Toast.LENGTH_LONG).show();
 
                 startActivity(new Intent(getApplicationContext(), TeacherActivity.class));
                 finish();
