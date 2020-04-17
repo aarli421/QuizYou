@@ -178,7 +178,9 @@
             <ListView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent" >
+
+            </ListView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <Spinner
@@ -191,6 +193,20 @@
             android:layout_marginTop="179dp"
             android:layout_marginEnd="1dp"
             android:layout_marginRight="1dp" />
+
+        <ImageView
+            android:id="@+id/imageView25"
+            android:layout_width="198dp"
+            android:layout_height="214dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="-9dp"
+            android:layout_marginEnd="-19dp"
+            android:layout_marginRight="-19dp"
+            android:layout_marginBottom="457dp"
+            app:srcCompat="@drawable/group_16" />
 
     </RelativeLayout>
 
