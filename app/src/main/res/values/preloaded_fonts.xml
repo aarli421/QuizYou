@@ -3,6 +3,8 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/droid_sans</item>
         <item>@font/happy_monkey</item>
+        <item>@font/hind_guntur</item>
+        <item>@font/hind_guntur_light</item>
         <item>@font/montserrat</item>
         <item>@font/open_sans</item>
         <item>@font/open_sans_light</item>

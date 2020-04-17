@@ -185,14 +185,14 @@
 
         <Spinner
             android:id="@+id/pendingTestsSpinner"
-            android:layout_width="match_parent"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginTop="179dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginRight="1dp" />
+            android:layout_marginEnd="33dp"
+            android:layout_marginRight="33dp" />
 
         <ImageView
             android:id="@+id/imageView25"
