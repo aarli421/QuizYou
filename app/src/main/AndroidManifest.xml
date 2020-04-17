@@ -25,6 +25,7 @@
         <activity android:name=".SignUpActivity"></activity>
         <activity android:name=".User.ViewStudentReportActivity"></activity>
         <activity android:name=".Test.GradeStudentTestActivity"></activity>
+        <activity android:name=".SplashscreenActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
