@@ -38,7 +38,7 @@ public class TestResultAdapter extends ArrayAdapter<TestResult> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         String testName = getItem(position).getTest().getName();
 
-        Student s = (Student) StudentActivity.students.get(getItem(position));
+        Student s = (Student) StudentActivity.students.get(Long.toString(getItem(position).getStudentID()));
         String studentName = s.getName();
 
 
