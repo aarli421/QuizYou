@@ -155,6 +155,8 @@ public class GradeStudentTestActivity extends AppCompatActivity {
                 .update("results", ((Teacher) MainActivity.u).getResults(),
                         "gradedTests", ((Teacher) MainActivity.u).getGradedTests());
 
+        Log.d(TAG, "Saving...");
+
         startActivity(new Intent(getApplicationContext(), GradeTestActivity.class));
         finish();
     }
