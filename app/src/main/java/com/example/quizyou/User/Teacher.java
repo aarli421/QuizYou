@@ -108,7 +108,7 @@ public class Teacher implements User {
     public void removeTestResults(TestResult r) {
         System.out.println("Gay");
         for (int i = 0; i < results.size(); i++) {
-            if (r.getAnswerer().getID() == results.get(i).getAnswerer().getID() && r.getTest().getName() == results.get(i).getTest().getName() && r.getExitedApp() == results.get(i).getExitedApp()) {
+            if (r.getStudentID() == results.get(i).getStudentID() && r.getTest().getName() == results.get(i).getTest().getName() && r.getExitedApp() == results.get(i).getExitedApp()) {
                 results.remove(i);
                 break;
             }
@@ -132,10 +132,10 @@ public class Teacher implements User {
     }
 
     public String toString() {
-        if (results.size() > 0) {
-            return "Name: " + name + " Email: " + email + " Password: " + password + " Static ID: " + staticID + " Results: " + results.get(0).getAnswerer().getName();
-        } else {
+//        if (results.size() > 0) {
+//            return "Name: " + name + " Email: " + email + " Password: " + password + " Static ID: " + staticID;
+//        } else {
             return "Name: " + name + " Email: " + email + " Password: " + password + " Static ID: " + staticID;
-        }
+//        }
     }
 }

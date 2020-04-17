@@ -413,11 +413,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static TestResult turnHashMapToTestResult(HashMap<String, Object> map) {
-        Student answerer = turnHashMapToStudent((HashMap<String, Object>) map.get("answerer"));
+        long studentID = (long) map.get("studentID");
         Test test = turnHashMapToTest((HashMap<String, Object>) map.get("test"));
         ArrayList<String> answers = (ArrayList<String>) map.get("answers");
         int exitedApp = (int) (long) map.get("exitedApp");
-        return new TestResult(test, answers, answerer, exitedApp);
+        String start = (String) map.get("start");
+        String end = (String) map.get("end");
+        return new TestResult(test, answers, studentID, exitedApp, start, end);
     }
 
     private static GradedTest turnHashMapToGradedTest(HashMap<String, Object> map) {
