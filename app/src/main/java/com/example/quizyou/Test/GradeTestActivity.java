@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +24,7 @@ public class GradeTestActivity extends AppCompatActivity {
     // TODO Display wrong errors
 
 //    Spinner mSpinner;
-    Button mSubmit, mBack, mGradeSelected;
+    ImageButton mBack;
 
     private ArrayList<EditText> editTexts = new ArrayList<>();
     private final static String TAG = "GradeTestActivity";
@@ -36,9 +37,7 @@ public class GradeTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_test);
 
-//        mSpinner = findViewById(R.id.spinnerTests);
         mBack = findViewById(R.id.back_button);
-       // mGradeSelected = findViewById(R.id.gradeSelectedButton);
         mListView = findViewById(R.id.grade_list_view);
 
         Log.d(TAG, ((Teacher) MainActivity.u).getResults().toString());
