@@ -11,9 +11,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
+import com.example.quizyou.Test.GradeTestActivity;
 import com.example.quizyou.Test.TestActivity;
 
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public class ReportActivity extends AppCompatActivity {
     private ImageButton mBack;
     private ArrayList<Student> students = new ArrayList<>();
     private TextView mNoTests;
+
+    private SwipeRefreshLayout mPullRefresh;
 
     public static Student selectedStudent;
 
@@ -39,7 +43,7 @@ public class ReportActivity extends AppCompatActivity {
         mBack = findViewById (R.id.back_button);
         mNoTests = findViewById(R.id.textView69);
 
-
+        mPullRefresh = findViewById(R.id.pullToRefreshReport);
 
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,9 +87,19 @@ public class ReportActivity extends AppCompatActivity {
             mNoTests.setText("");
         }
 
-
-
         StudentList adapter = new StudentList(this, R.layout.adapt_view_layout, studentsReportsList);
         mListView.setAdapter(adapter);
+
+        mPullRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                MainActivity.load();
+                Intent intent = new Intent(getApplicationContext(), ReportActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                mPullRefresh.setRefreshing(false);
+            }
+        });
     }
 }
