@@ -6,14 +6,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/assign_test"
-            android:icon="@drawable/ic_send_black_24dp"
-            android:title="@string/make_test" />
-        <item
-            android:id="@+id/grade_test"
-            android:icon="@drawable/ic_pen_is"
-            android:title="@string/grade_tests" />
-        <item
             android:icon="@drawable/ic_report"
             android:title="@string/student_reports"
             android:id="@+id/student_reports"/>
