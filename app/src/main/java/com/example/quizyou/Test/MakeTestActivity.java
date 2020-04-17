@@ -81,8 +81,9 @@ public class MakeTestActivity extends AppCompatActivity {
                 }
 
                 if (goBack) {
-                    int num = index + 2;
-                    mProblem.setText("Question " + num);
+                    int num = index + 1;
+                    int totalNum = questionTexts.size();
+                    mProblem.setText("Question " + num + "/" + totalNum);
 
                     if (index + 1 == questionTexts.size()) {
                         mPrompt.getText().clear();
@@ -97,7 +98,8 @@ public class MakeTestActivity extends AppCompatActivity {
                     }
                 } else {
                     int num = index + 2;
-                    mProblem.setText("Question " + num);
+                    int totalNum = questionTexts.size() + 2;
+                    mProblem.setText("Question " + num + "/" + totalNum);
 
                     if (index == questionTexts.size()) {
                         questionTexts.add(new QuestionTexts(mPrompt.getText().toString(), mPoints.getText().toString(), mAnswer.getText().toString()));
@@ -135,7 +137,8 @@ public class MakeTestActivity extends AppCompatActivity {
                     questionTexts.get(index).display();
 
                     int num = index + 1;
-                    mProblem.setText("Question " + num);
+                    int totalNum = questionTexts.size();
+                    mProblem.setText("Question " + num + "/" + totalNum);
                 } else {
                     // TODO Display cannot go back further
                 }
@@ -145,13 +148,15 @@ public class MakeTestActivity extends AppCompatActivity {
         mDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (index == 0) {
-                    questionTexts.remove(index);
-                    questionTexts.get(index).display();
-                } else {
-                    questionTexts.remove(index);
-                    index--;
-                    questionTexts.get(index).display();
+                if (index < questionTexts.size()) {
+                    if (index == 0) {
+                        questionTexts.remove(index);
+                        questionTexts.get(index).display();
+                    } else {
+                        questionTexts.remove(index);
+                        index--;
+                        questionTexts.get(index).display();
+                    }
                 }
                 return;
             }
