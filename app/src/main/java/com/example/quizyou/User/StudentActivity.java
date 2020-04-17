@@ -80,6 +80,8 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_navview);
 
+        MainActivity.load();
+
         mPullRefresh = findViewById(R.id.pullToRefresh);
 
         drawer = findViewById(R.id.layout1);

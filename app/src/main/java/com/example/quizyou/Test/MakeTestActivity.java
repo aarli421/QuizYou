@@ -96,7 +96,7 @@ public class MakeTestActivity extends AppCompatActivity {
                         questionTexts.get(index).display();
                     }
                 } else {
-                    int num = index + 1;
+                    int num = index + 2;
                     mProblem.setText("Question " + num);
 
                     if (index == questionTexts.size()) {

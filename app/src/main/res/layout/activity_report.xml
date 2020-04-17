@@ -30,7 +30,7 @@
         android:fontFamily="@font/bebas_regular"
         android:lineSpacingExtra="30sp"
         android:text="TextView"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
     <ImageView
         android:id="@+id/imageView23"
