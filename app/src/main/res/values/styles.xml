@@ -6,16 +6,24 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/SlideAnimation.Activity</item>
     </style>
 
-    <style name="AppTheme.NoActionBar" >
-        <item name = "windowActionBar">false</item>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/SlideAnimation.Activity</item>
     </style>
 
     <style name="dialog" parent="Theme.AppCompat.Dialog">
-        <item name = "android:windowNoTitle"> true </item>
-        <item name = "android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
-    </resources>
+    <style name="SlideAnimation.Activity" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/fadein</item>
+        <item name="android:activityOpenExitAnimation">@anim/fadeout</item>
+
+    </style>
+
+</resources>
