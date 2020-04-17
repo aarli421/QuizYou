@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (oneFinished) {
                         //handler.post(periodicUpdate);
-                        userIsLoggedIn();
+                        //userIsLoggedIn();
                     } else {
                         oneFinished = true;
                     }
@@ -119,11 +119,9 @@ public class MainActivity extends AppCompatActivity {
 
                         Log.d(TAG, TeacherActivity.teachers.toString());
 
-                        Log.d(TAG, ((Teacher) TeacherActivity.teachers.get("0")).getResults().toString());
-
                         if (oneFinished) {
                             //handler.post(periodicUpdate);
-                            userIsLoggedIn();
+                            //userIsLoggedIn();
                         } else {
                             oneFinished = true;
                         }
