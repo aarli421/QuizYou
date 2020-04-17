@@ -44,9 +44,9 @@ import static com.example.quizyou.R.string.navigation_drawer_open;
 public class TeacherActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
         //implements OnNavigationItemSelectedListener {
 
-    private Button mLogout, mGradeTests, mStudentReports, mAssignTest, mMakeTest;
+    private Button mLogout, mGradeTests, mStudentReports, mAssignTest, mMakeTest, mGradeTests1;
 
-    private TextView userText;
+    private TextView userText, mClassID;
 
     private Spinner mSpinner;
 
@@ -95,8 +95,22 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         mAssignTest = findViewById(R.id.assign);
         mMakeTest = findViewById(R.id.make);
         userText = findViewById(R.id.user);
+        mGradeTests1 = findViewById(R.id.grade_test_button);
+
+        mClassID = findViewById(R.id.classID);
+        mClassID.setText("Class ID: " + ((Teacher) MainActivity.u).getID());
 
         userText.setText(((Teacher)MainActivity.u).getName());
+
+        mGradeTests1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GradeTestActivity.class);
+                startActivity(intent);
+                finish();
+                return;
+            }
+        });
 
         mMakeTest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,16 +177,9 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
     //@Override
     public boolean onNavigationItemSelected (@NonNull MenuItem menuItem) {
         switch(menuItem.getItemId()){
-            case R.id.assign_test:
-                getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new assign_text()).commit();
-                break;
 
             case R.id.student_reports:
                 getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new view_report()).commit();
-                break;
-
-            case R.id.grade_test:
-                getSupportFragmentManager().beginTransaction().replace(R.id.der_fragment, new grade_test()).commit();
                 break;
 
             case R.id.logout:
