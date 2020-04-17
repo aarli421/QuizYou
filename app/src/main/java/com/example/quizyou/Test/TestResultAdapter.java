@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import com.example.quizyou.R;
 import com.example.quizyou.Test.TestResult;
 import com.example.quizyou.User.Student;
+import com.example.quizyou.User.StudentActivity;
 
 import org.w3c.dom.Text;
 
@@ -36,7 +37,9 @@ public class TestResultAdapter extends ArrayAdapter<TestResult> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         String testName = getItem(position).getTest().getName();
-        String studentName = getItem(position).getAnswerer().getName();
+
+        Student s = (Student) StudentActivity.students.get(getItem(position));
+        String studentName = s.getName();
 
 
         LayoutInflater inflater = LayoutInflater.from(mContext);

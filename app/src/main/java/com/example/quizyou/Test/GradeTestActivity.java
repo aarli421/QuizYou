@@ -17,6 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
 import com.example.quizyou.User.Student;
+import com.example.quizyou.User.StudentActivity;
 import com.example.quizyou.User.Teacher;
 import com.example.quizyou.User.TeacherActivity;
 
@@ -62,7 +63,8 @@ public class GradeTestActivity extends AppCompatActivity {
         ArrayList<String> list = new ArrayList<>();
         Log.d(TAG, ((Teacher) MainActivity.u).getResults().toString());
         for (TestResult t : ((Teacher) MainActivity.u).getResults()) {
-            list.add(t.getAnswerer().getName() + "'s " + t.getTest().getName());
+            Student s = (Student) StudentActivity.students.get(Long.toString(t.getStudentID()));
+            list.add(s.getName() + "'s " + t.getTest().getName());
         }
 
         ArrayList<TestResult> testResults = new ArrayList<>();

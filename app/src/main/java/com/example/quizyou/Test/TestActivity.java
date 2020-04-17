@@ -29,7 +29,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 
 public class TestActivity extends AppCompatActivity {
@@ -41,6 +45,8 @@ public class TestActivity extends AppCompatActivity {
     private ImageButton mSubmit, mNext, mBack;
 
     private String[] answersArr;
+
+    private String start, end;
 
     private Test test;
 
@@ -55,6 +61,11 @@ public class TestActivity extends AppCompatActivity {
 
         test = StudentActivity.selectedTest;
         if (test == null) return;
+
+        final SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date currentTime = Calendar.getInstance().getTime();
+        start = sdf.format(currentTime);
+
 
         answersArr = new String[test.getQuestions().size()];
 
@@ -101,6 +112,7 @@ public class TestActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
+                end = sdf.format(Calendar.getInstance().getTime());
                 finishTest(test);
             }
         }.start();
@@ -116,6 +128,7 @@ public class TestActivity extends AppCompatActivity {
                     countDownTimer.cancel();
                     Toast.makeText(TestActivity.this,"Test Submitted", Toast.LENGTH_LONG).show();
                     finishTest(test);
+                    end = sdf.format(Calendar.getInstance().getTime());                
                 }
             }
         });
@@ -187,7 +200,7 @@ public class TestActivity extends AppCompatActivity {
 
         for (Map.Entry<String, Object> m : TeacherActivity.teachers.entrySet()) {
             if (((Teacher) m.getValue()).getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID()))) {// && ((Teacher) m.getValue()).getAssignedTests().contains(test)) {
-                ((Teacher) m.getValue()).addTestResults(new TestResult(test, answers, (Student) MainActivity.u, exitedApp));
+                ((Teacher) m.getValue()).addTestResults(new TestResult(test, answers, ((Student) MainActivity.u).getID(), exitedApp, start, end));
                 ((Student) MainActivity.u).addTaken(test);
 
                 MainActivity.mDb.collection("Students")

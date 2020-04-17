@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
+import com.example.quizyou.User.Student;
 import com.example.quizyou.User.StudentActivity;
 import com.example.quizyou.User.Teacher;
 import com.example.quizyou.User.TeacherActivity;
@@ -23,6 +24,8 @@ public class GradeStudentTestActivity extends AppCompatActivity {
     private EditText mPoints, mNotes;
     private ImageButton mNext, mBack, mSubmit,mBackback;
     private int[] points;
+
+    private Student s;
 
     private static final String TAG = "GradeStudentActivity";
 
@@ -49,7 +52,9 @@ public class GradeStudentTestActivity extends AppCompatActivity {
         mBack = findViewById(R.id.gradeTestBack);
         mSubmit = findViewById(R.id.gradeTestSubmit);
 
-        mStudentName.setText(GradeTestActivity.selectedTestResult.getAnswerer().getName());
+        s = (Student) StudentActivity.students.get(Long.toString(GradeTestActivity.selectedTestResult.getStudentID()));
+
+        mStudentName.setText(s.getName());
         mExits.setText(Integer.toString(GradeTestActivity.selectedTestResult.getExitedApp()));
 
         points = new int[GradeTestActivity.selectedTestResult.getQuestions().size()];
@@ -157,13 +162,13 @@ public class GradeStudentTestActivity extends AppCompatActivity {
 
         ((Teacher) MainActivity.u).removeTestResults(GradeTestActivity.selectedTestResult);
         ((Teacher) TeacherActivity.teachers.get(Long.toString(((Teacher) MainActivity.u).getID()))).removeTestResults(GradeTestActivity.selectedTestResult);
-        ((Teacher) MainActivity.u).addGradedTests(new GradedTest(GradeTestActivity.selectedTestResult.getTest(), score, finalTotalScore, note, GradeTestActivity.selectedTestResult.getAnswerer().getID()));
-        GradeTestActivity.selectedTestResult.getAnswerer().addReport(new GradedTest(GradeTestActivity.selectedTestResult.getTest(), score, finalTotalScore, note, GradeTestActivity.selectedTestResult.getAnswerer().getID()));
+        ((Teacher) MainActivity.u).addGradedTests(new GradedTest(GradeTestActivity.selectedTestResult.getTest(), score, finalTotalScore, note, s.getID()));
+        s.addReport(new GradedTest(GradeTestActivity.selectedTestResult.getTest(), score, finalTotalScore, note, s.getID()));
         Log.d(TAG, "Score: " + score + " Final Score: " + finalTotalScore + " Note: " + note);
 
         MainActivity.mDb.collection("Students")
-                .document(Long.toString(GradeTestActivity.selectedTestResult.getAnswerer().getID()))
-                .update("reports", GradeTestActivity.selectedTestResult.getAnswerer().getReports());
+                .document(Long.toString(s.getID()))
+                .update("reports", s.getReports());
 
         Log.d(TAG, ((Teacher) MainActivity.u).getResults().toString());
 
