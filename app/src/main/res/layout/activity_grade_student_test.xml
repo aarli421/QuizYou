@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/gradeTestStudentName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Student" />
+
+    <TextView
+        android:id="@+id/gradeTestExits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exits" />
+
+    <TextView
+        android:id="@+id/gradeTestQuestionNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Question Number" />
+
+    <TextView
+        android:id="@+id/gradeTestStudentAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Student Answer" />
+
+    <TextView
+        android:id="@+id/gradeTestAnswerKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer Key" />
+
+    <TextView
+        android:id="@+id/gradeTestPrompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prompt" />
+
+    <EditText
+        android:id="@+id/gradeTestPoints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="Points"/>
+
+    <EditText
+        android:id="@+id/gradeTestNotes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Notes" />
+
+    <Button
+        android:id="@+id/gradeTestNext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Next" />
+
+    <Button
+        android:id="@+id/gradeTestBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back" />
+
+    <Button
+        android:id="@+id/gradeTestSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit" />
+</LinearLayout>

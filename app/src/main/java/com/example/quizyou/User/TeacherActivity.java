@@ -70,6 +70,8 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation_view);
 
+        MainActivity.load();
+
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
