@@ -22,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
@@ -51,6 +52,8 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
     private ImageView mLogout, mGradeTests, mStudentReports, mAssignTest, mMakeTest, mGradeTests1;
 
     private TextView userText, mClassID;
+
+    private int count = 0;
 
     private Spinner mSpinner;
 
@@ -148,6 +151,7 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
                 for (Test t : ((Teacher) MainActivity.u).getMadeTests()) {
                     if (t.getName().equals(mSpinner.getSelectedItem().toString())) {
                         MainActivity.load();
+                        count ++;
 
                         ((Teacher) MainActivity.u).addAssignedTest(t);
 
@@ -156,11 +160,18 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
                                 .update("madeTests", ((Teacher) MainActivity.u).getMadeTests(),
                                         "assignedTests", ((Teacher) MainActivity.u).getAssignedTests());
 
+
+                        Toast.makeText(TeacherActivity.this,"Test " + t.getName() + " Successfully Assigned", Toast.LENGTH_LONG).show();
+
                         //MainActivity.save();
 
                         resetSpinner();
                         break;
                     }
+                }
+
+                if (count == 0){
+                    Toast.makeText(TeacherActivity.this,"No Test Selected", Toast.LENGTH_LONG).show();
                 }
             }
         });
