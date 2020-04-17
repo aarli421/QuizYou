@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class TestActivity extends AppCompatActivity {
     private EditText mAnswer;
 
     private static final String TAG = "TestActivity";
-    private Button mSubmit, mNext, mBack;
+    private ImageButton mSubmit, mNext, mBack;
 
     private String[] answersArr;
 
