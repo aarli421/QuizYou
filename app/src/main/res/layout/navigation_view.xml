@@ -112,7 +112,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/panel_3" />
+            app:srcCompat="@drawable/panel_3"
+            android:background="@android:color/transparent"/>
 
         <ImageView
             android:id="@+id/make"
