@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -45,6 +46,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     private TextView mLoginHere;
 
+    private ImageView mQuizYouView;
+
     private ArrayList<UserItem> mUserList;
     private UserAdapter mAdapter;
 
@@ -67,6 +70,12 @@ public class SignUpActivity extends AppCompatActivity {
         initList();
 
         mSpinner = findViewById(R.id.dropdown);
+
+        final Animation animation;
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in_out);
+
+        mQuizYouView = findViewById(R.id.quizYouText);
+        mQuizYouView.startAnimation(animation);
 
         mAdapter = new UserAdapter(this, mUserList);
         mSpinner.setAdapter(mAdapter);
