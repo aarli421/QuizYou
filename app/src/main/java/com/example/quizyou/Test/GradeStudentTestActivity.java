@@ -6,19 +6,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
+import com.example.quizyou.User.StudentActivity;
 import com.example.quizyou.User.Teacher;
 
 public class GradeStudentTestActivity extends AppCompatActivity {
 
     private TextView mStudentName, mExits, mQuestionNumber, mStudentAnswer, mAnswerKey, mPrompt;
     private EditText mPoints, mNotes;
-    private Button mNext, mBack, mSubmit;
+    private ImageButton mNext, mBack, mSubmit,mBackback;
     private int[] points;
 
     private static final String TAG = "GradeStudentActivity";
@@ -31,7 +33,7 @@ public class GradeStudentTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grade_student_test);
 
         MainActivity.load();
-
+        mBackback = findViewById(R.id.back_button);
         mStudentName = findViewById(R.id.gradeTestStudentName);
         mExits = findViewById(R.id.gradeTestExits);
         mQuestionNumber = findViewById(R.id.gradeTestQuestionNumber);
@@ -108,6 +110,17 @@ public class GradeStudentTestActivity extends AppCompatActivity {
                 }
 
                 finishTest();
+            }
+        });
+
+        mBackback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), GradeTestActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                return;
             }
         });
     }
