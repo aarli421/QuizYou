@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,9 +38,9 @@ public class MakeTestActivity extends AppCompatActivity {
     private int index = 0;
     private boolean goBack = false;
 
-    Button mNext, mBack, mBackToHome;
+    ImageButton mNext, mBack, mBackToHome, mDelete, mSubmit;
     public static EditText mTestName, mTimeLimit, mPrompt, mAnswer, mPoints;
-    public static TextView mProblem, mDelete, mSubmit;
+    public static TextView mProblem;
 
     private static final String TAG = "MakeTestActivity";
 
