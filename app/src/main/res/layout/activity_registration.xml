@@ -21,36 +21,6 @@
         app:srcCompat="@drawable/register_title_text" />
 
     <ImageView
-        android:id="@+id/imageView16"
-        android:layout_width="308dp"
-        android:layout_height="118dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="53dp"
-        android:layout_marginRight="53dp"
-        android:layout_marginBottom="29dp"
-        app:srcCompat="@drawable/login_button_background" />
-
-    <Button
-        android:id="@+id/signUp"
-        android:layout_width="294dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageView16"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="53dp"
-        android:layout_marginLeft="53dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="56dp"
-        android:paddingBottom="10dp"
-        android:background="@android:color/transparent"
-        android:text="Sign Up"
-        android:textColor="@color/cardview_light_background" />
-
-    <ImageView
         android:id="@+id/imageView8"
         android:layout_width="390dp"
         android:layout_height="72dp"
@@ -170,19 +140,49 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="463dp"
-        android:layout_height="795dp"
+        android:layout_width="480dp"
+        android:layout_height="833dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-        android:layout_marginStart="-49dp"
-        android:layout_marginLeft="-49dp"
-        android:layout_marginTop="85dp"
-        android:layout_marginEnd="-2dp"
-        android:layout_marginBottom="-148dp"
+        android:layout_marginStart="-6dp"
+        android:layout_marginLeft="-6dp"
+        android:layout_marginTop="-19dp"
+        android:layout_marginEnd="-63dp"
+        android:layout_marginBottom="-150dp"
         app:srcCompat="@drawable/person" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="308dp"
+        android:layout_height="118dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="53dp"
+        android:layout_marginRight="53dp"
+        android:layout_marginBottom="29dp"
+        app:srcCompat="@drawable/login_button_background" />
+
+    <Button
+        android:id="@+id/signUp"
+        android:layout_width="294dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageView16"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="53dp"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="56dp"
+        android:background="@android:color/transparent"
+        android:paddingBottom="10dp"
+        android:text="Sign Up"
+        android:textColor="@color/cardview_light_background" />
 
 </RelativeLayout>

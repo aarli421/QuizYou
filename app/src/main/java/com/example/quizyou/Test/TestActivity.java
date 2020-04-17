@@ -75,40 +75,7 @@ public class TestActivity extends AppCompatActivity {
 
         for (int i = 0; i < answersArr.length; i++) answersArr[i] = "";
 
-        mSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                answersArr[index] = mAnswer.getText().toString();
-
-                finishTest(test);
-            }
-        });
-
-        mNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (index < test.getQuestions().size() - 1) {
-                    answersArr[index] = mAnswer.getText().toString();
-
-                    index++;
-                    display();
-                }
-            }
-        });
-
-        mBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (index > 0) {
-                    answersArr[index] = mAnswer.getText().toString();
-
-                    index--;
-                    display();
-                }
-            }
-        });
-
-        new CountDownTimer(test.getTimeLimit(), 1000) {
+        final CountDownTimer countDownTimer = new CountDownTimer(test.getTimeLimit(), 1000) {
 
             public void onTick(long millisUntilFinished) {
                 long hours = millisUntilFinished / 3600000;
@@ -136,6 +103,39 @@ public class TestActivity extends AppCompatActivity {
                 finishTest(test);
             }
         }.start();
+
+        mSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                answersArr[index] = mAnswer.getText().toString();
+                countDownTimer.cancel();
+                finishTest(test);
+            }
+        });
+
+        mNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (index < test.getQuestions().size() - 1) {
+                    answersArr[index] = mAnswer.getText().toString();
+
+                    index++;
+                    display();
+                }
+            }
+        });
+
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (index > 0) {
+                    answersArr[index] = mAnswer.getText().toString();
+
+                    index--;
+                    display();
+                }
+            }
+        });
 
         //handler.postDelayed(periodicUpdate, test.getTimeLimit());
     }
@@ -179,8 +179,6 @@ public class TestActivity extends AppCompatActivity {
         MainActivity.load();
 
         for (Map.Entry<String, Object> m : TeacherActivity.teachers.entrySet()) {
-            Log.d(TAG, ((Teacher) m.getValue()) + " " + ((Student) MainActivity.u));
-
             if (((Teacher) m.getValue()).getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID()))) {// && ((Teacher) m.getValue()).getAssignedTests().contains(test)) {
                 ((Teacher) m.getValue()).addTestResults(new TestResult(test, answers, (Student) MainActivity.u, exitedApp));
                 ((Student) MainActivity.u).addTaken(test);
