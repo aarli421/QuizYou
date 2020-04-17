@@ -1,4 +1,4 @@
-package com.example.quizyou.Test.Question;
+package com.example.quizyou.Test;
 
 import android.content.Context;
 import android.view.LayoutInflater;
