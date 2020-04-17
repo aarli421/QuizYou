@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -44,7 +46,7 @@ import static com.example.quizyou.R.string.navigation_drawer_open;
 public class TeacherActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
         //implements OnNavigationItemSelectedListener {
 
-    private Button mLogout, mGradeTests, mStudentReports, mAssignTest, mMakeTest, mGradeTests1;
+    private ImageView mLogout, mGradeTests, mStudentReports, mAssignTest, mMakeTest, mGradeTests1;
 
     private TextView userText, mClassID;
 

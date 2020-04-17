@@ -46,10 +46,9 @@
         android:layout_marginTop="112dp"
         android:layout_marginEnd="41dp"
         android:layout_marginRight="41dp"
-        android:fontFamily="@font/open_sans"
+        android:fontFamily="@font/hind_guntur"
         android:text="Prompt"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/timeRemaining"
@@ -95,15 +94,14 @@
         android:layout_marginRight="29dp"
         android:background="@drawable/big_box"
         android:ems="10"
-        android:fontFamily="@font/open_sans"
+        android:fontFamily="@font/hind_guntur"
         android:gravity="start"
         android:inputType="textMultiLine|textPersonName"
         android:padding="10dp"
         android:scrollHorizontally="false"
         android:text="Answer"
         android:textAlignment="textStart"
-        android:textColor="#707070"
-        android:textStyle="bold" />
+        android:textColor="#707070" />
 
     <ImageButton
         android:id="@+id/submitTest"
