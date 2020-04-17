@@ -106,7 +106,13 @@ public class Teacher implements User {
     }
 
     public void removeTestResults(TestResult r) {
-        results.remove(r);
+        System.out.println("Gay");
+        for (int i = 0; i < results.size(); i++) {
+            if (r.getAnswerer().getID() == results.get(i).getAnswerer().getID() && r.getTest().getName() == results.get(i).getTest().getName() && r.getExitedApp() == results.get(i).getExitedApp()) {
+                results.remove(i);
+                break;
+            }
+        }
     }
 
     public void addGradedTests(GradedTest g) {

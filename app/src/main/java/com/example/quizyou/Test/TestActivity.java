@@ -166,7 +166,7 @@ public class TestActivity extends AppCompatActivity {
         mAnswer.setText(answersArr[index]);
         mPrompt.setText(test.getQuestions().get(index).getPrompt());
         int questionNum = index + 1;
-        mQuestionNumber.setText("Question " + questionNum);
+        mQuestionNumber.setText("Question " + questionNum + "/" + test.getQuestions().size());
     }
 
     public void finishTest(Test test) {

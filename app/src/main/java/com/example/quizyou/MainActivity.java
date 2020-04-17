@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if (oneFinished) {
                         //handler.post(periodicUpdate);
-                        //userIsLoggedIn();
+                        userIsLoggedIn();
                     } else {
                         oneFinished = true;
                     }
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
                         if (oneFinished) {
                             //handler.post(periodicUpdate);
-                            //userIsLoggedIn();
+                            userIsLoggedIn();
                         } else {
                             oneFinished = true;
                         }
