@@ -92,59 +92,7 @@ public class MainActivity extends AppCompatActivity {
         quizView.startAnimation(animation);
         handler.postDelayed(runnable, 500);
 
-        mDb.collection("Students")
-            .get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                    int index = 0;
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        index++;
-                        StudentActivity.students.put(document.getId(), turnHashMapToStudent((HashMap<String, Object>) document.getData()));
-                    }
-
-                    Student.setStaticID(index);
-
-                    Log.d(TAG, StudentActivity.students.toString());
-
-                    if (oneFinished) {
-                        //handler.post(periodicUpdate);
-                        userIsLoggedIn();
-                    } else {
-                        oneFinished = true;
-                    }
-                }
-            });
-
-        mDb.collection("Teachers")
-            .get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-
-                        int index = 0;
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            index++;
-                            TeacherActivity.teachers.put(document.getId(), turnHashMapToTeacher((HashMap<String, Object>) document.getData()));
-                        }
-
-                        Teacher.setStaticID(index);
-
-                        Log.d(TAG, TeacherActivity.teachers.toString());
-
-                        if (oneFinished) {
-                            //handler.post(periodicUpdate);
-                            userIsLoggedIn();
-                        } else {
-                            oneFinished = true;
-                        }
-                    } else {
-                        Log.d(TAG, "Error getting documents: ", task.getException());
-                    }
-                }
-            });
+        userIsLoggedIn();
 
         FirebaseApp.initializeApp(this);
 
@@ -345,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Saving " + t.getName() + "...");
     }
 
-    private static Student turnHashMapToStudent(HashMap<String, Object> map) {
+    public static Student turnHashMapToStudent(HashMap<String, Object> map) {
         ArrayList<Test> taken = new ArrayList<>();
         ArrayList<Object> takenList = (ArrayList<Object>) map.get("taken");
         for (Object obj : takenList) {
@@ -373,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
         return s;
     }
 
-    private static Teacher turnHashMapToTeacher(HashMap<String, Object> map) {
+    public static Teacher turnHashMapToTeacher(HashMap<String, Object> map) {
         ArrayList<String> studentIDs = new ArrayList<>();
         ArrayList<Object> studentIDsList = (ArrayList<Object>) map.get("studentIDs");
         for (Object obj : studentIDsList) {
