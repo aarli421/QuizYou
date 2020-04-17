@@ -138,6 +138,13 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
 
                         Teacher t = (Teacher) TeacherActivity.teachers.get(mResponse.getText().toString());
 
+                        String temp = mResponse.getText().toString();
+                        if (temp.length() == 0){
+                            Toast.makeText(StudentActivity.this,"Please enter a code", Toast.LENGTH_LONG).show();
+                            return;
+
+                        }
+
                         if (!(t.getStudentIDs().contains(Long.toString(((Student) MainActivity.u).getID())))) {
                             t.addStudents(Long.toString(((Student) MainActivity.u).getID()));
 
@@ -148,7 +155,8 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
 
                             Log.d(TAG, t.getStudentIDs().toString());
                             Toast.makeText(StudentActivity.this,"Joined " +  ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getName() +"'s class", Toast.LENGTH_LONG).show();
-                        } else {
+                        }
+                        else {
                             // TODO Already joined class dialog
                             Toast.makeText(StudentActivity.this,"Already joined " +  ((Teacher) TeacherActivity.teachers.get(mResponse.getText().toString())).getName() +"'s class", Toast.LENGTH_LONG).show();
                         }
