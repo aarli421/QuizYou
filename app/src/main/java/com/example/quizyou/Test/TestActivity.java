@@ -4,11 +4,13 @@ import android.app.Application;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,7 +37,7 @@ public class TestActivity extends AppCompatActivity {
     private EditText mAnswer;
 
     private static final String TAG = "TestActivity";
-    private Button mSubmit, mNext, mBack;
+    private ImageButton mSubmit, mNext, mBack;
 
     private String[] answersArr;
 
@@ -106,7 +108,36 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
-        handler.postDelayed(periodicUpdate, test.getTimeLimit());
+        new CountDownTimer(test.getTimeLimit(), 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                long hours = millisUntilFinished / 3600000;
+                long minutes = (millisUntilFinished - hours * 3600000) / 60000;
+                long seconds = (millisUntilFinished - hours * 3600000 - minutes * 60000) / 1000;
+
+                String hoursStr = "", minutesStr = "", secondsStr = "";
+
+                if (hours <= 9) {
+                    hoursStr = "0";
+                }
+
+                if (minutes <= 9) {
+                    minutesStr = "0";
+                }
+
+                if (seconds <= 9) {
+                    secondsStr = "0";
+                }
+
+                mTimeRemaining.setText(hoursStr + hours + ":" + minutesStr + minutes + ":" + secondsStr + seconds);
+            }
+
+            public void onFinish() {
+                finishTest(test);
+            }
+        }.start();
+
+        //handler.postDelayed(periodicUpdate, test.getTimeLimit());
     }
 
     @Override

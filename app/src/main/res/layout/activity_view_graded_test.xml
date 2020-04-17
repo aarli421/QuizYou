@@ -28,8 +28,9 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="147dp"
-        android:fontFamily="@font/montserrat"
-        android:textColor="#656565" />
+        android:fontFamily="@font/bebas_regular"
+        android:textColor="#656565"
+        android:textSize="24sp" />
 
     <ImageButton
         android:id="@+id/back_button"
