@@ -9,19 +9,22 @@ public class TestResult {
     private ArrayList<Question> questions;
     private ArrayList<String> answers;
     private Test test;
-    private Student answerer;
+    private long studentID;
     private int exitedApp;
+    private String start, end;
 
-    public TestResult(Test test, ArrayList<String> answers, Student student, int exitedApp) {
+    public TestResult(Test test, ArrayList<String> answers, long studentID, int exitedApp, String start, String end) {
         this.test = test;
         questions = test.getQuestions();
         this.answers = answers;
-        answerer = student;
+        this.studentID = studentID;
         this.exitedApp = exitedApp;
+        this.start = start;
+        this.end = end;
     }
 
-    public Student getAnswerer() {
-        return answerer;
+    public long getStudentID() {
+        return studentID;
     }
 
     public ArrayList<Question> getQuestions() {
@@ -30,6 +33,14 @@ public class TestResult {
 
     public ArrayList<String> getAnswers() {
         return answers;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public String getEnd() {
+        return end;
     }
 
     public int getExitedApp() {
