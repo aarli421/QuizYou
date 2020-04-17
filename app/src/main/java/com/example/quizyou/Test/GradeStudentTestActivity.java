@@ -20,7 +20,7 @@ import com.example.quizyou.User.TeacherActivity;
 
 public class GradeStudentTestActivity extends AppCompatActivity {
 
-    private TextView mStudentName, mExits, mQuestionNumber, mStudentAnswer, mAnswerKey, mPrompt;
+    private TextView mStudentName, mExits, mQuestionNumber, mStudentAnswer, mAnswerKey, mPrompt, mStart, mStopped;
     private EditText mPoints, mNotes;
     private ImageButton mNext, mBack, mSubmit,mBackback;
     private int[] points;
@@ -37,6 +37,8 @@ public class GradeStudentTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_grade_student_test);
 
         //MainActivity.load();
+        mStart = findViewById(R.id.timeStart);
+        mStopped = findViewById(R.id.timeStopped);
         mBackback = findViewById(R.id.back_button);
         mStudentName = findViewById(R.id.gradeTestStudentName);
         mExits = findViewById(R.id.gradeTestExits);
@@ -129,6 +131,9 @@ public class GradeStudentTestActivity extends AppCompatActivity {
                 return;
             }
         });
+
+        mStart.setText(GradeTestActivity.selectedTestResult.getStart());
+        mStopped.setText(GradeTestActivity.selectedTestResult.getEnd());
     }
 
     private void display() {
