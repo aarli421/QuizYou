@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -97,6 +98,10 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selection = parent.getItemAtPosition(position).toString();
+
+                if (!selection.equals("Select One")) {
+                    Toast.makeText(SignUpActivity.this, "Selected " + selection, Toast.LENGTH_SHORT).show();
+                }
 //                selection = clickedItem.getUserName();
 
                 Log.d(TAG, selection);
