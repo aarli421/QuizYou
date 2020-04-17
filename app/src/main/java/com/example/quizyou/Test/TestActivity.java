@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -107,9 +108,15 @@ public class TestActivity extends AppCompatActivity {
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answersArr[index] = mAnswer.getText().toString();
-                countDownTimer.cancel();
-                finishTest(test);
+                if (mAnswer.getText().length() == 0){
+                    Toast.makeText(TestActivity.this,"Please fill out an answer", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    answersArr[index] = mAnswer.getText().toString();
+                    countDownTimer.cancel();
+                    Toast.makeText(TestActivity.this,"Test Submitted", Toast.LENGTH_LONG).show();
+                    finishTest(test);
+                }
             }
         });
 
