@@ -21,29 +21,50 @@
 
     <EditText
         android:id="@+id/testName"
-        android:layout_width="166dp"
-        android:layout_height="40dp"
+        android:layout_width="114dp"
+        android:layout_height="32dp"
         android:layout_alignParentStart="true"
         android:background="@android:color/transparent"
         android:ems="10"
         android:fontFamily="@font/bebas_regular"
         android:hint="Test Name"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine|textPersonName"
         android:textColor="#393939"
-        android:textSize="30sp"
+        android:textSize="24sp"
 
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.122"
+        app:layout_constraintHorizontal_bias="0.418"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.052" />
+
+    <TextView
+        android:id="@+id/asdf"
+        android:layout_width="115dp"
+        android:layout_height="37dp"
+        android:layout_alignParentStart="true"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:fontFamily="@font/bebas_regular"
+        android:hint="Test Name:"
+        android:inputType="textPersonName"
+        android:textColor="#272727"
+        android:textSize="24sp"
+
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.056" />
 
     <EditText
         android:id="@+id/timeLimit"
-        android:layout_width="196dp"
-        android:layout_height="40dp"
+        android:layout_width="92dp"
+        android:layout_height="29dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@android:color/transparent"
@@ -52,14 +73,35 @@
         android:hint="Time Limit"
         android:inputType="number"
         android:textColor="#505050"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
+        app:layout_constraintHorizontal_bias="0.987"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.053" />
+
+    <TextView
+        android:id="@+id/timeLimit3"
+        android:layout_width="94dp"
+        android:layout_height="26dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:fontFamily="@font/bebas_regular"
+        android:hint="Time Limit:"
+        android:inputType="number"
+        android:textColor="#505050"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.697"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.054" />
 
     <EditText
         android:id="@+id/prompt"
