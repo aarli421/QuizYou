@@ -53,7 +53,7 @@ public class ViewGradedTestActivity extends AppCompatActivity {
         });
 
         ListView mListView = (ListView) findViewById(R.id.list_view1);
-        
+
         if (((Student) MainActivity.u).getReports().size() == 0){
             mNoTests.setText("No graded tests right now");
         } else {
@@ -66,7 +66,7 @@ public class ViewGradedTestActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 MainActivity.load();
-                Intent intent = new Intent(getApplicationContext(), GradeTestActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ViewGradedTestActivity.class);
                 //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 finish();
