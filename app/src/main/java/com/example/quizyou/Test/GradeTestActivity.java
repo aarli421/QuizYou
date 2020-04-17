@@ -9,11 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
+import com.example.quizyou.User.Student;
 import com.example.quizyou.User.Teacher;
 import com.example.quizyou.User.TeacherActivity;
 
@@ -29,14 +31,14 @@ public class GradeTestActivity extends AppCompatActivity {
     private ArrayList<EditText> editTexts = new ArrayList<>();
     private final static String TAG = "GradeTestActivity";
     private ListView mListView;
-
+    private TextView mNoTest;
     public static TestResult selectedTestResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grade_test);
-
+        mNoTest = findViewById(R.id.noTest);
         mBack = findViewById(R.id.back_button);
         mListView = findViewById(R.id.grade_list_view);
 
@@ -76,5 +78,11 @@ public class GradeTestActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        if (((Teacher) MainActivity.u).getResults().size() == 0){
+            mNoTest.setText("No tests to grade right now");
+        } else {
+            mNoTest.setText("");
+        }
     }
 }
