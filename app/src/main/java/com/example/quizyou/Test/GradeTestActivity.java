@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.quizyou.MainActivity;
 import com.example.quizyou.R;
@@ -22,6 +23,8 @@ import com.example.quizyou.User.TeacherActivity;
 import java.util.ArrayList;
 
 public class GradeTestActivity extends AppCompatActivity {
+
+    private SwipeRefreshLayout mPullRefresh;
 
     // TODO Display wrong errors
 
@@ -43,6 +46,8 @@ public class GradeTestActivity extends AppCompatActivity {
         mListView = findViewById(R.id.grade_list_view);
 
         Log.d(TAG, ((Teacher) MainActivity.u).getResults().toString());
+
+        mPullRefresh = findViewById(R.id.pullToRefreshGradeTests);
 
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,5 +89,17 @@ public class GradeTestActivity extends AppCompatActivity {
         } else {
             mNoTest.setText("");
         }
+
+        mPullRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                MainActivity.load();
+                Intent intent = new Intent(getApplicationContext(), GradeTestActivity.class);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+                mPullRefresh.setRefreshing(false);
+            }
+        });
     }
 }
