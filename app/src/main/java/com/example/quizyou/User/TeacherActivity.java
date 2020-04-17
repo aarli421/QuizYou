@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -49,7 +50,7 @@ import static com.example.quizyou.R.string.navigation_drawer_open;
 public class TeacherActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
         //implements OnNavigationItemSelectedListener {
 
-    private ImageView mLogout, mGradeTests, mStudentReports, mAssignTest, mMakeTest, mGradeTests1;
+    private ImageView mLogout, mGradeTests, mStudentReports, mAssignTest, mMakeTest, mGradeTests1, mPullRight;
 
     private TextView userText, mClassID;
 
@@ -79,6 +80,7 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         NavigationView navigationView = findViewById(R.id.nav_viewer);
         navigationView.setNavigationItemSelectedListener(this);
 
+        mPullRight = findViewById(R.id.pullRightArrowTeacher);
         mPullRefresh = findViewById(R.id.pullToRefreshTeacher);
 
 //        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, navigation_drawer_open, R.string.navigation_drawer_close);
@@ -96,8 +98,29 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         final Animation animation;
         animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in_out);
 
+        final ConstraintLayout constraintLayout = findViewById(R.id.der_fragment);
+
         final Animation animation1;
-        animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate);
+        animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.righttoleft);
+
+        mPullRight.startAnimation(animation1);
+
+        animation1.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                constraintLayout.removeView(mPullRight);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
         mSpinner = findViewById(R.id.madeTestSpinner);
         mAssignTest = findViewById(R.id.assign);
@@ -110,7 +133,7 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
 
         userText.setText(((Teacher)MainActivity.u).getName());
 
-        mClassID.startAnimation(animation);
+        //mClassID.startAnimation(animation);
 
 //        mSpinner.startAnimation(animation1);
 //        mAssignTest.startAnimation(animation1);

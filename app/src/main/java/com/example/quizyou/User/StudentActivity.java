@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import android.widget.Spinner;
@@ -39,7 +42,7 @@ import java.util.Map;
 public class StudentActivity extends AppCompatActivity implements OnNavigationItemSelectedListener {
 
     private Button mLogout, mJoinClass, mReports, mTakeTest;
-    private ImageView mRefresh;
+    private ImageView mPullRight;
 
     private Spinner mSpinner;
 
@@ -65,6 +68,31 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
         MainActivity.load();
 
         mPullRefresh = findViewById(R.id.pullToRefresh);
+        mPullRight = findViewById(R.id.pullRightArrow);
+
+        final RelativeLayout studentRelative = findViewById(R.id.studentRelativeView);
+
+        final Animation animation;
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.righttoleft);
+
+        mPullRight.startAnimation(animation);
+
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                studentRelative.removeView(mPullRight);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
 
         drawer = findViewById(R.id.layout1);
         NavigationView navigationView = findViewById(R.id.nav_viewer1);
