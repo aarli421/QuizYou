@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -105,7 +106,7 @@ public class SignUpActivity extends AppCompatActivity {
                     // TODO Tell user to select one
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(new ContextThemeWrapper(SignUpActivity.this, R.style.dialog));
                     View mView = getLayoutInflater().inflate(R.layout.activity_select_one, null);
-                    Button mClose = (Button) mView.findViewById(R.id.close);
+                    ImageButton mClose =  mView.findViewById(R.id.close);
 
                     mBuilder.setView(mView);
                     final AlertDialog dialog = mBuilder.create();
