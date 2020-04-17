@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -55,13 +57,6 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
     private static final String TAG = "TeacherActivity";
 
     public static Map<String, Object> teachers = new HashMap<>();
-
-    // TODO Menu to view Email/Password/ID/Name/Code/Logout
-    // TODO View list of students, list of test made, list of tests results, list of test assigned
-    // TODO Make test button
-    // TODO Grade test button
-    // TODO ArrayList of teachers
-
     private DrawerLayout drawer;
 
 
@@ -93,6 +88,12 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
         TextView email = header.findViewById(R.id.email);
         TextView name = header.findViewById(R.id.name);
 
+        final Animation animation;
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in_out);
+
+        final Animation animation1;
+        animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.rotate);
+
         mSpinner = findViewById(R.id.madeTestSpinner);
         mAssignTest = findViewById(R.id.assign);
         mMakeTest = findViewById(R.id.make);
@@ -104,9 +105,19 @@ public class TeacherActivity extends AppCompatActivity implements OnNavigationIt
 
         userText.setText(((Teacher)MainActivity.u).getName());
 
+        mClassID.startAnimation(animation);
+
+//        mSpinner.startAnimation(animation1);
+//        mAssignTest.startAnimation(animation1);
+//        mMakeTest.startAnimation(animation1);
+//        mGradeTests1.startAnimation(animation1);
+//        userText.startAnimation(animation1);
+
         mGradeTests1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent intent = new Intent(getApplicationContext(), GradeTestActivity.class);
                 startActivity(intent);
                 finish();

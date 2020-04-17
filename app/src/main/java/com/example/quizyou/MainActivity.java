@@ -10,9 +10,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -61,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mLogin;
     private TextView mGoToSignUp;
 
+    private ImageView quizView, youView;
+
     private boolean oneFinished = false;
 
     public static String email, password;
@@ -70,12 +75,22 @@ public class MainActivity extends AppCompatActivity {
 
     private final static String TAG = "MainActivity";
 
+    private Animation animation;
+
     public static User u;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layout_xd);
+
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.zoom_in_out);
+
+        quizView = findViewById(R.id.quizText);
+        youView = findViewById(R.id.youText);
+
+        quizView.startAnimation(animation);
+        handler.postDelayed(runnable, 500);
 
         mDb.collection("Students")
             .get()
@@ -156,6 +171,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public static Handler handler = new Handler();
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            youView.startAnimation(animation);
+        }
+    };
 
     private void logInWithEmailAuthCredential() {
         if (mLoginEmail.getText().toString() == null || mLoginPassword.getText().toString() == null) return;

@@ -23,7 +23,11 @@
     <style name="SlideAnimation.Activity" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/fadein</item>
         <item name="android:activityOpenExitAnimation">@anim/fadeout</item>
+    </style>
 
+    <style name="Animation">
+        <item name="android:windowEnterAnimation">@anim/popupanim</item>
+        <item name="android:windowExitAnimation">@anim/popupanim</item>
     </style>
 
 </resources>

@@ -132,6 +132,7 @@ public class StudentActivity extends AppCompatActivity implements OnNavigationIt
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(new ContextThemeWrapper(StudentActivity.this, R.style.dialog));
+
                 View mView = getLayoutInflater().inflate(R.layout.activity_join_class, null);
 
                 final EditText mResponse = (EditText)  mView.findViewById(R.id.code);
