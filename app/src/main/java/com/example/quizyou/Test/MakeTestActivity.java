@@ -77,13 +77,20 @@ public class MakeTestActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mPrompt.getText().toString().length() == 0 || mPoints.getText().toString().length() == 0 || mAnswer.getText().toString().length() == 0) {
+                    // TODO Tell user to fill out something
                     return;
                 }
 
+                try {
+                    Log.d(TAG, "On index " + index + " which corresponds with " + questionTexts.get(index));
+                } catch (Exception e) {
+                    Log.d(TAG, "Could not print because of " + e);
+                }
+
                 if (goBack) {
-                    int num = index + 1;
+                    int num = index + 2;
                     int totalNum = questionTexts.size();
-                    mProblem.setText("Question " + num + "/" + totalNum);
+                    mProblem.setText("On Question: " + num + "\nQuestions Made: " + totalNum);
 
                     if (index + 1 == questionTexts.size()) {
                         mPrompt.getText().clear();
@@ -93,13 +100,20 @@ public class MakeTestActivity extends AppCompatActivity {
                         goBack = false;
                     } else {
                         index++;
-                        //Log.d(TAG, "On index " + index + " which corresponds with " + questionTexts.get(index));
+
+                        try {
+                            Log.d(TAG, "On index " + index + " which corresponds with " + questionTexts.get(index));
+                        } catch (Exception e) {
+                            Log.d(TAG, "Could not print because of " + e);
+                        }
+
+
                         questionTexts.get(index).display();
                     }
                 } else {
                     int num = index + 2;
-                    int totalNum = questionTexts.size() + 2;
-                    mProblem.setText("Question " + num + "/" + totalNum);
+                    int totalNum = questionTexts.size() + 1;
+                    mProblem.setText("On Question: " + num + "\nQuestions Made: " + totalNum);
 
                     if (index == questionTexts.size()) {
                         questionTexts.add(new QuestionTexts(mPrompt.getText().toString(), mPoints.getText().toString(), mAnswer.getText().toString()));
@@ -109,6 +123,13 @@ public class MakeTestActivity extends AppCompatActivity {
                         index++;
                     } else {
                         index++;
+
+                        try {
+                            Log.d(TAG, "On index " + index + " which corresponds with " + questionTexts.get(index));
+                        } catch (Exception e) {
+                            Log.d(TAG, "Could not print because of " + e);
+                        }
+
                         questionTexts.get(index).display();
                     }
                 }
@@ -118,7 +139,6 @@ public class MakeTestActivity extends AppCompatActivity {
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Log.d(TAG, questionTexts.toString());
 
                 if (mPrompt.getText().toString().length() == 0 || mPoints.getText().toString().length() == 0 || mAnswer.getText().toString().length() == 0) {
                     return;
@@ -134,11 +154,18 @@ public class MakeTestActivity extends AppCompatActivity {
                     }
 
                     index--;
+
+                    try {
+                        Log.d(TAG, "On index " + index + " which corresponds with " + questionTexts.get(index));
+                    } catch (Exception e) {
+                        Log.d(TAG, "Could not print because of " + e);
+                    }
+
                     questionTexts.get(index).display();
 
                     int num = index + 1;
                     int totalNum = questionTexts.size();
-                    mProblem.setText("Question " + num + "/" + totalNum);
+                    mProblem.setText("On Question: " + num + "\nQuestions Made: " + totalNum);
                 } else {
                     // TODO Display cannot go back further
                 }
@@ -158,6 +185,10 @@ public class MakeTestActivity extends AppCompatActivity {
                         questionTexts.get(index).display();
                     }
                 }
+
+                int num = index + 1;
+                int totalNum = questionTexts.size();
+                mProblem.setText("On Question: " + num + "\nQuestions Made: " + totalNum);
                 return;
             }
         });
