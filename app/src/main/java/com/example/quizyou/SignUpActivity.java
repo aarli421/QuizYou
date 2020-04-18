@@ -34,9 +34,11 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -48,6 +50,8 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView mLoginHere;
 
     private ImageView mQuizYouView;
+
+    private boolean oneFinished = false;
 
     private ArrayList<UserItem> mUserList;
     private UserAdapter mAdapter;
@@ -134,7 +138,59 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    signUpWithEmailAuthCredential();
+                    MainActivity.mDb.collection("Students")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                                    int index = 0;
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        index++;
+                                        StudentActivity.students.put(document.getId(), MainActivity.turnHashMapToStudent((HashMap<String, Object>) document.getData()));
+                                    }
+
+                                    Student.setStaticID(index);
+
+                                    Log.d(TAG, StudentActivity.students.toString());
+
+                                    if (oneFinished) {
+                                        //handler.post(periodicUpdate);
+                                        signUpWithEmailAuthCredential();
+                                    } else {
+                                        oneFinished = true;
+                                    }
+                                }
+                            });
+
+                    MainActivity.mDb.collection("Teachers")
+                            .get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+
+                                        int index = 0;
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            index++;
+                                            TeacherActivity.teachers.put(document.getId(), MainActivity.turnHashMapToTeacher((HashMap<String, Object>) document.getData()));
+                                        }
+
+                                        Teacher.setStaticID(index);
+
+                                        Log.d(TAG, TeacherActivity.teachers.toString());
+
+                                        if (oneFinished) {
+                                            //handler.post(periodicUpdate);
+                                            signUpWithEmailAuthCredential();
+                                        } else {
+                                            oneFinished = true;
+                                        }
+                                    } else {
+                                        Log.d(TAG, "Error getting documents: ", task.getException());
+                                    }
+                                }
+                            });
                 }
             }
         });
